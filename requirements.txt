@@ -3,5 +3,5 @@ pandas_ta
 plotly
 streamlit
 backtesting
-altair
+altair<5
 bokeh
