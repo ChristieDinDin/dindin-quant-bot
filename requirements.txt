@@ -1,6 +1,7 @@
 streamlit
-pandas
-pandas_ta
+pandas==2.1.4
+pandas-ta
 plotly
 bokeh==2.4.3
 backtesting
+numpy<2.0.0
