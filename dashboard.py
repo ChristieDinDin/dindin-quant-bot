@@ -1,5 +1,14 @@
 import streamlit as st
 import pandas as pd
+import numpy as np  # 1. 先叫出 numpy
+
+# --- 💉 基因改造手術開始 (Monkey Patch) ---
+# 這是為了修復 NumPy 2.0 和舊版 Bokeh 的衝突
+# 我們手動把被刪除的 bool8 補回去，騙過 Bokeh
+if not hasattr(np, 'bool8'):
+    np.bool8 = np.bool_
+# --- 手術結束 ---
+
 import pandas_ta_classic as ta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
