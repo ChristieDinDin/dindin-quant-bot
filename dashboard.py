@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pandas_ta as ta
+import pandas_ta_classic as ta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from backtesting import Backtest, Strategy
