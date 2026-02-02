@@ -1,6 +1,6 @@
 streamlit
 pandas==2.1.4
-pandas-ta
+https://github.com/twopirllc/pandas-ta/archive/development.zip
 plotly
 bokeh==2.4.3
 backtesting
