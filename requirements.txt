@@ -1,5 +1,6 @@
+streamlit
 pandas
 pandas_ta
 plotly
-streamlit
+bokeh==2.4.3
 backtesting
