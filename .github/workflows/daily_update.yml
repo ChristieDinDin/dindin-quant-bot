@@ -1,0 +1,92 @@
+name: Daily Stock Data Update (Backup)
+
+on:
+  schedule:
+    # Run at 10:00 UTC (18:00 Taiwan time) on weekdays
+    - cron: '0 10 * * 1-5'
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Download latest database from previous run
+        uses: actions/download-artifact@v3
+        continue-on-error: true
+        with:
+          name: market-database
+          path: data/database/
+      
+      - name: Initialize database if not exists
+        run: |
+          if [ ! -f data/database/market_data.db ]; then
+            echo "No existing database found. Will create new one."
+            mkdir -p data/database
+            touch data/database/market_data.db
+          else
+            echo "Database found. Size: $(du -h data/database/market_data.db | cut -f1)"
+          fi
+      
+      - name: Run daily update
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
+          SHIOAJI_PERSON_ID: ${{ secrets.SHIOAJI_PERSON_ID }}
+          SHIOAJI_SIMULATION: "true"
+          DATABASE_PATH: data/database/market_data.db
+        run: |
+          echo "Starting daily update..."
+          python scripts/migrate_to_shioaji.py --update
+          echo "Update completed!"
+          
+          # Show database stats
+          if [ -f data/database/market_data.db ]; then
+            echo "Database size: $(du -h data/database/market_data.db | cut -f1)"
+            sqlite3 data/database/market_data.db "SELECT COUNT(DISTINCT symbol) as stocks, COUNT(*) as total_rows FROM daily_kline;"
+          fi
+      
+      - name: Upload updated database as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: market-database
+          path: data/database/market_data.db
+          retention-days: 90  # Keep for 90 days
+      
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: update-logs-${{ github.run_number }}
+          path: logs/
+          retention-days: 30
+      
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## 📊 Daily Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f data/database/market_data.db ]; then
+            echo "**Database Size:** $(du -h data/database/market_data.db | cut -f1)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Stats:**" >> $GITHUB_STEP_SUMMARY
+            sqlite3 data/database/market_data.db "SELECT '- Stocks: ' || COUNT(DISTINCT symbol) || '\n- Total Rows: ' || COUNT(*) FROM daily_kline;" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Database not found" >> $GITHUB_STEP_SUMMARY
+          fi
