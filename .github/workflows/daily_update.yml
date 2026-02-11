@@ -25,7 +25,7 @@ jobs:
           pip install -r requirements.txt
       
       - name: Download latest database from previous run
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         continue-on-error: true
         with:
           name: market-database
@@ -60,14 +60,14 @@ jobs:
           fi
       
       - name: Upload updated database as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: market-database
           path: data/database/market_data.db
           retention-days: 90  # Keep for 90 days
       
       - name: Upload logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: update-logs-${{ github.run_number }}
