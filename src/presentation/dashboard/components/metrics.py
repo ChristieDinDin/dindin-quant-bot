@@ -6,7 +6,7 @@ import streamlit as st
 
 def display_performance_metrics(results: dict, initial_capital: float = 1_000_000) -> None:
     """
-    Display backtest performance metrics in a compact layout.
+    Display backtest performance metrics - compact but complete.
     
     Args:
         results: Results dict from BacktestService
@@ -21,41 +21,89 @@ def display_performance_metrics(results: dict, initial_capital: float = 1_000_00
     max_dd = results.get('max_drawdown_pct', 0)
     num_trades = results.get('num_trades', 0)
     
-    # === Row 1: Performance Metrics ===
+    # Use custom CSS to make metrics more compact
+    st.markdown("""
+        <style>
+        [data-testid="stMetricValue"] {
+            font-size: 20px;
+        }
+        [data-testid="stMetricLabel"] {
+            font-size: 12px;
+        }
+        [data-testid="stMetricDelta"] {
+            font-size: 11px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # === Row 1: Performance % ===
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         delta_color = "normal" if total_return >= 0 else "inverse"
         st.metric(
-            "報酬率",
+            "總報酬率",
             f"{total_return:.1f}%",
-            delta=f"{profit/1000:.0f}K TWD",
+            delta=f"{profit/1000:+.0f}K",
             delta_color=delta_color,
-            help="總報酬率與絕對獲利"
+            help="本金翻了多少倍"
         )
     
     with col2:
         st.metric(
-            "勝率",
+            "歷史勝率",
             f"{win_rate:.0f}%",
-            delta=f"{num_trades} 筆",
-            help="贏的機率 (交易次數)"
+            help="過去交易賺錢的機率"
         )
     
     with col3:
         st.metric(
             "最大回撤",
             f"{max_dd:.1f}%",
-            delta=f"{(equity_peak - initial_capital)/1000:.0f}K",
-            help="最大虧損 (歷史高點)"
+            help="歷史上最慘曾經跌多少"
         )
     
     with col4:
         st.metric(
+            "交易次數",
+            f"{num_trades}",
+            help="樣本數是否足夠"
+        )
+    
+    # === Row 2: Capital (TWD) ===
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric(
+            "初始資金",
+            f"{initial_capital/1000:.0f}K",
+            help="起始本金 (千元)"
+        )
+    
+    with col2:
+        profit_delta_color = "normal" if profit >= 0 else "inverse"
+        st.metric(
             "最終資金",
-            f"{final_value/1_000_000:.2f}M",
-            delta=f"{initial_capital/1_000_000:.2f}M",
-            help="最終 vs 初始資金 (百萬)"
+            f"{final_value/1000:.0f}K",
+            delta=f"{profit/1000:+.0f}K",
+            delta_color=profit_delta_color,
+            help="回測結束時的總資產 (千元)"
+        )
+    
+    with col3:
+        st.metric(
+            "淨利潤",
+            f"{profit/1000:+.0f}K",
+            delta=f"{total_return:+.1f}%",
+            help="賺或賠的絕對金額 (千元)"
+        )
+    
+    with col4:
+        st.metric(
+            "歷史最高",
+            f"{equity_peak/1000:.0f}K",
+            delta=f"{(equity_peak-initial_capital)/1000:+.0f}K",
+            help="資產最高點 (千元)"
         )
 
 

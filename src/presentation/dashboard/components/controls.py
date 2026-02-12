@@ -72,41 +72,37 @@ def create_sidebar_controls() -> dict:
             help="您常用的股票清單"
         )
         
-        # Watchlist management buttons
-        col1, col2 = st.sidebar.columns(2)
+        # Watchlist management buttons (stacked vertically for full stock names)
+        # Add stock to watchlist
+        with st.sidebar.expander("➕ 加入自選股"):
+            add_symbol = st.selectbox(
+                "選擇要加入的股票",
+                [s for s in available_symbols if s not in watchlist_symbols],
+                format_func=lambda x: f"{x} - {metadata.get(x, '')}",
+                key="add_to_watchlist",
+                label_visibility="collapsed"
+            )
+            if st.button("✅ 加入", key="add_btn", use_container_width=True):
+                if add_to_watchlist(add_symbol):
+                    st.success(f"已加入 {add_symbol}")
+                    st.rerun()
         
-        with col1:
-            # Add stock to watchlist
-            with st.expander("➕ 加入"):
-                add_symbol = st.selectbox(
-                    "選擇股票",
-                    [s for s in available_symbols if s not in watchlist_symbols],
+        # Remove stock from watchlist
+        with st.sidebar.expander("➖ 移除自選股"):
+            if watchlist_available:
+                remove_symbol = st.selectbox(
+                    "選擇要移除的股票",
+                    watchlist_available,
                     format_func=lambda x: f"{x} - {metadata.get(x, '')}",
-                    key="add_to_watchlist",
+                    key="remove_from_watchlist",
                     label_visibility="collapsed"
                 )
-                if st.button("加入自選股", key="add_btn"):
-                    if add_to_watchlist(add_symbol):
-                        st.success(f"✅ 已加入 {add_symbol}")
+                if st.button("🗑️ 移除", key="remove_btn", use_container_width=True):
+                    if remove_from_watchlist(remove_symbol):
+                        st.success(f"已移除 {remove_symbol}")
                         st.rerun()
-        
-        with col2:
-            # Remove stock from watchlist
-            with st.expander("➖ 移除"):
-                if watchlist_available:
-                    remove_symbol = st.selectbox(
-                        "選擇股票",
-                        watchlist_available,
-                        format_func=lambda x: f"{x} - {metadata.get(x, '')}",
-                        key="remove_from_watchlist",
-                        label_visibility="collapsed"
-                    )
-                    if st.button("移除", key="remove_btn"):
-                        if remove_from_watchlist(remove_symbol):
-                            st.success(f"✅ 已移除 {remove_symbol}")
-                            st.rerun()
-                else:
-                    st.caption("自選股是空的")
+            else:
+                st.caption("自選股是空的")
     
     elif selection_mode == "🔍 搜尋":
         # Search with autocomplete
