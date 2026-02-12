@@ -25,13 +25,17 @@ def display_performance_metrics(results: dict, initial_capital: float = 1_000_00
     st.markdown("""
         <style>
         [data-testid="stMetricValue"] {
-            font-size: 20px;
+            font-size: 18px;
         }
         [data-testid="stMetricLabel"] {
-            font-size: 12px;
+            font-size: 11px;
+            margin-bottom: 2px;
         }
         [data-testid="stMetricDelta"] {
-            font-size: 11px;
+            font-size: 10px;
+        }
+        div[data-testid="metric-container"] {
+            padding: 8px 10px;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -112,7 +116,7 @@ def display_signal_card(mfi_value: float,
                        sell_threshold: float,
                        strong_buy_threshold: float) -> None:
     """
-    Display trading signal recommendation card.
+    Display trading signal recommendation card - compact version.
     
     Args:
         mfi_value: Current MFI value
@@ -120,39 +124,23 @@ def display_signal_card(mfi_value: float,
         sell_threshold: Sell signal threshold
         strong_buy_threshold: Strong buy threshold
     """
-    col_a, col_b = st.columns([1, 2])
-    
-    with col_a:
-        # Show current MFI value
-        # Calculate delta (change from previous)
-        st.metric(
-            "目前 MFI",
-            f"{mfi_value:.1f}",
-            help="Money Flow Index - 資金流量指標"
+    # Determine signal
+    if mfi_value < strong_buy_threshold:
+        st.success(
+            "💰 **STRONG BUY** - 建議部位：**30%** (重倉)"
         )
-    
-    with col_b:
-        # Determine signal
-        if mfi_value < strong_buy_threshold:
-            st.success(
-                "💰 **STRONG BUY (強力買進)**\n\n"
-                f"建議部位：**30% (重倉)** - 處於極度超賣區，勝率極高。"
-            )
-        elif mfi_value < buy_threshold:
-            st.success(
-                "🟢 **BUY (買進訊號)**\n\n"
-                f"建議部位：**15% (試單)** - 分批佈局，保留現金加碼。"
-            )
-        elif mfi_value > sell_threshold:
-            st.error(
-                "🔴 **SELL (獲利了結)**\n\n"
-                "建議動作：**清空持倉** - 指標過熱，落袋為安。"
-            )
-        else:
-            st.info(
-                "😴 **WAIT (觀望)**\n\n"
-                "建議動作：空手或續抱，等待更佳機會。"
-            )
+    elif mfi_value < buy_threshold:
+        st.success(
+            "🟢 **BUY** - 建議部位：**15%** (試單)"
+        )
+    elif mfi_value > sell_threshold:
+        st.error(
+            "🔴 **SELL** - 建議動作：**清空持倉**"
+        )
+    else:
+        st.info(
+            "😴 **WAIT** - 空手或續抱，等待機會"
+        )
 
 
 def display_risk_metrics(results: dict) -> None:
