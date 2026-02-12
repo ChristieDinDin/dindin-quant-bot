@@ -1,3 +1,98 @@
-quant_env/
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+quant_env/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Logs
+logs/
+*.log
+
+# Data files (keep structure but not actual data)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/database/*.db
+!data/database/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+data/user_watchlist.yaml
+
+# Output files
+output/backtests/*
+!output/backtests/.gitkeep
+output/reports/*
+!output/reports/.gitkeep
+output/charts/*
+!output/charts/.gitkeep
+*.html
+*.png
+*.jpg
+
+# Old files from migration
+*_history.csv
+*_calculated.csv
+market_data.db
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Documentation build
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
