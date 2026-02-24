@@ -5,12 +5,8 @@ numpy>=1.24.0
 # Data
 yfinance>=0.2.0
 
-# Technical Indicators
-pandas-ta
-
-# Backtesting (bokeh pinned for compatibility)
+# Backtesting
 backtesting>=0.3.3
-bokeh>=2.4.3,<3.0.0
 
 # Visualization
 plotly>=5.0.0
