@@ -83,6 +83,7 @@ us_blue_chips:
 
 # === Growth / Momentum (user picks + high volume) ===
 us_growth:
+  "ALAB": "Astera Labs Inc."
   "ONDS": "Ondas Holdings Inc."
   "MU": "Micron Technology Inc."
   "CRWD": "CrowdStrike Holdings Inc."
