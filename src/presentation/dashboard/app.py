@@ -26,26 +26,29 @@ from src.presentation.dashboard.components.metrics import display_performance_me
 from src.presentation.dashboard.components.controls import create_sidebar_controls
 
 from src.application.services.data_service import DataService
-from src.application.services.backtest_service import BacktestService
-from src.application.use_cases.run_backtest import RunBacktestUseCase
 from src.infrastructure.data_providers.yfinance_provider import YFinanceProvider
 from src.infrastructure.database.connection import get_database
 from src.infrastructure.database.repository import MarketDataRepository
 from src.core.indicators.mfi import MFI
 
+try:
+    from src.application.services.backtest_service import BacktestService
+    from src.application.use_cases.run_backtest import RunBacktestUseCase
+    BACKTESTING_AVAILABLE = True
+except ImportError:
+    BACKTESTING_AVAILABLE = False
+
 @st.cache_resource
 def initialize_services():
     """Initialize all services."""
-    # Data infrastructure
     provider = YFinanceProvider()
     provider.connect()
     
     db = get_database()
     repository = MarketDataRepository(db)
     
-    # Services
     data_service = DataService(provider, repository)
-    backtest_service = BacktestService(data_service)
+    backtest_service = BacktestService(data_service) if BACKTESTING_AVAILABLE else None
     
     return data_service, backtest_service
 
@@ -152,6 +155,8 @@ def main():
         
         # Run backtest for performance metrics
         try:
+            if not BACKTESTING_AVAILABLE or backtest_service is None:
+                raise ImportError("backtesting package not available")
             use_case = RunBacktestUseCase(backtest_service, data_service)
             
             # Build strategy parameters based on selection
