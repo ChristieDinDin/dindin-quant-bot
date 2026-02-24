@@ -1,28 +1,22 @@
-# Core Dependencies
+# Core
 pandas>=2.0.0
 numpy>=1.24.0
 
-# Data Providers
+# Data
 yfinance>=0.2.0
-# shioaji is for local Taiwan broker only - not available on Linux/cloud
-# shioaji>=1.0.0
 
 # Technical Indicators
 pandas-ta
 
-# Backtesting
+# Backtesting (bokeh pinned for compatibility)
 backtesting>=0.3.3
+bokeh>=2.4.3,<3.0.0
 
 # Visualization
 plotly>=5.0.0
 streamlit>=1.28.0
 
-# Database
-# SQLite is built-in to Python, no additional package needed
-
-# Configuration
+# Config / Utils
 PyYAML>=6.0
 python-dotenv>=1.0.0
-
-# Utilities
 python-dateutil>=2.8.0
