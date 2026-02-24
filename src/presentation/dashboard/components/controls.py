@@ -7,11 +7,16 @@ import sys
 
 # Add utils to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
-from src.utils.stock_list import (
-    load_stock_metadata, 
-    get_stocks_by_category,
-    get_available_stocks_from_db
-)
+
+def _is_taiwan_symbol(symbol: str) -> bool:
+    """Check if symbol is Taiwan stock (.TW or .TWO). Fallback if import fails."""
+    return symbol.endswith('.TW') or symbol.endswith('.TWO')
+
+import src.utils.stock_list as _stock_list
+load_stock_metadata = _stock_list.load_stock_metadata
+get_stocks_by_category = _stock_list.get_stocks_by_category
+get_available_stocks_from_db = _stock_list.get_available_stocks_from_db
+is_taiwan_symbol = getattr(_stock_list, 'is_taiwan_symbol', _is_taiwan_symbol)
 from src.utils.watchlist_manager import (
     load_watchlist,
     add_to_watchlist,
@@ -20,9 +25,12 @@ from src.utils.watchlist_manager import (
 )
 
 
-def create_sidebar_controls() -> dict:
+def create_sidebar_controls(market: str = "tw") -> dict:
     """
     Create sidebar controls for strategy parameters.
+    
+    Args:
+        market: "tw" for Taiwan stocks, "us" for US stocks
     
     Returns:
         Dict with all control values
@@ -32,16 +40,26 @@ def create_sidebar_controls() -> dict:
     # === IMPROVED STOCK SELECTION ===
     st.sidebar.subheader("📊 選股")
     
-    # Load available stocks from database and metadata
+    # Load available stocks from metadata (primary) + database (for sorting)
     metadata = load_stock_metadata()
-    
-    # Get stocks from database (what you actually have data for)
     db_stocks = get_available_stocks_from_db()
-    available_symbols = [row[0] for row in db_stocks] if db_stocks else []
-    
-    # If no DB stocks, use metadata
+    db_symbols = {row[0] for row in db_stocks} if db_stocks else set()
+
+    # Use metadata as primary source (all stocks in YAML) - yfinance fetches on demand
+    if market == "tw":
+        available_symbols = [s for s in metadata.keys() if is_taiwan_symbol(s)]
+    else:
+        available_symbols = [s for s in metadata.keys() if not is_taiwan_symbol(s)]
+
+    # Sort: DB stocks first (local data), then the rest
+    available_symbols = sorted(
+        available_symbols,
+        key=lambda s: (0 if s in db_symbols else 1, s)
+    )
+
+    # Fallback if metadata empty (path/config issue)
     if not available_symbols:
-        available_symbols = list(metadata.keys())
+        available_symbols = ["2330.TW", "2337.TW"] if market == "tw" else ["AAPL", "MSFT", "NVDA", "TSLA", "GOOGL"]
     
     # Selection mode
     selection_mode = st.sidebar.radio(
@@ -65,27 +83,35 @@ def create_sidebar_controls() -> dict:
             watchlist_available = available_symbols[:5]  # Default to first 5
         
         # Stock selector
+        options = watchlist_available if watchlist_available else available_symbols[:5]
+        if not options:
+            options = ["2330.TW", "AAPL"][:1] if market == "tw" else ["AAPL", "MSFT"][:1]
+        
         symbol = st.sidebar.selectbox(
             "我的自選股",
-            watchlist_available,
-            format_func=lambda x: f"{x} - {metadata.get(x, x.replace('.TW', ''))}",
+            options,
+            format_func=lambda x: f"{x} - {metadata.get(x, x.replace('.TW', '').replace('.TWO', ''))}",
             help="您常用的股票清單"
         )
         
         # Watchlist management buttons (stacked vertically for full stock names)
         # Add stock to watchlist
+        add_options = [s for s in available_symbols if s not in watchlist_symbols]
         with st.sidebar.expander("➕ 加入自選股"):
-            add_symbol = st.selectbox(
-                "選擇要加入的股票",
-                [s for s in available_symbols if s not in watchlist_symbols],
-                format_func=lambda x: f"{x} - {metadata.get(x, '')}",
-                key="add_to_watchlist",
-                label_visibility="collapsed"
-            )
-            if st.button("✅ 加入", key="add_btn", use_container_width=True):
-                if add_to_watchlist(add_symbol):
-                    st.success(f"已加入 {add_symbol}")
-                    st.rerun()
+            if add_options:
+                add_symbol = st.selectbox(
+                    "選擇要加入的股票",
+                    add_options,
+                    format_func=lambda x: f"{x} - {metadata.get(x, '')}",
+                    key="add_to_watchlist",
+                    label_visibility="collapsed"
+                )
+                if st.button("✅ 加入", key="add_btn", use_container_width=True):
+                    if add_to_watchlist(add_symbol):
+                        st.success(f"已加入 {add_symbol}")
+                        st.rerun()
+            else:
+                st.caption("所有股票已加入自選股")
         
         # Remove stock from watchlist
         with st.sidebar.expander("➖ 移除自選股"):
@@ -108,7 +134,7 @@ def create_sidebar_controls() -> dict:
         # Search with autocomplete
         search_query = st.sidebar.text_input(
             "🔍 搜尋",
-            placeholder="台積電, 2330, TSMC...",
+            placeholder="Apple, AAPL, 2330..." if market == "us" else "台積電, 2330, TSMC...",
             help="輸入代碼或公司名稱",
             label_visibility="collapsed"
         )
@@ -129,27 +155,42 @@ def create_sidebar_controls() -> dict:
                 )
             else:
                 st.sidebar.warning("找不到，請直接輸入代碼")
-                symbol = st.sidebar.text_input("代碼", value="2330.TW", label_visibility="collapsed")
+                default_code = "AAPL" if market == "us" else "2330.TW"
+                symbol = st.sidebar.text_input("代碼", value=default_code, label_visibility="collapsed")
         else:
-            # Show all available stocks with search
+            # Show all available stocks with search (ensure non-empty)
+            options = available_symbols if available_symbols else (["2330.TW"] if market == "tw" else ["AAPL"])
             symbol = st.sidebar.selectbox(
-                f"所有股票 ({len(available_symbols)} 檔)",
-                available_symbols,
+                f"所有股票 ({len(options)} 檔)",
+                options,
                 format_func=lambda x: f"{x} - {metadata.get(x, '')}",
                 help="點擊後可輸入搜尋"
             )
     
     else:  # 📁 分類
-        # Browse by category
-        category = st.sidebar.radio(
+        # Browse by category (filter by market)
+        tw_categories = ["blue_chips", "technology", "financial", "industrials", "consumer", "shipping"]
+        us_categories = ["us_tech", "us_semiconductors", "us_growth", "us_blue_chips", "us_etfs"]
+        category_list = tw_categories if market == "tw" else us_categories
+        
+        category_labels = {
+            "blue_chips": "🏆 藍籌股",
+            "technology": "💻 科技",
+            "financial": "💰 金融",
+            "industrials": "⚙️ 產業",
+            "consumer": "🛒 消費",
+            "shipping": "🚢 航運",
+            "us_tech": "📱 科技",
+            "us_semiconductors": "🔌 半導體",
+            "us_growth": "🚀 成長股",
+            "us_blue_chips": "🏆 藍籌",
+            "us_etfs": "📈 ETF"
+        }
+        
+        category = st.sidebar.selectbox(
             "類別",
-            ["blue_chips", "technology", "financial"],
-            format_func=lambda x: {
-                "blue_chips": "🏆 藍籌股",
-                "technology": "💻 科技",
-                "financial": "💰 金融"
-            }.get(x, x),
-            horizontal=True,
+            category_list,
+            format_func=lambda x: category_labels.get(x, x),
             label_visibility="collapsed"
         )
         
@@ -163,8 +204,11 @@ def create_sidebar_controls() -> dict:
                 format_func=lambda x: f"{x} - {metadata.get(x, category_stocks.get(x, ''))}",
             )
         else:
-            st.sidebar.warning("此類別暫無資料")
-            symbol = available_symbols[0] if available_symbols else "2330.TW"
+            if category.startswith("us_"):
+                st.sidebar.info("💡 執行以下指令匯入美股: python scripts/migrate_to_shioaji.py --all-us --years 5")
+            else:
+                st.sidebar.warning("此類別暫無資料")
+            symbol = available_symbols[0] if available_symbols else ("2330.TW" if market == "tw" else "AAPL")
     
     # Strategy selection
     st.sidebar.subheader("策略選擇")
@@ -275,29 +319,39 @@ def create_sidebar_controls() -> dict:
         rsi_oversold = 30
         rsi_overbought = 70
     
-    # Backtesting parameters
+    # Backtesting parameters (market-specific defaults)
     st.sidebar.subheader("回測設定")
     
+    default_capital = 1_000_000 if market == "tw" else 100_000
+    capital_label = "初始資金 (TWD)" if market == "tw" else "Initial Capital (USD)"
+    default_commission = 0.1425 if market == "tw" else 0.1  # Taiwan: 0.1425%, US: 0.1%
+    
     initial_cash = st.sidebar.number_input(
-        "初始資金",
-        min_value=100_000,
+        capital_label,
+        min_value=10_000 if market == "us" else 100_000,
         max_value=10_000_000,
-        value=1_000_000,
-        step=100_000,
-        help="回測起始資金（新台幣）"
+        value=default_capital,
+        step=50_000 if market == "us" else 100_000,
+        help="回測起始資金" + (" (新台幣)" if market == "tw" else " (美元)")
     )
     
     commission = st.sidebar.number_input(
         "交易手續費 (%)",
         min_value=0.0,
         max_value=1.0,
-        value=0.1425,
+        value=default_commission,
         step=0.01,
         help="單邊交易手續費率"
     )
     
+    # Ensure symbol is never None (selectbox can return None with empty options)
+    if symbol is None:
+        symbol = "2330.TW" if market == "tw" else "AAPL"
+
     return {
         'symbol': symbol,
+        'market': market,
+        'currency': 'TWD' if market == 'tw' else 'USD',
         'strategy_name': strategy_name,
         'mfi_period': mfi_period,
         'buy_level': buy_level,

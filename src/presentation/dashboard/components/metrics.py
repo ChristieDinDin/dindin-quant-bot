@@ -4,13 +4,14 @@ Metrics display components for the dashboard.
 import streamlit as st
 
 
-def display_performance_metrics(results: dict, initial_capital: float = 1_000_000) -> None:
+def display_performance_metrics(results: dict, initial_capital: float = 1_000_000, currency: str = "TWD") -> None:
     """
     Display backtest performance metrics - compact but complete.
     
     Args:
         results: Results dict from BacktestService
         initial_capital: Initial capital amount
+        currency: "TWD" or "USD" for display formatting
     """
     # Calculate values
     total_return = results.get('return_pct', 0)
@@ -20,6 +21,21 @@ def display_performance_metrics(results: dict, initial_capital: float = 1_000_00
     win_rate = results.get('win_rate_pct', 0)
     max_dd = results.get('max_drawdown_pct', 0)
     num_trades = results.get('num_trades', 0)
+    
+    # Currency formatting: USD = $ prefix, TWD = suffix
+    def fmt(val: float) -> str:
+        if currency == "USD":
+            if abs(val) >= 1_000_000:
+                return f"${val/1_000_000:.2f}M"
+            elif abs(val) >= 1_000:
+                return f"${val/1_000:.1f}K"
+            return f"${val:,.0f}"
+        else:  # TWD
+            if abs(val) >= 1_000_000:
+                return f"{val/1_000_000:.1f}M"
+            elif abs(val) >= 1_000:
+                return f"{val/1_000:.0f}K"
+            return f"{val:,.0f}"
     
     # Use custom CSS to make metrics more compact
     st.markdown("""
@@ -45,10 +61,11 @@ def display_performance_metrics(results: dict, initial_capital: float = 1_000_00
     
     with col1:
         delta_color = "normal" if total_return >= 0 else "inverse"
+        profit_str = f"${profit/1000:+.1f}K" if currency == "USD" else f"{profit/1000:+.0f}K TWD"
         st.metric(
             "總報酬率",
             f"{total_return:.1f}%",
-            delta=f"{profit/1000:+.0f}K",
+            delta=profit_str,
             delta_color=delta_color,
             help="本金翻了多少倍"
         )
@@ -74,40 +91,40 @@ def display_performance_metrics(results: dict, initial_capital: float = 1_000_00
             help="樣本數是否足夠"
         )
     
-    # === Row 2: Capital (TWD) ===
+    # === Row 2: Capital ===
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.metric(
             "初始資金",
-            f"{initial_capital/1000:.0f}K",
-            help="起始本金 (千元)"
+            fmt(initial_capital),
+            help=f"起始本金 ({currency})"
         )
     
     with col2:
         profit_delta_color = "normal" if profit >= 0 else "inverse"
         st.metric(
             "最終資金",
-            f"{final_value/1000:.0f}K",
-            delta=f"{profit/1000:+.0f}K",
+            fmt(final_value),
+            delta=fmt(profit),
             delta_color=profit_delta_color,
-            help="回測結束時的總資產 (千元)"
+            help=f"回測結束時的總資產 ({currency})"
         )
     
     with col3:
         st.metric(
             "淨利潤",
-            f"{profit/1000:+.0f}K",
+            fmt(profit),
             delta=f"{total_return:+.1f}%",
-            help="賺或賠的絕對金額 (千元)"
+            help=f"賺或賠的絕對金額 ({currency})"
         )
     
     with col4:
         st.metric(
             "歷史最高",
-            f"{equity_peak/1000:.0f}K",
-            delta=f"{(equity_peak-initial_capital)/1000:+.0f}K",
-            help="資產最高點 (千元)"
+            fmt(equity_peak),
+            delta=fmt(equity_peak - initial_capital),
+            help=f"資產最高點 ({currency})"
         )
 
 

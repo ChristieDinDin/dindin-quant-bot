@@ -1,0 +1,41 @@
+# Default Configuration for DinDin Quant Bot
+# This file contains the default settings for all environments
+
+database:
+  path: "data/database/market_data.db"
+  check_same_thread: false
+
+data_provider:
+  default_provider: "yfinance"
+  cache_enabled: true
+  default_lookback_days: 365
+  
+  # Shioaji settings (credentials loaded from environment variables)
+  shioaji_simulation: true
+
+backtest:
+  initial_cash: 1000000  # 1M TWD
+  commission: 0.001425   # 0.1425% Taiwan stock commission
+  trade_on_close: true
+
+strategy:
+  default_strategy: "mfi_hunter"
+  
+  # MFI Hunter Strategy Parameters
+  mfi_period: 16
+  mfi_buy_threshold: 35
+  mfi_sell_threshold: 85
+  mfi_strong_buy_threshold: 20
+  max_position_pct: 0.80
+  normal_position_pct: 0.15
+  strong_position_pct: 0.30
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "logs/trading.log"
+  max_bytes: 10000000  # 10MB
+  backup_count: 5
+
+# General settings
+debug: false

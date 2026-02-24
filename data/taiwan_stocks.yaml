@@ -136,6 +136,7 @@ industrials:
   "2474.TW": "可成 Catcher Technology"
   "2023.TW": "燁輝 Yieh Phui"
   "6505.TW": "台塑化 Formosa Petrochemical"
+  "3264.TWO": "華友聯 Huayu Lian"
 
 # === Consumer (Retail, Food, Auto) ===
 consumer:
@@ -162,6 +163,7 @@ shipping:
 
 # === Your Custom Watchlist (edit this!) ===
 watchlist:
+  "3264.TWO": "華友聯 Huayu Lian"
   "2330.TW": "台積電 TSMC"
   "2454.TW": "聯發科 MediaTek"
   "2317.TW": "鴻海 Hon Hai"

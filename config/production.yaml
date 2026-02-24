@@ -1,0 +1,28 @@
+# Production Environment Configuration
+
+database:
+  path: "data/database/market_data.db"
+
+data_provider:
+  # IMPORTANT: Set to false for real trading!
+  shioaji_simulation: false
+  
+  # Cache should be enabled in production for performance
+  cache_enabled: true
+
+backtest:
+  initial_cash: 1000000
+
+strategy:
+  # Use optimized parameters in production
+  mfi_period: 16
+  mfi_buy_threshold: 35
+  mfi_sell_threshold: 85
+
+logging:
+  level: "INFO"
+  file_path: "logs/trading_prod.log"
+  max_bytes: 50000000  # 50MB for production
+  backup_count: 10
+
+debug: false

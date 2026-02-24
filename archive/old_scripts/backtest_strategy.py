@@ -46,14 +46,6 @@ class MfiHunter(Strategy):
             # 情況 2: 普通特價 (MFI < 35) -> 試單
             elif self.mfi[-1] < self.buy_level:
                 self.buy(size=0.15)
-            
-            # 情況 1: 世紀大特價 (MFI < 20) -> 重倉買 30%
-            if self.mfi[-1] < 20:
-                self.buy(size=0.3) 
-                
-            # 情況 2: 普通特價 (MFI < 35) -> 試單買 15%
-            elif self.mfi[-1] < self.buy_level:
-                self.buy(size=0.15) 
 
 # 2. 準備數據 (確保讀取的是 6944)
 df = pd.read_csv("6944.TW_history.csv", index_col=0, parse_dates=True, header=[0, 1])

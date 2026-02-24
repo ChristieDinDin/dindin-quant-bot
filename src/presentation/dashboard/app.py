@@ -4,11 +4,15 @@ Main Streamlit Dashboard Application.
 This is the refactored dashboard with clean separation of concerns.
 """
 import sys
+import os
 from pathlib import Path
 
+# Ensure we run from project root (fixes data/ YAML loading when streamlit changes cwd)
+project_root = Path(__file__).resolve().parent.parent.parent.parent
+os.chdir(project_root)
+
 # Add src to Python path
-src_path = Path(__file__).parent.parent.parent.parent
-sys.path.insert(0, str(src_path))
+sys.path.insert(0, str(project_root))
 
 import streamlit as st
 import numpy as np
@@ -68,8 +72,19 @@ def main():
     # Initialize services
     data_service, backtest_service = initialize_services()
     
-    # Sidebar controls
-    controls = create_sidebar_controls()
+    # === Market selector in sidebar (upper left) ===
+    st.sidebar.header("市場")
+    market = st.sidebar.radio(
+        "市場",
+        ["tw", "us"],
+        format_func=lambda x: "🇹🇼 台灣股市 (TWD)" if x == "tw" else "🇺🇸 美國股市 (USD)",
+        key="market_selector",
+        label_visibility="collapsed"
+    )
+    st.sidebar.markdown("---")
+    
+    # Sidebar controls (filtered by market)
+    controls = create_sidebar_controls(market=market)
     
     symbol = controls['symbol']
     strategy_name = controls['strategy_name']
@@ -81,11 +96,15 @@ def main():
     rsi_overbought = controls['rsi_overbought']
     initial_capital = controls['initial_cash']
     commission_rate = controls['commission']
+    currency = controls.get('currency', 'TWD')
     
     # Main title with stock info
     from src.utils.stock_list import load_stock_metadata
     metadata = load_stock_metadata()
-    stock_name = metadata.get(symbol, symbol.replace('.TW', ''))
+    if symbol is None:
+        symbol = "AAPL" if market == "us" else "2330.TW"
+    fallback = (symbol or "").replace('.TW', '').replace('.TWO', '') if symbol else ""
+    stock_name = metadata.get(symbol, fallback) or symbol
     
     st.title(f"🚀 {stock_name}")
     st.caption(f"股票代碼: {symbol}")
@@ -199,7 +218,11 @@ def main():
             st.caption(f"基於過去 {len(df)} 天的數據，使用目前側邊欄參數即時運算：")
             
             if backtest_results['success']:
-                display_performance_metrics(backtest_results, initial_capital=initial_capital)
+                display_performance_metrics(
+                    backtest_results,
+                    initial_capital=initial_capital,
+                    currency=currency
+                )
             else:
                 st.error(f"回測失敗: {backtest_results.get('error')}")
         

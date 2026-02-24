@@ -1,0 +1,81 @@
+# RSI + MFI Consensus Strategy Configuration
+
+strategy_name: "rsi_mfi_consensus"
+description: "Dual momentum confirmation - trades only when both RSI and MFI agree"
+
+# Indicator Parameters
+indicators:
+  rsi:
+    period: 14
+    oversold: 30
+    overbought: 70
+  
+  mfi:
+    period: 14
+    oversold: 35
+    overbought: 85
+
+# Trading Thresholds
+thresholds:
+  strong_threshold: 20  # Both indicators must be < 20 for strong buy
+
+# Position Management
+position:
+  max_position_pct: 0.80
+  normal_position_pct: 0.15
+  strong_position_pct: 0.30
+
+# Strategy Characteristics
+characteristics:
+  type: "momentum_consensus"
+  trade_frequency: "low"  # Very selective
+  win_rate_target: "high"  # Aims for >60%
+  best_for: "risk_averse_traders"
+
+# Optimization Ranges
+optimization:
+  rsi_period:
+    min: 10
+    max: 20
+    step: 2
+  
+  mfi_period:
+    min: 10
+    max: 20
+    step: 2
+  
+  rsi_oversold:
+    min: 25
+    max: 40
+    step: 5
+  
+  mfi_oversold:
+    min: 30
+    max: 45
+    step: 5
+  
+  rsi_overbought:
+    min: 60
+    max: 80
+    step: 5
+  
+  mfi_overbought:
+    min: 75
+    max: 90
+    step: 5
+
+# Notes
+notes: |
+  This strategy is very conservative - it requires both RSI and MFI to agree
+  before generating signals. This results in:
+  
+  ✅ Higher win rate (fewer false signals)
+  ✅ More confidence in trades
+  ⚠️ Fewer trading opportunities
+  ⚠️ May miss early entries
+  
+  If you get 0 trades, consider:
+  1. Relaxing thresholds (increase oversold levels)
+  2. Testing on different symbols
+  3. Using longer time periods
+  4. Checking if market is trending (indicators won't align in strong trends)

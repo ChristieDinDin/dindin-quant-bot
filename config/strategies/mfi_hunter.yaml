@@ -1,0 +1,57 @@
+# MFI Hunter Strategy Configuration
+
+strategy_name: "mfi_hunter"
+description: "Money Flow Index based momentum strategy with tiered position sizing"
+
+# Indicator Parameters
+indicators:
+  mfi:
+    period: 16  # Optimized for Taiwan market
+    
+# Trading Thresholds
+thresholds:
+  buy_level: 35          # Normal buy signal
+  sell_level: 85         # Sell signal
+  strong_buy_level: 20   # Strong buy signal for extreme oversold
+
+# Position Management
+position:
+  max_position_pct: 0.80    # Maximum 80% of equity
+  normal_position_pct: 0.15  # 15% for normal buys
+  strong_position_pct: 0.30  # 30% for strong buys
+
+# Risk Management
+risk:
+  stop_loss_pct: null       # No stop loss (strategy uses MFI for exits)
+  take_profit_pct: null     # No take profit (strategy uses MFI for exits)
+  max_drawdown_limit: null  # No hard limit
+
+# Optimization Ranges (for parameter tuning)
+optimization:
+  mfi_period:
+    min: 10
+    max: 24
+    step: 2
+  
+  buy_level:
+    min: 25
+    max: 45
+    step: 5
+  
+  sell_level:
+    min: 75
+    max: 95
+    step: 5
+  
+  strong_buy_level:
+    min: 15
+    max: 25
+    step: 5
+
+# Market Specific Settings
+market:
+  minimum_lot_size: 1000  # Taiwan stocks trade in lots of 1000
+  market_hours:
+    open: "09:00"
+    close: "13:30"
+    timezone: "Asia/Taipei"

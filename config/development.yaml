@@ -1,0 +1,14 @@
+# Development Environment Configuration
+
+database:
+  path: "data/database/market_data_dev.db"
+
+data_provider:
+  # Use simulation mode for Shioaji in development
+  shioaji_simulation: true
+
+logging:
+  level: "DEBUG"
+  file_path: "logs/trading_dev.log"
+
+debug: true

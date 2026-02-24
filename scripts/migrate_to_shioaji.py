@@ -139,14 +139,43 @@ def bulk_import_historical(symbols: list, yf_provider, repository, years: int = 
     print()
 
 
-def daily_update_shioaji(symbols: list, sj_provider, repository):
+def daily_update_mixed(symbols: list, sj_provider, sj_connected: bool, repository):
     """
-    Daily update using Shioaji (rate-limit friendly).
+    Daily update: Shioaji for Taiwan stocks (if connected), yfinance for US stocks.
+    """
+    tw_symbols = [s for s in symbols if is_taiwan_symbol(s)]
+    us_symbols = [s for s in symbols if not is_taiwan_symbol(s)]
     
-    Only fetches yesterday's data for each stock.
-    """
+    # Taiwan stocks: Shioaji if connected, else yfinance fallback
+    if tw_symbols:
+        if sj_connected:
+            _daily_update_via_provider(
+                tw_symbols, sj_provider, repository,
+                "Shioaji (Taiwan)"
+            )
+        else:
+            from src.infrastructure.data_providers.yfinance_provider import YFinanceProvider
+            yf = YFinanceProvider()
+            yf.connect()
+            _daily_update_via_provider(tw_symbols, yf, repository, "yfinance (Taiwan fallback)")
+            yf.disconnect()
+    
+    # US stocks via yfinance (Shioaji doesn't support US)
+    if us_symbols:
+        from src.infrastructure.data_providers.yfinance_provider import YFinanceProvider
+        yf_provider = YFinanceProvider()
+        yf_provider.connect()
+        _daily_update_via_provider(
+            us_symbols, yf_provider, repository,
+            "yfinance (US)"
+        )
+        yf_provider.disconnect()
+
+
+def _daily_update_via_provider(symbols: list, provider, repository, label: str):
+    """Generic daily update for any provider."""
     print("\n" + "="*60)
-    print(f"🔄 DAILY UPDATE: {len(symbols)} stocks via Shioaji")
+    print(f"🔄 DAILY UPDATE: {len(symbols)} stocks via {label}")
     print("="*60)
     
     yesterday = date.today() - timedelta(days=1)
@@ -159,7 +188,6 @@ def daily_update_shioaji(symbols: list, sj_provider, repository):
         print(f"\n[{i}/{len(symbols)}] {symbol}...")
         
         try:
-            # Check if already have today's data
             existing = repository.get_data(symbol, yesterday, today)
             
             if not existing.empty:
@@ -169,9 +197,8 @@ def daily_update_shioaji(symbols: list, sj_provider, repository):
                     success_count += 1
                     continue
             
-            # Fetch yesterday's data from Shioaji
             print(f"   📥 Fetching {yesterday}...")
-            df = sj_provider.get_historical_data(
+            df = provider.get_historical_data(
                 symbol=symbol,
                 start_date=yesterday,
                 end_date=today,
@@ -182,7 +209,6 @@ def daily_update_shioaji(symbols: list, sj_provider, repository):
                 print(f"   ⚠️  No data (might be weekend/holiday)")
                 continue
             
-            # Save to database
             repository.save_dataframe(df, symbol)
             print(f"   ✅ Updated with {len(df)} rows")
             success_count += 1
@@ -191,9 +217,8 @@ def daily_update_shioaji(symbols: list, sj_provider, repository):
             print(f"   ❌ Failed: {e}")
             failed.append(symbol)
     
-    # Summary
     print("\n" + "="*60)
-    print(f"📊 DAILY UPDATE SUMMARY")
+    print(f"📊 {label} SUMMARY")
     print("="*60)
     print(f"✅ Success: {success_count}/{len(symbols)}")
     if failed:
@@ -330,12 +355,45 @@ def get_taiwan_top_stocks(n: int = 100) -> list:
     return top_stocks[:n]
 
 
+def get_us_top_stocks(n: int = 100) -> list:
+    """Get list of US stocks from us_stocks.yaml (all categories)."""
+    import yaml
+    us_file = project_root / 'data' / 'us_stocks.yaml'
+    symbols = []
+    seen = set()
+    if us_file.exists():
+        with open(us_file, 'r', encoding='utf-8') as f:
+            data = yaml.safe_load(f)
+        for category in (data or {}).values():
+            if isinstance(category, dict):
+                for symbol in category.keys():
+                    if symbol not in seen:
+                        seen.add(symbol)
+                        symbols.append(symbol)
+    # Fallback if YAML empty
+    if not symbols:
+        symbols = [
+            "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "TSLA", "MU", "CRWD",
+            "JPM", "V", "JNJ", "WMT", "PG", "UNH", "HD", "MA", "DIS",
+            "BAC", "XOM", "CVX", "KO", "PEP", "COST", "MCD", "NFLX",
+            "AMD", "INTC", "CRM", "ORCL", "ADBE", "PYPL", "UBER",
+            "SPY", "QQQ", "VOO", "VTI", "IWM", "DIA",
+        ]
+    return symbols[:n]
+
+
+def is_taiwan_symbol(symbol: str) -> bool:
+    """Check if symbol is a Taiwan stock (Shioaji supports these)."""
+    return symbol.endswith('.TW') or symbol.endswith('.TWO')
+
+
 def main():
     parser = argparse.ArgumentParser(description='Migrate data from yfinance to Shioaji')
-    parser.add_argument('--stocks', nargs='+', help='List of stock symbols (e.g., 2330.TW 2337.TW)')
-    parser.add_argument('--all-taiwan', action='store_true', help='Fetch top Taiwan stocks (use --count to specify how many)')
-    parser.add_argument('--count', type=int, default=50, help='Number of stocks to import with --all-taiwan (default: 50, max: 100)')
-    parser.add_argument('--update', action='store_true', help='Daily update mode (use Shioaji)')
+    parser.add_argument('--stocks', nargs='+', help='List of stock symbols (e.g., 2330.TW AAPL)')
+    parser.add_argument('--all-taiwan', action='store_true', help='Fetch top Taiwan stocks (use --count to specify)')
+    parser.add_argument('--all-us', action='store_true', help='Fetch top US stocks for backtesting/monitoring (yfinance)')
+    parser.add_argument('--count', type=int, default=50, help='Number of stocks for --all-taiwan or --all-us')
+    parser.add_argument('--update', action='store_true', help='Daily update (Shioaji for TW, yfinance for US)')
     parser.add_argument('--years', type=int, default=5, help='Years of historical data (default: 5)')
     
     args = parser.parse_args()
@@ -345,6 +403,8 @@ def main():
         symbols = args.stocks
     elif args.all_taiwan:
         symbols = get_taiwan_top_stocks(args.count)
+    elif args.all_us:
+        symbols = get_us_top_stocks(args.count)
     elif args.update:
         # Update mode without specific stocks - update ALL stocks in database
         symbols = get_all_stocks_from_db()
@@ -368,12 +428,8 @@ def main():
     
     # Execute based on mode
     if args.update:
-        # Daily update mode - use Shioaji if available
-        if sj_connected:
-            daily_update_shioaji(symbols, sj_provider, repository)
-        else:
-            print("\n⚠️  Shioaji not connected, using yfinance fallback...")
-            bulk_import_historical(symbols, yf_provider, repository, years=1)
+        # Daily update: Shioaji for TW (if connected), yfinance for US
+        daily_update_mixed(symbols, sj_provider, sj_connected, repository)
     else:
         # Bulk import mode - use yfinance
         bulk_import_historical(symbols, yf_provider, repository, years=args.years)
