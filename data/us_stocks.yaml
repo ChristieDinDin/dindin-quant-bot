@@ -21,7 +21,7 @@ us_tech:
   "ORCL": "Oracle Corporation"
   "ADBE": "Adobe Inc."
   "PYPL": "PayPal Holdings Inc."
-  "SQ": "Block Inc. (Square)"
+  "XYZ": "Block Inc. (formerly SQ)"
   "UBER": "Uber Technologies Inc."
   "SHOP": "Shopify Inc."
   "SNOW": "Snowflake Inc."
@@ -84,7 +84,6 @@ us_blue_chips:
 # === Growth / Momentum (user picks + high volume) ===
 us_growth:
   "ONDS": "Ondas Holdings Inc."
-  "ASTR": "Astra Space Inc."
   "MU": "Micron Technology Inc."
   "CRWD": "CrowdStrike Holdings Inc."
   "TSLA": "Tesla Inc."
@@ -129,6 +128,5 @@ us_watchlist:
   "MU": "Micron Technology Inc."
   "CRWD": "CrowdStrike Holdings Inc."
   "ONDS": "Ondas Holdings Inc."
-  "ASTR": "Astra Space Inc."
   "SPY": "SPDR S&P 500 ETF Trust"
   "QQQ": "Invesco QQQ Trust (Nasdaq 100)"
