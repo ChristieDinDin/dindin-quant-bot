@@ -53,8 +53,8 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
-# database tracked in git so Streamlit Cloud can read it
-# data/database/*.db
+# market_data.db tracked in git so Streamlit Cloud can read pre-fetched data
+data/database/market_data_dev.db
 !data/database/.gitkeep
 data/cache/*
 !data/cache/.gitkeep
