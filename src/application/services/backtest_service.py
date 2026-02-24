@@ -8,7 +8,10 @@ from typing import Dict, Any, Optional
 import pandas as pd
 import numpy as np
 from backtesting import Backtest, Strategy as BacktestStrategy
-import pandas_ta as ta
+try:
+    import pandas_ta as ta
+except ImportError:
+    ta = None
 
 from ...core.strategies.base import Strategy as CoreStrategy
 from ...core.models.signal import SignalType

@@ -4,14 +4,14 @@ numpy>=1.24.0
 
 # Data Providers
 yfinance>=0.2.0
-shioaji>=1.0.0  # Taiwan securities API (永豐金證券)
+# shioaji is for local Taiwan broker only - not available on Linux/cloud
+# shioaji>=1.0.0
 
 # Technical Indicators
-pandas-ta-classic @ git+https://github.com/freqtrade/pandas-ta@main
+pandas-ta
 
 # Backtesting
 backtesting>=0.3.3
-bokeh==2.4.3  # Pinned for compatibility with backtesting
 
 # Visualization
 plotly>=5.0.0
@@ -22,20 +22,7 @@ streamlit>=1.28.0
 
 # Configuration
 PyYAML>=6.0
-python-dotenv>=1.0.0  # For loading .env files securely
+python-dotenv>=1.0.0
 
 # Utilities
 python-dateutil>=2.8.0
-
-# Development Dependencies (optional)
-pytest>=7.0.0
-pytest-cov>=4.0.0
-black>=23.0.0
-flake8>=6.0.0
-mypy>=1.0.0
-
-# Future Dependencies (commented out for now)
-# requests>=2.31.0  # For bank API integrations
-# schedule>=1.0.0   # For scheduled tasks
-# python-telegram-bot>=20.0  # For Telegram notifications
-# redis>=4.0.0      # For distributed caching
