@@ -14,25 +14,8 @@ sys.path.insert(0, str(root))
 import streamlit as st
 
 try:
-    # Test core imports one by one so we can pinpoint failures
-    st.write("Loading...")
-
-    import pandas as pd
-    import numpy as np
-    import yfinance as yf
-    import yaml
-    import plotly.graph_objects as go
-
-    st.write("Core imports OK. Loading app...")
-
-    # Import and run the main app
     from src.presentation.dashboard.app import main
     main()
-
-except ImportError as e:
-    st.error(f"Import error: {e}")
-    st.code(str(e))
-    st.info("Check requirements.txt and ensure all packages are listed.")
 except Exception as e:
     import traceback
     st.error(f"Startup error: {e}")
