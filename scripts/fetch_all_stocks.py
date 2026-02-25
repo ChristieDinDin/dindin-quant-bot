@@ -127,14 +127,15 @@ def run(full: bool = False, years: int = 2):
             last = last_date_for(conn, sym)
             if last:
                 start = date.fromisoformat(last) + timedelta(days=1)
-                if start >= today:
+                if start > today:
                     print("✅ up-to-date")
                     skipped += 1
                     continue
             else:
                 start = today - timedelta(days=365 * years)
 
-        df = fetch_symbol(sym, start, today)
+        # yfinance end is exclusive — add 1 day to include today's data
+        df = fetch_symbol(sym, start, today + timedelta(days=1))
         if df.empty:
             print("⚠️  no data")
             failed.append(sym)
