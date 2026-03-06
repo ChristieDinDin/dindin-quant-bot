@@ -243,6 +243,10 @@ def main():
 
                 st.plotly_chart(fig, use_container_width=True)
 
+                # ── 籌碼面 section (Taiwan stocks only) ──────────────────────
+                from src.presentation.dashboard.components.chip_analysis import render_chip_analysis
+                render_chip_analysis(symbol)
+
         except Exception as e:
             st.error(f"發生錯誤: {str(e)}")
             import traceback

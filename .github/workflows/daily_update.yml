@@ -34,10 +34,18 @@ jobs:
         run: |
           pip install --quiet pandas yfinance PyYAML
 
+      - name: Install extra dependency for chip data
+        run: pip install --quiet requests
+
       - name: Fetch stock data (incremental)
         run: |
           python scripts/fetch_all_stocks.py
-          echo "DB size: $(du -h data/database/market_data.db | cut -f1)"
+          echo "DB size after OHLCV: $(du -h data/database/market_data.db | cut -f1)"
+
+      - name: Fetch chip data (三大法人 + 融資融券)
+        run: |
+          python scripts/fetch_chip_data.py --days 5
+          echo "DB size after chip: $(du -h data/database/market_data.db | cut -f1)"
 
       - name: Commit database
         run: |
