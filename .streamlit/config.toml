@@ -1,6 +1,7 @@
 [server]
 headless = true
 enableCORS = false
+runOnSave = true
 
 [theme]
 base = "dark"
