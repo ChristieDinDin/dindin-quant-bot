@@ -34,8 +34,16 @@ class DataProviderConfig:
 class BacktestConfig:
     """Backtesting configuration."""
     initial_cash: float = 1_000_000
-    commission: float = 0.001425  # Taiwan stock commission: 0.1425%
+    # Real Taiwan round-trip (永豐 API 2折): buy 0.0285% + sell 0.3285% = 0.357%
+    # + ~0.05% slippage ≈ 0.40% total; backtesting.py per-side = 0.20%
+    commission: float = 0.002
     trade_on_close: bool = True
+
+    # Paper-trading live simulation account (can differ from backtest)
+    paper_equity: float = 70_000      # 7萬 TWD live simulation capital
+    max_total_exposure: float = 1.0   # 100% — fully-invested limit
+    min_position_pct: float = 0.05    # weakest signal → 5%
+    max_position_pct: float = 0.20    # strongest signal → 20%
 
 
 @dataclass
@@ -51,6 +59,19 @@ class StrategyConfig:
     max_position_pct: float = 0.80
     normal_position_pct: float = 0.15
     strong_position_pct: float = 0.30
+    
+    # Divergence Hunter micro mode (1-min K, no resample)
+    micro_mode_max_symbols: int = 5
+    poll_interval_min: int = 5
+    poll_interval_5th_min: int = 6  # Buffer for rate limit (~261 vs 270 calls/day)
+    min_consecutive_bars_above: int = 10  # 1-min bars, compensates for no 5-min
+
+
+@dataclass
+class NotificationConfig:
+    """Telegram notification configuration."""
+    telegram_bot_token: Optional[str] = None
+    telegram_chat_id: Optional[str] = None
 
 
 @dataclass
@@ -70,8 +91,9 @@ class Config:
     data_provider: DataProviderConfig
     backtest: BacktestConfig
     strategy: StrategyConfig
+    notification: NotificationConfig
     logging: LoggingConfig
-    
+
     # Environment
     environment: str = "development"  # development, production
     debug: bool = False
@@ -162,9 +184,27 @@ class ConfigManager:
         if 'SHIOAJI_SECRET_KEY' in os.environ:
             config.setdefault('data_provider', {})['shioaji_secret_key'] = os.environ['SHIOAJI_SECRET_KEY']
         
-        # Backtest
+        # Strategy / Micro Mode
+        if 'MICRO_MODE_MAX_SYMBOLS' in os.environ:
+            config.setdefault('strategy', {})['micro_mode_max_symbols'] = int(os.environ['MICRO_MODE_MAX_SYMBOLS'])
+        if 'POLL_INTERVAL' in os.environ:
+            config.setdefault('strategy', {})['poll_interval_min'] = int(os.environ['POLL_INTERVAL'])
+        if 'POLL_INTERVAL_5TH' in os.environ:
+            config.setdefault('strategy', {})['poll_interval_5th_min'] = int(os.environ['POLL_INTERVAL_5TH'])
+        if 'MIN_CONSECUTIVE_BARS_ABOVE' in os.environ:
+            config.setdefault('strategy', {})['min_consecutive_bars_above'] = int(os.environ['MIN_CONSECUTIVE_BARS_ABOVE'])
+        
+        # Notifications (Telegram)
+        if 'TELEGRAM_BOT_TOKEN' in os.environ:
+            config.setdefault('notification', {})['telegram_bot_token'] = os.environ['TELEGRAM_BOT_TOKEN']
+        if 'TELEGRAM_CHAT_ID' in os.environ:
+            config.setdefault('notification', {})['telegram_chat_id'] = os.environ['TELEGRAM_CHAT_ID']
+
+        # Backtest / Paper trading
         if 'INITIAL_CASH' in os.environ:
             config.setdefault('backtest', {})['initial_cash'] = float(os.environ['INITIAL_CASH'])
+        if 'PAPER_EQUITY' in os.environ:
+            config.setdefault('backtest', {})['paper_equity'] = float(os.environ['PAPER_EQUITY'])
         
         # Logging
         if 'LOG_LEVEL' in os.environ:
@@ -179,6 +219,7 @@ class ConfigManager:
             data_provider=DataProviderConfig(**data.get('data_provider', {})),
             backtest=BacktestConfig(**data.get('backtest', {})),
             strategy=StrategyConfig(**data.get('strategy', {})),
+            notification=NotificationConfig(**data.get('notification', {})),
             logging=LoggingConfig(**data.get('logging', {})),
             environment=environment,
             debug=data.get('debug', False)

@@ -2,16 +2,16 @@ name: Daily Stock Data Update
 
 on:
   schedule:
-    # 22:00 UTC = after US market close (4PM ET) + buffer
-    # Taiwan: next morning 6AM
-    - cron: '0 22 * * 1-5'
+    # 06:30 UTC+8 = Taiwan morning before market open (22:30 UTC previous day)
+    # Runs Mon–Fri; Taiwan market closes 13:30 CST = 05:30 UTC
+    - cron: '30 22 * * 1-5'
   workflow_dispatch:   # allow manual trigger from GitHub Actions tab
 
 jobs:
   fetch-and-commit:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # allow pushing the DB back to the repo
+      contents: write   # allow pushing the DB + YAML back to the repo
 
     steps:
       - name: Checkout repo
@@ -28,38 +28,71 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-yfinance
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
 
       - name: Install dependencies
         run: |
-          pip install --quiet pandas yfinance PyYAML
+          pip install --quiet pandas yfinance PyYAML requests backtesting pandas_ta numpy
 
-      - name: Install extra dependency for chip data
-        run: pip install --quiet requests
+      # ── Step 1: Refresh stock list from TWSE + TPEX ─────────────────────
+      # Runs daily so newly IPO'd stocks or volume changes are captured.
+      # Only updates taiwan_stocks.yaml (high_volume section); no DB writes here.
+      - name: Update stock list (≥20M TWD/day, append-only)
+        run: |
+          python scripts/update_stock_list.py --min-value 20 --stale-days 45
+          echo "Stock list updated."
 
+      # ── Step 2: Incremental OHLCV fetch ─────────────────────────────────
+      # For symbols already in DB: fetches only missing days (~7-8 min for 900 stocks).
+      # For NEW symbols (just added by step 1): auto-fetches 2 years history.
       - name: Fetch stock data (incremental)
         run: |
           python scripts/fetch_all_stocks.py
-          echo "DB size after OHLCV: $(du -h data/database/market_data.db | cut -f1)"
+          echo "DB size: $(du -h data/database/market_data.db | cut -f1)"
 
-      - name: Fetch chip data (三大法人 + 融資融券)
+      # ── Step 3: Chip data (三大法人 + 融資融券) ─────────────────────────
+      - name: Fetch chip data
         run: |
           python scripts/fetch_chip_data.py --days 5
           echo "DB size after chip: $(du -h data/database/market_data.db | cut -f1)"
 
-      - name: Commit database
+      # ── Step 4: Pre-build backtest cache ─────────────────────────────────
+      # Runs all 3 strategies with default params. TTL = 36h (survives weekend).
+      # When user opens Backtest Lab next morning, results load instantly.
+      - name: Build backtest cache (all strategies, default params)
+        run: |
+          python scripts/run_backtest_cache.py --workers 2
+          echo "DB size after cache: $(du -h data/database/market_data.db | cut -f1)"
+
+      # ── Step 5: Paper trading daily scan ────────────────────────────────────
+      # Runs divergence hunter on all DB symbols → opens/closes simulated positions
+      # → saves data/paper_trading/state.json for the dashboard to display.
+      - name: Run paper trading scan
+        run: |
+          python scripts/run_paper_trading_scan.py --initial-equity 70000 --max-positions 5
+          python3 -c "
+import json, pathlib
+p = pathlib.Path('data/paper_trading/state.json')
+if p.exists():
+    s = json.loads(p.read_text())
+    print(f'Paper trading state: open={len(s[\"open_positions\"])}, closed={len(s[\"closed_trades\"])}, cash={s[\"cash\"]:.0f} TWD')
+"
+
+      # ── Step 6: Commit everything ─────────────────────────────────────────
+      - name: Commit database and stock list
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/database/market_data.db
+          git add data/database/market_data.db data/taiwan_stocks.yaml data/paper_trading/state.json
           if git diff --staged --quiet; then
-            echo "No new data — nothing to commit."
+            echo "No changes — nothing to commit."
           else
-            git commit -m "📈 Daily data update $(date +'%Y-%m-%d')"
+            git commit -m "📈 Daily update $(date +'%Y-%m-%d')"
             git push
-            echo "✅ Database pushed to repo."
+            echo "✅ Pushed to repo."
           fi
 
+      # ── Summary ──────────────────────────────────────────────────────────
       - name: Summary
         if: always()
         run: |
@@ -70,3 +103,13 @@ jobs:
               "SELECT '**Stocks:** ' || COUNT(DISTINCT symbol) || ' | **Rows:** ' || COUNT(*) FROM daily_kline;" \
               >> $GITHUB_STEP_SUMMARY
           fi
+          python3 -c "
+import json, pathlib
+p = pathlib.Path('data/paper_trading/state.json')
+if p.exists():
+    s = json.loads(p.read_text())
+    summary = s.get('last_scan_summary', {})
+    entries = len(summary.get('new_entries', []))
+    exits   = len(summary.get('auto_exits', []))
+    print(f'**Paper Trading:** open={len(s[\"open_positions\"])}, closed={len(s[\"closed_trades\"])}, new_entries={entries}, auto_exits={exits}, cash={s[\"cash\"]:.0f} TWD')
+" >> $GITHUB_STEP_SUMMARY 2>/dev/null || true

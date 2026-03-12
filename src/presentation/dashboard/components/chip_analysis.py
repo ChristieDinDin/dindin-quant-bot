@@ -59,18 +59,21 @@ def render_chip_analysis(symbol: str):
 
 # ── Signal Cards ───────────────────────────────────────────────────────────────
 
+def _fmt_thousands(val: float) -> str:
+    """Format raw share count as thousands (e.g. -1,564,683 → -1565)."""
+    if val is None or pd.isna(val):
+        return "—"
+    k = val / 1000
+    sign = "+" if k > 0 else ""
+    return f"{sign}{k:,.0f}"
+
+
 def _render_signal_cards(s: dict):
-    """Four signal cards: 外資 / 投信 / 自營商 / 融資."""
+    """Four signal cards: 外資 / 投信 / 自營商 / 融資. Display in thousands of shares."""
 
     def _streak_label(net: float, streak: int, positive: bool) -> str:
         direction = "買超" if positive else "賣超"
         return f"{'連續' if streak > 1 else ''}{streak}日{direction}"
-
-    def _fmt_net(val: float) -> str:
-        if val is None or pd.isna(val):
-            return "—"
-        sign = "+" if val > 0 else ""
-        return f"{sign}{val:,.0f}"
 
     c1, c2, c3, c4 = st.columns(4)
 
@@ -81,7 +84,7 @@ def _render_signal_cards(s: dict):
         delta_color = "normal" if pos else "inverse"
         st.metric(
             "外資",
-            _fmt_net(net),
+            _fmt_thousands(net),
             _streak_label(net, streak, pos),
             delta_color=delta_color,
         )
@@ -92,7 +95,7 @@ def _render_signal_cards(s: dict):
         pos = s.get("invest_positive", True)
         st.metric(
             "投信",
-            _fmt_net(net),
+            _fmt_thousands(net),
             _streak_label(net, streak, pos),
             delta_color="normal" if pos else "inverse",
         )
@@ -103,7 +106,7 @@ def _render_signal_cards(s: dict):
         pos = s.get("dealer_positive", True)
         st.metric(
             "自營商",
-            _fmt_net(net),
+            _fmt_thousands(net),
             _streak_label(net, streak, pos),
             delta_color="normal" if pos else "inverse",
         )
@@ -112,11 +115,12 @@ def _render_signal_cards(s: dict):
         margin_bal = s.get("margin_balance")
         margin_chg = s.get("margin_change")
         if margin_bal is not None and not pd.isna(margin_bal):
-            chg_str = f"{'+' if margin_chg > 0 else ''}{margin_chg:,.0f}" if margin_chg and not pd.isna(margin_chg) else "—"
-            chg_color = "inverse" if (margin_chg or 0) > 0 else "normal"  # rising margin = risk
-            st.metric("融資餘額", f"{margin_bal:,.0f}", chg_str, delta_color=chg_color)
+            chg_str = _fmt_thousands(margin_chg) if margin_chg is not None and not pd.isna(margin_chg) else "—"
+            chg_color = "inverse" if (margin_chg or 0) > 0 else "normal"
+            st.metric("融資餘額", _fmt_thousands(margin_bal), chg_str, delta_color=chg_color)
         else:
             st.metric("融資餘額", "—", "無資料")
+
 
 
 # ── 三大法人 Charts ────────────────────────────────────────────────────────────
@@ -175,25 +179,31 @@ def _render_institutional_charts(df: pd.DataFrame):
     ))
 
     fig.update_layout(
-        title="三大法人 買賣超 (千股)",
+        title=dict(text="三大法人 買賣超 (千股)", font=dict(size=16)),
         barmode="group",
-        height=380,
+        height=400,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         font_color="white",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02),
-        margin=dict(t=50, b=20),
+        legend=dict(orientation="h", yanchor="bottom", y=1.08, x=0.5, xanchor="center"),
+        margin=dict(t=80, b=50, l=60, r=40),
         yaxis_title="千股",
         hovermode="x unified",
     )
     fig.add_hline(y=0, line_color="white", line_width=0.5, opacity=0.3)
     st.plotly_chart(fig, use_container_width=True)
+    st.markdown("")   # spacing between charts
 
     # ── Chart 2: Cumulative net (trend) ──────────────────────────────────────
     cum_df = df.copy()
     cum_df["foreign_cum"] = cum_df["foreign_net"].cumsum() / 1000
     cum_df["invest_cum"]  = cum_df["invest_net"].cumsum() / 1000
     cum_df["dealer_cum"]  = cum_df["dealer_net"].cumsum() / 1000
+
+    y_min = min(cum_df["foreign_cum"].min(), cum_df["invest_cum"].min(), cum_df["dealer_cum"].min())
+    y_max = max(cum_df["foreign_cum"].max(), cum_df["invest_cum"].max(), cum_df["dealer_cum"].max())
+    y_pad = max(abs(y_min), abs(y_max)) * 0.15 or 5000
+    y_range = [y_min - y_pad, y_max + y_pad]
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(x=cum_df["date"], y=cum_df["foreign_cum"],
@@ -202,16 +212,16 @@ def _render_institutional_charts(df: pd.DataFrame):
                               name="投信累計", line=dict(color="#3498db", width=2)))
     fig2.add_trace(go.Scatter(x=cum_df["date"], y=cum_df["dealer_cum"],
                               name="自營累計", line=dict(color="#9b59b6", width=2)))
-    fig2.add_hline(y=0, line_color="white", line_width=0.5, opacity=0.3)
+    fig2.add_hline(y=0, line_color="white", line_width=1, opacity=0.5)
     fig2.update_layout(
-        title="三大法人 累計買賣超 (千股)",
-        height=280,
+        title=dict(text="三大法人 累計買賣超 (千股)", font=dict(size=16)),
+        height=380,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         font_color="white",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02),
-        margin=dict(t=50, b=20),
-        yaxis_title="千股",
+        legend=dict(orientation="h", yanchor="bottom", y=1.08, x=0.5, xanchor="center"),
+        margin=dict(t=80, b=50, l=60, r=40),
+        yaxis=dict(title="千股", range=y_range, zeroline=True, zerolinewidth=1, showgrid=True),
         hovermode="x unified",
     )
     st.plotly_chart(fig2, use_container_width=True)

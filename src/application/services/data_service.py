@@ -4,7 +4,7 @@ Data Service - Application layer service for data management.
 This orchestrates data fetching, caching, and storage operations.
 """
 from datetime import date, datetime, timedelta
-from typing import Optional, List
+from typing import Optional, List, Callable
 import pandas as pd
 
 from ...infrastructure.data_providers.base import DataProvider
@@ -24,9 +24,14 @@ class DataService:
     
     def __init__(self, 
                  provider: DataProvider,
-                 repository: MarketDataRepository):
+                 repository: MarketDataRepository,
+                 fallback_provider: Optional[DataProvider] = None,
+                 fallback_factory: Optional[Callable[[], Optional[DataProvider]]] = None):
         self.provider = provider
         self.repository = repository
+        self._fallback_provider = fallback_provider
+        self._fallback_factory = fallback_factory
+        self._fallback_tried = fallback_provider is not None  # Skip factory if we already have one
     
     def get_data(self,
                  symbol: str,
@@ -70,32 +75,65 @@ class DataService:
                 if (end_date - last_cached_date).days <= 1:
                     return cached_data
                 
-                # Otherwise, fetch only new data
+                # Otherwise, fetch only new data (incremental update)
                 new_start = last_cached_date + timedelta(days=1)
                 if new_start <= end_date:
-                    new_data = self.provider.get_historical_data(
-                        symbol, new_start, end_date
-                    )
-                    
-                    if not new_data.empty:
-                        # Save new data
-                        self.repository.save_dataframe(new_data, symbol)
-                        
-                        # Combine with cached data
-                        combined = pd.concat([cached_data, new_data])
-                        combined = combined[~combined.index.duplicated(keep='last')]
-                        return combined
+                    try:
+                        new_data = self._fetch_from_provider(
+                            symbol, new_start, end_date
+                        )
+                        if not new_data.empty:
+                            # Save new data
+                            self.repository.save_dataframe(new_data, symbol)
+                            # Combine with cached data
+                            combined = pd.concat([cached_data, new_data])
+                            combined = combined[~combined.index.duplicated(keep='last')]
+                            return combined
+                    except Exception:
+                        # yfinance 偶發失敗（台股、窄區間等）→ 直接用 cache
+                        # 你的 daily import 已寫入 DB，不因 incremental 失敗而 crash
+                        pass
                 
                 return cached_data
         
         # Cache miss or disabled - fetch from provider
-        data = self.provider.get_historical_data(symbol, start_date, end_date)
+        data = self._fetch_from_provider(symbol, start_date, end_date)
         
         if not data.empty and use_cache:
             # Update cache
             self.repository.save_dataframe(data, symbol)
         
         return data
+    
+    def _get_fallback_provider(self) -> Optional[DataProvider]:
+        """Lazy-init fallback from factory (only when first needed)."""
+        if self._fallback_provider is not None:
+            return self._fallback_provider
+        if self._fallback_factory and not self._fallback_tried:
+            self._fallback_tried = True
+            self._fallback_provider = self._fallback_factory()
+        return self._fallback_provider
+
+    def _fetch_from_provider(
+        self, symbol: str, start_date: date, end_date: date
+    ) -> pd.DataFrame:
+        """Try primary provider, then fallback if configured."""
+        last_error = None
+        try:
+            return self.provider.get_historical_data(symbol, start_date, end_date)
+        except Exception as e:
+            last_error = e
+        fallback = self._get_fallback_provider()
+        if fallback:
+            try:
+                return fallback.get_historical_data(
+                    symbol, start_date, end_date
+                )
+            except Exception as e:
+                last_error = e
+        if last_error:
+            raise last_error
+        return pd.DataFrame()
     
     def get_latest_price(self, symbol: str) -> Optional[float]:
         """Get the most recent price for a symbol."""

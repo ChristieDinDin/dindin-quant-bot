@@ -75,13 +75,27 @@ class YFinanceProvider(TaiwanMarketProvider):
         ticker = self._get_ticker(symbol)
         
         try:
-            # Download data
+            # Primary: ticker.history
             df = ticker.history(
                 start=start_date,
                 end=end_date,
                 interval=interval,
                 auto_adjust=False  # Keep original OHLC
             )
+            
+            # Fallback: yf.download when history returns empty (common for TW stocks)
+            if df.empty:
+                df = yf.download(
+                    symbol,
+                    start=start_date,
+                    end=end_date,
+                    interval=interval,
+                    auto_adjust=False,
+                    progress=False,
+                    threads=False,
+                )
+                if isinstance(df.columns, pd.MultiIndex):
+                    df.columns = df.columns.get_level_values(0)
             
             if df.empty:
                 raise ValueError(f"No data returned for {symbol}")

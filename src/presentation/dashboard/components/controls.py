@@ -214,10 +214,11 @@ def create_sidebar_controls(market: str = "tw") -> dict:
     st.sidebar.subheader("策略選擇")
     strategy_name = st.sidebar.selectbox(
         "交易策略",
-        ["mfi_hunter", "rsi_mfi_consensus"],
+        ["mfi_hunter", "rsi_mfi_consensus", "divergence_hunter"],
         format_func=lambda x: {
             "mfi_hunter": "🎯 MFI Hunter (單一指標)",
-            "rsi_mfi_consensus": "🤝 RSI+MFI Consensus (雙重確認)"
+            "rsi_mfi_consensus": "🤝 RSI+MFI Consensus (雙重確認)",
+            "divergence_hunter": "📐 Divergence Hunter (底背離+右側確認)",
         }.get(x, x),
         help="選擇使用的交易策略"
     )
@@ -309,7 +310,46 @@ def create_sidebar_controls(market: str = "tw") -> dict:
                 value=85,
                 help="MFI 高於此值視為超買"
             )
-    
+
+    elif strategy_name == "divergence_hunter":
+        # Divergence Hunter: RSI/MFI periods + RSI thresholds only (背離邏輯寫死在後端)
+        st.sidebar.caption("背離偵測與右側確認由後端固定邏輯處理")
+        rsi_period = st.sidebar.slider(
+            "RSI 天數",
+            min_value=7,
+            max_value=30,
+            value=14,
+            help="RSI 計算期間 (買入需 RSI < 超賣)"
+        )
+        mfi_period = st.sidebar.slider(
+            "MFI 天數",
+            min_value=7,
+            max_value=30,
+            value=14,
+            help="MFI 計算期間 (用於背離偵測)"
+        )
+        rsi_oversold = st.sidebar.slider(
+            "RSI 超賣 (買入門檻)",
+            min_value=25,
+            max_value=45,
+            value=40,
+            help="RSI 低於此值才允許買入 (35較嚴/少訊號, 40較鬆)"
+        )
+        rsi_overbought = st.sidebar.slider(
+            "RSI 超買 (賣出門檻)",
+            min_value=60,
+            max_value=80,
+            value=70,
+            help="RSI 高於此值產生賣出訊號（可關閉 RSI 賣出）"
+        )
+        use_rsi_sell = st.sidebar.checkbox(
+            "使用 RSI 賣出",
+            value=True,
+            help="關閉後僅用頂背離、硬停損、移動停利、時間停損出場"
+        )
+        buy_level = 35   # unused for div hunter
+        sell_level = 85  # unused
+
     else:
         # Default values
         mfi_period = 16
@@ -348,7 +388,7 @@ def create_sidebar_controls(market: str = "tw") -> dict:
     if symbol is None:
         symbol = "2330.TW" if market == "tw" else "AAPL"
 
-    return {
+    result = {
         'symbol': symbol,
         'market': market,
         'currency': 'TWD' if market == 'tw' else 'USD',
@@ -362,6 +402,9 @@ def create_sidebar_controls(market: str = "tw") -> dict:
         'initial_cash': initial_cash,
         'commission': commission / 100  # Convert to decimal
     }
+    if strategy_name == "divergence_hunter":
+        result['use_rsi_sell'] = use_rsi_sell
+    return result
 
 
 def create_stock_search() -> str:

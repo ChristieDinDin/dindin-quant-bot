@@ -14,6 +14,13 @@ os.chdir(project_root)
 # Add src to Python path
 sys.path.insert(0, str(project_root))
 
+# Load .env for Shioaji etc.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(project_root / ".env")
+except ImportError:
+    pass
+
 import streamlit as st
 import numpy as np
 
@@ -21,7 +28,11 @@ import numpy as np
 if not hasattr(np, 'bool8'):
     np.bool8 = np.bool_
 
-from src.presentation.dashboard.components.charts import create_price_mfi_chart, create_price_mfi_rsi_chart
+from src.presentation.dashboard.components.charts import (
+    create_price_mfi_chart,
+    create_price_mfi_rsi_chart,
+    create_divergence_hunter_chart,
+)
 from src.presentation.dashboard.components.metrics import display_performance_metrics, display_signal_card
 from src.presentation.dashboard.components.controls import create_sidebar_controls
 
@@ -38,16 +49,36 @@ try:
 except ImportError:
     BACKTESTING_AVAILABLE = False
 
+def _create_shioaji_fallback():
+    """Lazy Shioaji fallback - only connect when needed (avoids blocking app startup)."""
+    api_key = os.getenv("SHIOAJI_API_KEY")
+    secret_key = os.getenv("SHIOAJI_SECRET_KEY")
+    if not (api_key and secret_key):
+        return None
+    try:
+        from src.infrastructure.data_providers.shioaji_provider import ShioajiProvider
+        fallback = ShioajiProvider(api_key, secret_key)
+        if fallback.connect(simulation=os.getenv("SHIOAJI_SIMULATION", "true").lower() == "true"):
+            return fallback
+    except Exception:
+        pass
+    return None
+
+
 @st.cache_resource
 def initialize_services():
     """Initialize all services."""
     provider = YFinanceProvider()
     provider.connect()
     
+    # Shioaji fallback: lazy (created on first fetch fail) to avoid blocking startup
     db = get_database()
     repository = MarketDataRepository(db)
-    
-    data_service = DataService(provider, repository)
+    data_service = DataService(
+        provider, repository,
+        fallback_provider=None,  # Will use lazy factory in get_data
+        fallback_factory=_create_shioaji_fallback,
+    )
     backtest_service = BacktestService(data_service) if BACKTESTING_AVAILABLE else None
     
     return data_service, backtest_service
@@ -66,10 +97,11 @@ def main():
     import src.core.strategies.registry as registry_module
     import src.core.strategies.mfi_hunter
     import src.core.strategies.rsi_mfi_consensus
-    
-    # Reload all strategy modules
+    import src.core.strategies.divergence_hunter
+
     importlib.reload(src.core.strategies.mfi_hunter)
     importlib.reload(src.core.strategies.rsi_mfi_consensus)
+    importlib.reload(src.core.strategies.divergence_hunter)
     importlib.reload(registry_module)
     
     # Initialize services
@@ -101,8 +133,19 @@ def main():
     commission_rate = controls['commission']
     currency = controls.get('currency', 'TWD')
     
+    # ── Paper trading service (persisted to data/paper_trading/state.json) ──
+    from src.application.services.paper_trading_service import PaperTradingService
+    from src.utils.config import get_config
+    _cfg = get_config()
+    paper_equity = getattr(_cfg.backtest, "paper_equity", 70_000.0)
+    paper_service = PaperTradingService(initial_equity=paper_equity)
+
     # ── Tabs ─────────────────────────────────────────────────────────────────
-    tab_terminal, tab_lab = st.tabs(["📊 Trading Terminal", "🧪 Backtest Lab"])
+    tab_terminal, tab_lab, tab_paper = st.tabs([
+        "📊 Trading Terminal",
+        "🧪 Backtest Lab",
+        "📋 模擬單",
+    ])
 
     # =========================================================================
     # TAB 1 — Trading Terminal (existing single-stock view)
@@ -136,7 +179,7 @@ def main():
                     df['MFI'] = mfi_indicator.calculate(df)
                     last_mfi = df['MFI'].iloc[-1]
 
-                    if strategy_name == "rsi_mfi_consensus":
+                    if strategy_name in ("rsi_mfi_consensus", "divergence_hunter"):
                         rsi_indicator = RSI(
                             period=rsi_period,
                             overbought=rsi_overbought,
@@ -175,6 +218,14 @@ def main():
                             'mfi_oversold': buy_level,
                             'mfi_overbought': sell_level
                         }
+                    elif strategy_name == "divergence_hunter":
+                        strategy_params = {
+                            'mfi_period': mfi_period,
+                            'rsi_period': rsi_period,
+                            'rsi_oversold': rsi_oversold,
+                            'rsi_overbought': rsi_overbought,
+                            'use_rsi_sell': controls.get('use_rsi_sell', True),
+                        }
                     else:
                         strategy_params = {}
 
@@ -201,15 +252,28 @@ def main():
 
                 with left_col:
                     st.subheader("💡 AI 交易建議 (Action Plan)")
-                    if strategy_name == "rsi_mfi_consensus" and last_rsi is not None:
+                    if strategy_name == "divergence_hunter":
+                        col_ind1, col_ind2 = st.columns(2)
+                        with col_ind1:
+                            st.metric("目前 RSI", f"{last_rsi:.1f}" if last_rsi is not None else "—")
+                        with col_ind2:
+                            st.metric("目前 MFI", f"{last_mfi:.1f}")
+                        st.info(
+                            "📐 底背離策略：需同時滿足\n"
+                            "• 價破底 + MFI 未破底\n"
+                            "• 背離當下 RSI < 超賣\n"
+                            "• 右側確認：收盤 > 昨高"
+                        )
+                    elif strategy_name == "rsi_mfi_consensus" and last_rsi is not None:
                         col_ind1, col_ind2 = st.columns(2)
                         with col_ind1:
                             st.metric("目前 RSI", f"{last_rsi:.1f}")
                         with col_ind2:
                             st.metric("目前 MFI", f"{last_mfi:.1f}")
+                        display_signal_card(last_mfi, buy_level, sell_level, 20)
                     else:
                         st.metric("目前 MFI", f"{last_mfi:.1f}")
-                    display_signal_card(last_mfi, buy_level, sell_level, 20)
+                        display_signal_card(last_mfi, buy_level, sell_level, 20)
 
                 with right_col:
                     st.subheader("📊 歷史回測數據 (Risk & Reward)")
@@ -226,7 +290,21 @@ def main():
                 st.markdown("---")
                 st.subheader("📈 趨勢與進出點 (Charts)")
 
-                if strategy_name == "rsi_mfi_consensus":
+                if strategy_name == "divergence_hunter":
+                    if 'RSI' not in df.columns:
+                        from src.core.indicators.rsi import RSI
+                        rsi_indicator = RSI(period=rsi_period)
+                        df['RSI'] = rsi_indicator.calculate(df)
+                    trades_df = None
+                    if backtest_results.get('success') and '_full_stats' in backtest_results:
+                        trades_df = backtest_results['_full_stats'].get('_trades')
+                    fig = create_divergence_hunter_chart(
+                        df,
+                        rsi_buy=rsi_oversold,
+                        rsi_sell=rsi_overbought,
+                        trades=trades_df,
+                    )
+                elif strategy_name == "rsi_mfi_consensus":
                     if 'RSI' not in df.columns:
                         from src.core.indicators.rsi import RSI
                         rsi_indicator = RSI(period=rsi_period)
@@ -258,6 +336,13 @@ def main():
     with tab_lab:
         from src.presentation.dashboard.components.backtest_lab import render_backtest_lab
         render_backtest_lab(backtest_service, data_service)
+
+    # =========================================================================
+    # TAB 3 — Paper Trading
+    # =========================================================================
+    with tab_paper:
+        from src.presentation.dashboard.components.paper_trading_tab import render_paper_trading_tab
+        render_paper_trading_tab(paper_service, data_service)
 
 
 if __name__ == '__main__':

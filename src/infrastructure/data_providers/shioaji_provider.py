@@ -216,6 +216,47 @@ class ShioajiProvider(TaiwanMarketProvider, RealtimeDataProvider):
         except Exception as e:
             raise RuntimeError(f"Failed to fetch data for {symbol}: {e}")
     
+    def get_intraday_1min(self,
+                          symbol: str,
+                          target_date: date) -> pd.DataFrame:
+        """
+        Fetch 1-minute Kbars for a single trading day.
+        Shioaji kbars returns 1-min when start==end (single day).
+        
+        Args:
+            symbol: Stock code (e.g. '2330.TW')
+            target_date: Date to fetch
+            
+        Returns:
+            DataFrame with columns Open, High, Low, Close, Volume, datetime index
+        """
+        if not self._api:
+            raise RuntimeError("Not connected. Call connect() first.")
+        contract = self._get_contract(symbol)
+        date_str = target_date.strftime('%Y-%m-%d')
+        self._rate_limit_wait()
+        kbars = self._api.kbars(
+            contract=contract,
+            start=date_str,
+            end=date_str,
+            timeout=30000,
+        )
+        if not kbars:
+            return pd.DataFrame()
+        df = pd.DataFrame({**kbars})
+        ts_col = 'ts' if 'ts' in df.columns else 'Time'
+        if ts_col not in df.columns:
+            return pd.DataFrame()
+        df['DateTime'] = pd.to_datetime(df[ts_col])
+        df = df.set_index('DateTime')
+        for col in ['Open', 'High', 'Low', 'Close', 'Volume']:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors='coerce')
+        df = df[['Open', 'High', 'Low', 'Close', 'Volume']].dropna()
+        df = self._normalize_timezone(df)
+        df.symbol = symbol
+        return df
+    
     def _get_contract(self, symbol: str):
         """
         Get Shioaji contract object for a symbol.

@@ -87,14 +87,86 @@ class BacktestService:
                     
                     # Store reference to our strategy
                     self._core_strategy = core_strategy
+                    # Track position meta for stop logic (hard stop, trailing, time stop)
+                    self._entry_bar = None
+                    self._entry_price = None
+                    self._divergence_low = None
+                    self._peak_price = None
+                    self._trailing_activated = False  # True once profit > 15%, stays until exit
                 except Exception as e:
                     print(f"Error in strategy init: {e}")
                     import traceback
                     traceback.print_exc()
                     raise
             
+            def _check_stops_and_close(self) -> bool:
+                """Check hard stop, trailing stop, time stop. Close if any triggers. Returns True if closed."""
+                if not self.position or self._entry_bar is None or self._entry_price is None:
+                    return False
+                close = float(self.data.Close[-1])
+                high = float(self.data.High[-1])
+                current_bar = len(self.data) - 1
+                bars_held = current_bar - self._entry_bar
+                profit_pct = (close - self._entry_price) / self._entry_price
+                # Update peak price: use High for more realistic trailing (intraday peaks count)
+                base = self._peak_price or self._entry_price
+                self._peak_price = max(base, high, close)
+
+                # 1a. Max loss cap: never lose more than 7% from entry
+                #     Prevents deep-structure setups from creating outsized losses.
+                if profit_pct <= -0.07:
+                    self.position.close()
+                    self._entry_bar = self._entry_price = self._divergence_low = self._peak_price = None
+                    self._trailing_activated = False
+                    return True
+
+                # 1b. Hard stop: price breaks below divergence low (with 1% buffer)
+                if self._divergence_low is not None:
+                    stop_price = self._divergence_low * 0.99
+                    if close < stop_price:
+                        self.position.close()
+                        self._entry_bar = self._entry_price = self._divergence_low = self._peak_price = None
+                        self._trailing_activated = False
+                        return True
+
+                # 2. Trailing stop: once profit > 15%, stay in trailing mode; exit when drop 5% from peak
+                if profit_pct > 0.15:
+                    self._trailing_activated = True
+                if self._trailing_activated:
+                    drop_from_peak = (self._peak_price - close) / self._peak_price
+                    if drop_from_peak >= 0.05:
+                        self.position.close()
+                        self._entry_bar = self._entry_price = self._divergence_low = self._peak_price = None
+                        self._trailing_activated = False
+                        return True
+                    return False  # In trailing zone: no time stop
+
+                # 3. Tiered time stop
+                if 0.05 < profit_pct <= 0.15 and bars_held >= 20:
+                    self.position.close()
+                    self._entry_bar = self._entry_price = self._divergence_low = self._peak_price = None
+                    self._trailing_activated = False
+                    return True
+                if profit_pct <= 0.05 and bars_held >= 10:
+                    self.position.close()
+                    self._entry_bar = self._entry_price = self._divergence_low = self._peak_price = None
+                    self._trailing_activated = False
+                    return True
+                return False
+
             def next(self):
                 """Called on each bar during backtesting."""
+                # When we have a position: check stops BEFORE signal generation
+                if self.position:
+                    if self._check_stops_and_close():
+                        return
+                    # When in trailing zone: IGNORE strategy sell. We only exit via trailing stop.
+                    if getattr(self, '_trailing_activated', False) and self._peak_price is not None:
+                        close = float(self.data.Close[-1])
+                        drop = (self._peak_price - close) / self._peak_price
+                        if drop < 0.05:
+                            return  # Hold - wait for trailing to trigger
+
                 try:
                     # Convert self.data to DataFrame for signal generation
                     # Data should already be timezone-naive from DataProvider
@@ -106,10 +178,17 @@ class BacktestService:
                         'Volume': self.data.Volume
                     }, index=self.data.index)
                     
-                    # Copy over any calculated indicators
-                    if hasattr(core_strategy, '_state') and 'mfi_values' in core_strategy._state:
-                        df['MFI'] = core_strategy._state['mfi_values']
-                    
+                    # Copy over any calculated indicators (match indices by alignment)
+                    if hasattr(core_strategy, '_state'):
+                        if 'mfi_values' in core_strategy._state:
+                            df['MFI'] = core_strategy._state['mfi_values']
+                        if 'rsi_values' in core_strategy._state:
+                            df['RSI'] = core_strategy._state['rsi_values']
+                        if 'adx_values' in core_strategy._state and core_strategy._state['adx_values'] is not None:
+                            df['ADX'] = core_strategy._state['adx_values']
+                        if 'ma20_slope_values' in core_strategy._state and core_strategy._state['ma20_slope_values'] is not None:
+                            df['MA20_SLOPE'] = core_strategy._state['ma20_slope_values']
+
                     # Generate signal using our strategy
                     signal = core_strategy.generate_signal(df, index=-1)
                 except Exception as e:
@@ -126,17 +205,23 @@ class BacktestService:
                     # Calculate position size
                     position_size = float(signal.recommended_position_size or 0.15)
                     
-                    # Buy signal
+                    # Buy signal — one position at a time, no re-entry until sold
                     if not self.position:
-                        self.buy(size=position_size)
-                    elif self.position.size / self.equity < 0.8:
-                        # Add to position if under max
+                        self._entry_bar = len(self.data) - 1
+                        self._entry_price = float(self.data.Close[-1])
+                        self._divergence_low = None
+                        if signal.indicators and "divergence_low" in signal.indicators:
+                            self._divergence_low = float(signal.indicators["divergence_low"])
+                        self._peak_price = self._entry_price
+                        self._trailing_activated = False
                         self.buy(size=position_size)
                 
                 elif signal.is_exit_signal:
                     # Sell signal - close position
                     if self.position:
                         self.position.close()
+                        self._entry_bar = self._entry_price = self._divergence_low = self._peak_price = None
+                        self._trailing_activated = False
         
         return StrategyAdapter
     
@@ -144,7 +229,7 @@ class BacktestService:
                     symbol: str,
                     strategy: CoreStrategy,
                     cash: float = 1_000_000,
-                    commission: float = 0.001425,
+                    commission: float = 0.002,
                     **backtest_kwargs) -> Dict[str, Any]:
         """
         Run a backtest for a strategy on a symbol.
@@ -200,6 +285,7 @@ class BacktestService:
             cash=cash,
             commission=commission,
             trade_on_close=True,
+            finalize_trades=True,  # close open trades at end for stats
             **backtest_kwargs
         )
         
@@ -251,7 +337,7 @@ class BacktestService:
                 maximize: str = 'Return [%]',
                 constraint: Optional[callable] = None,
                 cash: float = 1_000_000,
-                commission: float = 0.001425,
+                commission: float = 0.002,
                 max_tries: Optional[int] = None) -> Dict[str, Any]:
         """
         Optimize strategy parameters.
@@ -347,7 +433,7 @@ class BacktestService:
                           symbol: str,
                           strategies: list[CoreStrategy],
                           cash: float = 1_000_000,
-                          commission: float = 0.001425) -> pd.DataFrame:
+                          commission: float = 0.002) -> pd.DataFrame:
         """
         Compare multiple strategies on the same symbol.
         

@@ -13,6 +13,7 @@ import inspect
 from .base import Strategy
 from .mfi_hunter import MfiHunterStrategy
 from .rsi_mfi_consensus import RsiMfiConsensusStrategy
+from .divergence_hunter import DivergenceHunterStrategy
 
 
 class StrategyRegistry:
@@ -161,7 +162,11 @@ def _register_builtin_strategies(registry: StrategyRegistry) -> None:
         'Dual momentum confirmation using RSI and MFI - trades only when both agree'
     )
     
-    # Future strategies can be registered here:
+    registry.register(
+        'divergence_hunter',
+        DivergenceHunterStrategy,
+        '底背離 + 右側確認 — 盤整期暗池吸血流 (MFI divergence + RSI filter)'
+    )
     # registry.register('macd_crossover', MACDCrossoverStrategy, 'MACD crossover strategy')
     # registry.register('bollinger_mean_reversion', BollingerMeanReversionStrategy, '')
 

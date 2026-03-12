@@ -1,0 +1,13 @@
+{
+  "initial_equity": 70000,
+  "cash": 70000,
+  "open_positions": [],
+  "closed_trades": [],
+  "equity_curve": [
+    {
+      "date": "2026-03-12",
+      "equity": 70000
+    }
+  ],
+  "start_date": "2026-03-12"
+}

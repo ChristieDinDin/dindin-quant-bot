@@ -3,6 +3,11 @@ Backtest Lab Component - Batch backtest across multiple stocks.
 
 Runs a chosen strategy against an entire universe of stocks,
 collects performance metrics, and ranks them in a sortable table.
+
+Cache behaviour:
+  - Nightly GitHub Actions pre-builds cache (36h TTL, default params).
+  - If user changes params → cache miss → live recompute → store 24h TTL.
+  - Cache indicator shown in UI so user knows what's fresh vs. live.
 """
 import streamlit as st
 import pandas as pd
@@ -77,7 +82,8 @@ def render_backtest_lab(backtest_service, data_service):
         avail_strats = registry.list_strategies()
         _labels = {
             "mfi_hunter": "🎯 MFI Hunter",
-            "rsi_mfi_consensus": "📡 RSI+MFI Consensus"
+            "rsi_mfi_consensus": "📡 RSI+MFI Consensus",
+            "divergence_hunter": "📐 Divergence Hunter",
         }
         strategy_name = st.selectbox(
             "交易策略",
@@ -129,10 +135,40 @@ def render_backtest_lab(backtest_service, data_service):
                 "mfi_overbought": 80,
                 "rsi_overbought": 70
             }
+        elif strategy_name == "divergence_hunter":
+            mfi_period = st.slider("MFI 週期", 5, 30, 14, key="lab_mfi_p")
+            rsi_period = st.slider("RSI 週期", 5, 30, 14, key="lab_rsi_p")
+            rsi_os = st.slider("RSI 超賣 (買入門檻)", 25, 45, 35, key="lab_rsi_os")
+            rsi_ob = st.slider("RSI 超買 (賣出門檻)", 60, 80, 70, key="lab_rsi_ob")
+            strategy_params = {
+                "mfi_period": mfi_period,
+                "rsi_period": rsi_period,
+                "rsi_oversold": rsi_os,
+                "rsi_overbought": rsi_ob,
+            }
         else:
             strategy_params = {}
 
     st.markdown("---")
+
+    # ── Cache status ─────────────────────────────────────────────────────────
+    cache_repo = _get_cache_repo()
+    params_hash = None
+    cache_stats_text = ""
+    if cache_repo:
+        from src.infrastructure.database.backtest_cache import make_params_hash
+        params_hash = make_params_hash(strategy_params, initial_capital, commission)
+        cached = cache_repo.get_many(symbols_to_test[:5], strategy_name, params_hash)
+        n_cached = len(cache_repo.get_many(symbols_to_test, strategy_name, params_hash))
+        n_total = len(symbols_to_test)
+        pct = int(n_cached / n_total * 100) if n_total else 0
+        if n_cached == n_total:
+            cache_stats_text = f"⚡ 全部 {n_total} 支已有 cache，將立即載入"
+        elif n_cached > 0:
+            cache_stats_text = f"⚡ {n_cached}/{n_total} 支有 cache（{pct}%），其餘實時計算"
+        else:
+            cache_stats_text = f"⏳ 無 cache（參數已變更或首次執行），將實時計算全部 {n_total} 支"
+        st.caption(cache_stats_text)
 
     # ── Run button ───────────────────────────────────────────────────────────
     run_col, clear_col, _ = st.columns([1.2, 0.8, 4])
@@ -155,7 +191,8 @@ def render_backtest_lab(backtest_service, data_service):
         df_results = _run_batch(
             symbols_to_test, strategy_name, strategy_params,
             backtest_service, data_service,
-            initial_capital, commission, metadata
+            initial_capital, commission, metadata,
+            cache_repo=cache_repo, params_hash=params_hash,
         )
         if df_results is not None and not df_results.empty:
             st.session_state["lab_results_df"] = df_results
@@ -167,58 +204,114 @@ def render_backtest_lab(backtest_service, data_service):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Cache helper
+# ─────────────────────────────────────────────────────────────────────────────
+
+@st.cache_resource
+def _get_cache_repo():
+    """Return BacktestCacheRepository or None if DB not found."""
+    try:
+        from pathlib import Path
+        from src.infrastructure.database.backtest_cache import BacktestCacheRepository
+        db_path = str(Path("data/database/market_data.db").resolve())
+        return BacktestCacheRepository(db_path)
+    except Exception:
+        return None
+
+
+def _result_to_row(symbol: str, result: dict, metadata: dict, from_cache: bool = False) -> dict:
+    return {
+        "Symbol":      symbol,
+        "Name":        metadata.get(symbol, symbol),
+        "Return %":    round(result.get("return_pct", 0), 2),
+        "B&H %":       round(result.get("buy_hold_return_pct", 0), 2),
+        "Sharpe":      round(result.get("sharpe_ratio", 0), 3),
+        "Sortino":     round(result.get("sortino_ratio", 0), 3),
+        "Max DD %":    round(result.get("max_drawdown_pct", 0), 2),
+        "Win Rate %":  round(result.get("win_rate_pct", 0), 1),
+        "# Trades":    int(result.get("num_trades", 0)),
+        "Avg Trade %": round(result.get("avg_trade_pct", 0), 2),
+        "Exposure %":  round(result.get("exposure_time_pct", 0), 1),
+        "⚡":           "cached" if from_cache else "live",
+    }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Batch runner
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _run_batch(symbols, strategy_name, strategy_params,
                backtest_service, data_service,
-               capital, commission, metadata) -> pd.DataFrame | None:
-    """Run strategy on every symbol with a progress bar. Returns results DataFrame."""
+               capital, commission, metadata,
+               cache_repo=None, params_hash=None) -> pd.DataFrame | None:
+    """
+    Run strategy on every symbol with a progress bar.
+    Cache-aware: hits are instant; misses are computed live and stored (24h TTL).
+    """
     from src.application.use_cases.run_backtest import RunBacktestUseCase
 
     use_case = RunBacktestUseCase(backtest_service, data_service)
 
     rows = []
     errors = []
+    cache_hits = 0
 
-    progress = st.progress(0, text="準備中...")
-    status = st.empty()
+    # ── Batch cache lookup ───────────────────────────────────────────────────
+    cached_results = {}
+    if cache_repo and params_hash:
+        cached_results = cache_repo.get_many(symbols, strategy_name, params_hash)
+        for symbol, cached in cached_results.items():
+            rows.append(_result_to_row(symbol, cached, metadata, from_cache=True))
+        cache_hits = len(cached_results)
 
-    for i, symbol in enumerate(symbols):
-        pct = (i + 1) / len(symbols)
-        display_name = metadata.get(symbol, symbol)
-        status.markdown(f"⏳ **{symbol}** — {display_name} &nbsp;&nbsp; ({i + 1} / {len(symbols)})")
-        progress.progress(pct)
+    # ── Symbols that need live computation ───────────────────────────────────
+    symbols_to_compute = [s for s in symbols if s not in cached_results]
 
-        try:
-            result = use_case.execute(
-                symbol=symbol,
-                strategy_name=strategy_name,
-                strategy_params=strategy_params,
-                cash=capital,
-                commission=commission
+    if symbols_to_compute:
+        progress = st.progress(0, text="準備中...")
+        status = st.empty()
+
+        for i, symbol in enumerate(symbols_to_compute):
+            pct = (i + 1) / len(symbols_to_compute)
+            display_name = metadata.get(symbol, symbol)
+            status.markdown(
+                f"⏳ 計算 **{symbol}** — {display_name} "
+                f"({i + 1}/{len(symbols_to_compute)}) &nbsp; "
+                f"[cache: {cache_hits} + live: {i}]"
             )
-            if result.get("success"):
-                rows.append({
-                    "Symbol":      symbol,
-                    "Name":        metadata.get(symbol, symbol),
-                    "Return %":    round(result.get("return_pct", 0), 2),
-                    "B&H %":       round(result.get("buy_hold_return_pct", 0), 2),
-                    "Sharpe":      round(result.get("sharpe_ratio", 0), 3),
-                    "Sortino":     round(result.get("sortino_ratio", 0), 3),
-                    "Max DD %":    round(result.get("max_drawdown_pct", 0), 2),
-                    "Win Rate %":  round(result.get("win_rate_pct", 0), 1),
-                    "# Trades":    int(result.get("num_trades", 0)),
-                    "Avg Trade %": round(result.get("avg_trade_pct", 0), 2),
-                    "Exposure %":  round(result.get("exposure_time_pct", 0), 1),
-                })
-            else:
-                errors.append(f"{symbol}: {result.get('error', 'unknown')}")
-        except Exception as exc:
-            errors.append(f"{symbol}: {exc}")
+            progress.progress(pct)
 
-    progress.empty()
-    status.empty()
+            try:
+                result = use_case.execute(
+                    symbol=symbol,
+                    strategy_name=strategy_name,
+                    strategy_params=strategy_params,
+                    cash=capital,
+                    commission=commission,
+                )
+                if result.get("success"):
+                    rows.append(_result_to_row(symbol, result, metadata, from_cache=False))
+                    # Store in cache with 24h TTL (custom params)
+                    if cache_repo and params_hash:
+                        try:
+                            from src.infrastructure.database.repository import MarketDataRepository
+                            from src.infrastructure.database.connection import get_database
+                            _repo = MarketDataRepository(get_database())
+                            dr = _repo.get_date_range(symbol)
+                            data_last_date = dr[1].isoformat() if dr else "unknown"
+                            cache_repo.set(
+                                symbol, strategy_name, params_hash,
+                                result, data_last_date, expires_hours=24,
+                            )
+                        except Exception:
+                            pass
+                else:
+                    errors.append(f"{symbol}: {result.get('error', 'unknown')}")
+            except Exception as exc:
+                errors.append(f"{symbol}: {exc}")
+
+        progress.empty()
+        status.empty()
 
     if not rows:
         st.error("沒有成功的回測結果。請確認資料庫已有資料。")
@@ -228,7 +321,13 @@ def _run_batch(symbols, strategy_name, strategy_params,
                     st.text(e)
         return None
 
-    st.success(f"✅ 完成！成功 {len(rows)} 支，失敗 {len(errors)} 支")
+    live_count = len(rows) - cache_hits
+    msg = f"✅ 完成！共 {len(rows)} 支 "
+    msg += f"（⚡ {cache_hits} cached + 🔄 {live_count} live"
+    if errors:
+        msg += f" + ❌ {len(errors)} 失敗"
+    msg += "）"
+    st.success(msg)
 
     if errors:
         with st.expander(f"⚠️ {len(errors)} 支失敗"):

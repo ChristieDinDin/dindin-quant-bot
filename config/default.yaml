@@ -14,12 +14,29 @@ data_provider:
   shioaji_simulation: true
 
 backtest:
-  initial_cash: 1000000  # 1M TWD
-  commission: 0.001425   # 0.1425% Taiwan stock commission
+  initial_cash: 1000000  # 1M TWD (historical analysis)
+  # Real Taiwan round-trip cost (永豐 API 2折優惠):
+  #   Buy:  0.1425% × 2折 = 0.0285%
+  #   Sell: 0.1425% × 2折 + 0.3% tax = 0.3285%
+  #   Total: 0.357% + ~0.05% slippage ≈ 0.40%
+  # backtesting.py applies symmetrically → per-side = 0.40% / 2 = 0.20%
+  commission: 0.002
   trade_on_close: true
+
+  # Paper-trading live simulation
+  paper_equity: 70000       # 7萬 TWD actual capital
+  max_total_exposure: 1.0   # 100% — fully invested allowed
+  min_position_pct: 0.05    # 5%  (weakest divergence signal)
+  max_position_pct: 0.20    # 20% (strongest divergence signal)
 
 strategy:
   default_strategy: "mfi_hunter"
+  
+  # Divergence Hunter Micro Mode (1-min K)
+  micro_mode_max_symbols: 5
+  poll_interval_min: 5
+  poll_interval_5th_min: 6
+  min_consecutive_bars_above: 10
   
   # MFI Hunter Strategy Parameters
   mfi_period: 16
