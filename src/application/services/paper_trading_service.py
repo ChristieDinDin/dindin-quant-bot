@@ -390,7 +390,7 @@ class PaperTradingService:
 
                 # initialize() writes ADX/MA20_SLOPE/RSI/MFI into df in-place
                 strategy.initialize(df)
-                signal = strategy.generate_signal(df, symbol=symbol)
+                signal = strategy.generate_signal(df)
 
                 if signal is None or not signal.is_entry_signal:
                     continue

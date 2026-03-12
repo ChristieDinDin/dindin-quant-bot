@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 os.chdir(ROOT)
 
-from src.infrastructure.database.connection import DatabaseConnection
+from src.infrastructure.database.connection import get_database
 from src.infrastructure.database.repository import MarketDataRepository
 from src.infrastructure.data_providers.yfinance_provider import YFinanceProvider
 from src.application.services.data_service import DataService
@@ -40,6 +40,8 @@ def main() -> None:
                         help="Max simultaneous open positions (default: 5)")
     parser.add_argument("--dry-run",        action="store_true",
                         help="Run scan but do NOT write state to disk")
+    parser.add_argument("--force",          action="store_true",
+                        help="Force re-scan even if today was already scanned")
     args = parser.parse_args()
 
     print(f"{'='*60}")
@@ -50,16 +52,16 @@ def main() -> None:
     print(f"{'='*60}")
 
     # ── Bootstrap services ────────────────────────────────────────────────────
-    db_conn     = DatabaseConnection("data/database/market_data.db")
-    repository  = MarketDataRepository(db_conn.connect())
+    db          = get_database()
+    repository  = MarketDataRepository(db)
     provider    = YFinanceProvider()
     provider.connect()
     data_service = DataService(provider, repository)
 
     paper_service = PaperTradingService(initial_equity=args.initial_equity)
 
-    if paper_service.already_scanned_today():
-        print(f"✅ Today's scan already completed. Exiting early.")
+    if paper_service.already_scanned_today() and not args.force:
+        print(f"✅ Today's scan already completed. Use --force to re-run.")
         _print_summary(paper_service.get_last_scan_summary())
         return
 

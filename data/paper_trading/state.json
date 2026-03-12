@@ -9,5 +9,14 @@
       "equity": 70000
     }
   ],
-  "start_date": "2026-03-12"
+  "start_date": "2026-03-12",
+  "last_scan_date": "2026-03-12",
+  "last_scan_summary": {
+    "scanned": 179,
+    "new_entries": [],
+    "auto_exits": [],
+    "skipped": [],
+    "errors": [],
+    "run_at": "2026-03-12 12:47"
+  }
 }
