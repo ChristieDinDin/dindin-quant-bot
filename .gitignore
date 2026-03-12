@@ -53,7 +53,9 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
-# market_data.db tracked in git so Streamlit Cloud can read pre-fetched data
+# DB is stored as a GitHub Release Asset (not in git — too large for binary diffs).
+# Download with: python scripts/download_db.py
+data/database/market_data.db
 data/database/market_data_dev.db
 !data/database/.gitkeep
 data/cache/*

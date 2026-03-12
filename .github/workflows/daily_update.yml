@@ -34,6 +34,21 @@ jobs:
         run: |
           pip install --quiet pandas yfinance PyYAML requests backtesting pandas_ta numpy
 
+      # ── Step 0: Download latest DB from GitHub Release ───────────────────
+      # DB is stored as a Release Asset, not in git. Download it before any
+      # data fetch so subsequent steps can do incremental updates on top.
+      - name: Download DB from GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p data/database
+          gh release download db-latest \
+            --pattern "market_data.db" \
+            --dir data/database \
+            --clobber 2>/dev/null \
+          && echo "✅ DB downloaded ($(du -h data/database/market_data.db | cut -f1))" \
+          || echo "⚠️  No release yet — starting with empty DB (first run)"
+
       # ── Step 1: Refresh stock list from TWSE + TPEX ─────────────────────
       # Runs daily so newly IPO'd stocks or volume changes are captured.
       # Only updates taiwan_stocks.yaml (high_volume section); no DB writes here.
@@ -71,18 +86,33 @@ jobs:
         run: |
           python scripts/run_paper_trading_scan.py --initial-equity 70000 --max-positions 5
 
-      # ── Step 6: Commit everything ─────────────────────────────────────────
-      - name: Commit database and stock list
+      # ── Step 6a: Upload DB to GitHub Release (replaces git-tracked DB) ──────
+      # DB is no longer committed to git. It lives as a public Release Asset.
+      # Local machine downloads it via: python scripts/download_db.py
+      - name: Upload DB to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Create the release tag if it doesn't exist yet
+          gh release create db-latest \
+            --title "Latest Database" \
+            --notes "Market data DB — auto-updated daily. Download: python scripts/download_db.py" \
+            --prerelease 2>/dev/null || true
+          # Upload (or replace) the DB asset
+          gh release upload db-latest data/database/market_data.db --clobber
+          echo "✅ DB uploaded to Release db-latest"
+
+      # ── Step 6b: Commit lightweight files only (no DB) ───────────────────
+      - name: Commit stock list and paper trading state
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/database/market_data.db data/taiwan_stocks.yaml data/paper_trading/state.json
+          git add data/taiwan_stocks.yaml data/paper_trading/state.json
           if git diff --staged --quiet; then
             echo "No changes — nothing to commit."
           else
             git commit -m "📈 Daily update $(date +'%Y-%m-%d')"
-            # Pull with rebase; for DB conflicts always keep our (Actions) version
-            git pull --rebase -X ours || true
+            git pull --rebase || true
             git push
             echo "✅ Pushed to repo."
           fi

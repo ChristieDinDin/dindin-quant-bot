@@ -23,6 +23,53 @@ except ImportError:
 
 import streamlit as st
 import numpy as np
+from pathlib import Path as _Path
+
+
+def _ensure_db() -> None:
+    """
+    Auto-download market_data.db from GitHub Release if it's missing.
+    DB is no longer tracked in git; it lives as a Release Asset.
+    This runs before any other import so the app never crashes on first launch.
+    """
+    db = _Path("data/database/market_data.db")
+    if db.exists():
+        return
+    st.warning(
+        "📥 **找不到本地資料庫。**  \n"
+        "正在從 GitHub Release 下載（約 100 MB），請稍候…"
+    )
+    progress = st.progress(0, text="準備下載…")
+    try:
+        import requests
+        from scripts.download_db import DOWNLOAD_URL
+
+        db.parent.mkdir(parents=True, exist_ok=True)
+        tmp = db.with_suffix(".tmp")
+        with requests.get(DOWNLOAD_URL, stream=True, timeout=120) as r:
+            r.raise_for_status()
+            total = int(r.headers.get("content-length", 1))
+            done  = 0
+            with open(tmp, "wb") as f:
+                for chunk in r.iter_content(chunk_size=1024 * 1024):
+                    f.write(chunk)
+                    done += len(chunk)
+                    pct = min(int(done / total * 100), 100)
+                    progress.progress(pct, text=f"下載中… {done/1024/1024:.1f} MB / {total/1024/1024:.1f} MB")
+        tmp.replace(db)
+        progress.empty()
+        st.success("✅ 資料庫下載完成！正在重新啟動…")
+        st.rerun()
+    except Exception as exc:
+        progress.empty()
+        st.error(
+            f"❌ 下載失敗：{exc}  \n"
+            "請在終端執行：`python scripts/download_db.py`"
+        )
+        st.stop()
+
+
+_ensure_db()
 
 # NumPy 2.0 compatibility patch
 if not hasattr(np, 'bool8'):
