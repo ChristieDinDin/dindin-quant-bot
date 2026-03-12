@@ -70,13 +70,6 @@ jobs:
       - name: Run paper trading scan
         run: |
           python scripts/run_paper_trading_scan.py --initial-equity 70000 --max-positions 5
-          python3 -c "
-import json, pathlib
-p = pathlib.Path('data/paper_trading/state.json')
-if p.exists():
-    s = json.loads(p.read_text())
-    print(f'Paper trading state: open={len(s[\"open_positions\"])}, closed={len(s[\"closed_trades\"])}, cash={s[\"cash\"]:.0f} TWD')
-"
 
       # ── Step 6: Commit everything ─────────────────────────────────────────
       - name: Commit database and stock list
@@ -103,13 +96,6 @@ if p.exists():
               "SELECT '**Stocks:** ' || COUNT(DISTINCT symbol) || ' | **Rows:** ' || COUNT(*) FROM daily_kline;" \
               >> $GITHUB_STEP_SUMMARY
           fi
-          python3 -c "
-import json, pathlib
-p = pathlib.Path('data/paper_trading/state.json')
-if p.exists():
-    s = json.loads(p.read_text())
-    summary = s.get('last_scan_summary', {})
-    entries = len(summary.get('new_entries', []))
-    exits   = len(summary.get('auto_exits', []))
-    print(f'**Paper Trading:** open={len(s[\"open_positions\"])}, closed={len(s[\"closed_trades\"])}, new_entries={entries}, auto_exits={exits}, cash={s[\"cash\"]:.0f} TWD')
-" >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
+          if [ -f data/paper_trading/state.json ]; then
+            python3 scripts/summarise_paper_state.py >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
+          fi
