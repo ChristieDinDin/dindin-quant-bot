@@ -1,0 +1,7 @@
+# Binary files — no text diff, no line-ending conversion, no merge attempt
+*.db binary
+*.db -diff -merge
+
+# Keep JSON/YAML readable
+*.json text eol=lf
+*.yaml text eol=lf

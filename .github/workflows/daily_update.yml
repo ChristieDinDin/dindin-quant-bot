@@ -81,6 +81,8 @@ jobs:
             echo "No changes — nothing to commit."
           else
             git commit -m "📈 Daily update $(date +'%Y-%m-%d')"
+            # Pull with rebase; for DB conflicts always keep our (Actions) version
+            git pull --rebase -X ours || true
             git push
             echo "✅ Pushed to repo."
           fi
