@@ -7,6 +7,9 @@ This script properly sets up the Python path and launches the Streamlit dashboar
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 # Add project root to Python path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
@@ -24,6 +27,6 @@ if __name__ == '__main__':
     
     # Launch streamlit
     subprocess.run([
-        'streamlit', 'run', str(dashboard_path),
+        sys.executable, '-m', 'streamlit', 'run', str(dashboard_path),
         '--server.headless', 'false'
     ])

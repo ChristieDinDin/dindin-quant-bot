@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --quiet pandas yfinance PyYAML requests backtesting pandas_ta numpy
+          pip install --quiet -r requirements.txt
 
       # ── Step 0: Download latest DB from GitHub Release ───────────────────
       # DB is stored as a Release Asset, not in git. Download it before any
