@@ -1,22 +1,66 @@
 {
   "initial_equity": 70000,
-  "cash": 70000,
-  "open_positions": [],
+  "cash": 59741.79991722107,
+  "open_positions": [
+    {
+      "symbol": "4129.TWO",
+      "entry_date": "2026-04-10",
+      "entry_price": 102.5,
+      "shares": 48,
+      "position_pct": 0.0717,
+      "divergence_low": 96.9000015258789,
+      "signal_score": 0.14458340084580795,
+      "peak_price": 102.5,
+      "note": "自動掃描 score=0.14"
+    },
+    {
+      "symbol": "6179.TWO",
+      "entry_date": "2026-04-10",
+      "entry_price": 24.600000381469727,
+      "shares": 217,
+      "position_pct": 0.0763,
+      "divergence_low": 23.299999237060547,
+      "signal_score": 0.17539527835515342,
+      "peak_price": 24.600000381469727,
+      "note": "自動掃描 score=0.18"
+    }
+  ],
   "closed_trades": [],
   "equity_curve": [
     {
       "date": "2026-03-12",
       "equity": 70000
+    },
+    {
+      "date": "2026-04-10",
+      "equity": 70000.0
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-03-12",
+  "last_scan_date": "2026-04-10",
   "last_scan_summary": {
-    "scanned": 179,
-    "new_entries": [],
+    "scanned": 988,
+    "new_entries": [
+      {
+        "symbol": "4129.TWO",
+        "entry_price": 102.5,
+        "shares": 48,
+        "position_pct": 0.0717,
+        "signal_score": 0.14458340084580795,
+        "reason": "底背離+右側確認 (RSI=32.0, score=0.14, pos=7%)"
+      },
+      {
+        "symbol": "6179.TWO",
+        "entry_price": 24.600000381469727,
+        "shares": 217,
+        "position_pct": 0.0763,
+        "signal_score": 0.17539527835515342,
+        "reason": "底背離+右側確認 (RSI=34.2, score=0.18, pos=8%)"
+      }
+    ],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-03-12 12:47"
+    "run_at": "2026-04-10 00:32"
   }
 }

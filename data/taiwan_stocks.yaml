@@ -1,7 +1,8 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-03-09 (837 high-volume stocks, ≥20.0M TWD/day)
+# Last Updated: 2026-04-09 | 906 stocks | ≥20.0M TWD/day
+# Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
   2330.TW: 台積電 TSMC
@@ -999,3 +1000,72 @@ high_volume:
   8936.TWO: 國統
   8937.TWO: 合騏
   8938.TWO: 明安
+  1449.TW: 佳和
+  1563.TW: 巧新
+  1598.TW: 岱宇
+  1721.TW: 三晃
+  1808.TW: 潤隆
+  1909.TW: 榮成
+  2072.TW: 世紀風電
+  2231.TW: 為升
+  2236.TW: 百達-KY
+  2243.TW: 宏旭-KY
+  2305.TW: 全友
+  2397.TW: 友通
+  2417.TW: 圓剛
+  2429.TW: 銘旺科
+  2460.TW: 建通
+  2461.TW: 光群雷
+  2465.TW: 麗臺
+  2484.TW: 希華
+  2501.TW: 國建
+  2535.TW: 達欣工
+  2546.TW: 根基
+  2851.TW: 中再保
+  3002.TW: 歐格
+  3004.TW: 豐達科
+  3011.TW: 今皓
+  3015.TW: 全漢
+  3022.TW: 威強電
+  3031.TW: 佰鴻
+  3209.TW: 全科
+  3416.TW: 融程電
+  3437.TW: 榮創
+  3588.TW: 通嘉
+  3591.TW: 艾笛森
+  3622.TW: 洋華
+  3669.TW: 圓展
+  4142.TW: 國光生
+  4164.TW: 承業醫
+  4169.TW: 泰宗
+  4441.TW: 振大環球
+  4536.TW: 拓凱
+  4566.TW: 時碩工業
+  4569.TW: 六方科-KY
+  4720.TW: 德淵
+  4771.TW: 望隼
+  5244.TW: 弘凱
+  5288.TW: 豐祥-KY
+  5292.TW: 華懋
+  5306.TW: 桂盟
+  5484.TW: 慧友
+  6024.TW: 群益期
+  6168.TW: 宏齊
+  6226.TW: 光鼎
+  6277.TW: 宏正
+  6405.TW: 悅城
+  6541.TW: 泰福-KY
+  6658.TW: 聯策
+  6834.TW: 天二科技
+  6838.TW: 台新藥
+  6909.TW: 創控
+  6933.TW: AMAX-KY
+  6957.TW: 裕慶-KY
+  7721.TW: 微程式
+  7730.TW: 暉盛-創
+  7822.TW: 倍利科
+  8072.TW: 陞泰
+  8162.TW: 微矽電子-創
+  8163.TW: 達方
+  8215.TW: 明基材
+  8374.TW: 羅昇
