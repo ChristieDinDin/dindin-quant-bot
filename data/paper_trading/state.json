@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 59741.79991722107,
+  "cash": 42622.69997215271,
   "open_positions": [
     {
       "symbol": "4129.TWO",
@@ -21,8 +21,41 @@
       "position_pct": 0.0763,
       "divergence_low": 23.299999237060547,
       "signal_score": 0.17539527835515342,
-      "peak_price": 24.600000381469727,
+      "peak_price": 25.0,
       "note": "自動掃描 score=0.18"
+    },
+    {
+      "symbol": "XLK",
+      "entry_date": "2026-04-11",
+      "entry_price": 142.6199951171875,
+      "shares": 40,
+      "position_pct": 0.0826,
+      "divergence_low": 126.68000030517578,
+      "signal_score": 0.21701138394482775,
+      "peak_price": 142.6199951171875,
+      "note": "自動掃描 score=0.22"
+    },
+    {
+      "symbol": "ALAB",
+      "entry_date": "2026-04-11",
+      "entry_price": 149.0500030517578,
+      "shares": 46,
+      "position_pct": 0.0994,
+      "divergence_low": 97.88999938964844,
+      "signal_score": 0.32966275436955994,
+      "peak_price": 149.0500030517578,
+      "note": "自動掃描 score=0.33"
+    },
+    {
+      "symbol": "1565.TWO",
+      "entry_date": "2026-04-11",
+      "entry_price": 106.0,
+      "shares": 43,
+      "position_pct": 0.0657,
+      "divergence_low": 102.0,
+      "signal_score": 0.10435627847855969,
+      "peak_price": 106.0,
+      "note": "自動掃描 score=0.10"
     }
   ],
   "closed_trades": [],
@@ -34,33 +67,48 @@
     {
       "date": "2026-04-10",
       "equity": 70000.0
+    },
+    {
+      "date": "2026-04-11",
+      "equity": 70086.79991722107
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-10",
+  "last_scan_date": "2026-04-11",
   "last_scan_summary": {
-    "scanned": 988,
+    "scanned": 1068,
     "new_entries": [
       {
-        "symbol": "4129.TWO",
-        "entry_price": 102.5,
-        "shares": 48,
-        "position_pct": 0.0717,
-        "signal_score": 0.14458340084580795,
-        "reason": "底背離+右側確認 (RSI=32.0, score=0.14, pos=7%)"
+        "symbol": "XLK",
+        "entry_price": 142.6199951171875,
+        "shares": 40,
+        "position_pct": 0.0826,
+        "signal_score": 0.21701138394482775,
+        "reason": "底背離+右側確認 (RSI=29.8, score=0.22, pos=8%)"
       },
       {
-        "symbol": "6179.TWO",
-        "entry_price": 24.600000381469727,
-        "shares": 217,
-        "position_pct": 0.0763,
-        "signal_score": 0.17539527835515342,
-        "reason": "底背離+右側確認 (RSI=34.2, score=0.18, pos=8%)"
+        "symbol": "ALAB",
+        "entry_price": 149.0500030517578,
+        "shares": 46,
+        "position_pct": 0.0994,
+        "signal_score": 0.32966275436955994,
+        "reason": "底背離+右側確認 (RSI=32.7, score=0.33, pos=10%)"
+      },
+      {
+        "symbol": "1565.TWO",
+        "entry_price": 106.0,
+        "shares": 43,
+        "position_pct": 0.0657,
+        "signal_score": 0.10435627847855969,
+        "reason": "底背離+右側確認 (RSI=34.5, score=0.10, pos=7%)"
       }
     ],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "2542.TW",
+      "3706.TW"
+    ],
     "errors": [],
-    "run_at": "2026-04-10 00:32"
+    "run_at": "2026-04-11 00:35"
   }
 }

@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-04-09 | 906 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-04-10 | 986 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -1069,3 +1069,83 @@ high_volume:
   8163.TW: 達方
   8215.TW: 明基材
   8374.TW: 羅昇
+  1522.TW: 堤維西
+  1587.TW: 吉茂
+  1707.TW: 葡萄王
+  1735.TW: 日勝化
+  2022.TW: 聚亨
+  2258.TW: 鴻華先進-創
+  2314.TW: 台揚
+  2405.TW: 輔信
+  2414.TW: 精技
+  2420.TW: 新巨
+  2497.TW: 怡利電
+  2527.TW: 宏璟
+  2530.TW: 華建
+  2611.TW: 志信
+  2614.TW: 東森
+  2723.TW: 美食-KY
+  2850.TW: 新產
+  3040.TW: 遠見
+  3356.TW: 奇偶
+  3528.TW: 安馳
+  4104.TW: 佳醫
+  5285.TW: 界霖
+  5515.TW: 建國
+  6117.TW: 迎廣
+  6192.TW: 巨路
+  6224.TW: 聚鼎
+  6272.TW: 驊陞
+  6550.TW: 北極星藥業-KY
+  6579.TW: 研揚
+  6591.TW: 動力-KY
+  6776.TW: 展碁國際
+  1591.TWO: 駿吉-KY
+  1595.TWO: 川寶
+  3178.TWO: 公準
+  3205.TWO: 佰研
+  3297.TWO: 杭特
+  3310.TWO: 佳穎
+  3388.TWO: 崇越電
+  3444.TWO: 利機
+  3490.TWO: 單井
+  3552.TWO: 同致
+  3555.TWO: 博士旺
+  3577.TWO: 泓格
+  3594.TWO: 磐儀
+  3628.TWO: 盈正
+  3684.TWO: 榮昌
+  4543.TWO: 萬在
+  4707.TWO: 磐亞
+  4741.TWO: 泓瀚
+  4744.TWO: 皇將
+  5016.TWO: 松和
+  5493.TWO: 三聯
+  6111.TWO: 光聚晶電
+  6151.TWO: 晉倫
+  6167.TWO: 久正
+  6199.TWO: 天品
+  6208.TWO: 日揚
+  6218.TWO: 豪勉
+  6227.TWO: 茂綸
+  6234.TWO: 高僑
+  6419.TWO: 京晨科
+  6432.TWO: 今展科
+  6465.TWO: 威潤
+  6494.TWO: 九齊
+  6532.TWO: 瑞耘
+  6588.TWO: 東典光電
+  6649.TWO: 台生材
+  6735.TWO: 美達科技
+  6821.TWO: 聯寶
+  6967.TWO: 汎瑋材料
+  7547.TWO: 碩網
+  7704.TWO: 明遠精密
+  7709.TWO: 榮田
+  7810.TWO: 捷創科技
+  8076.TWO: 伍豐
+  8182.TWO: 加高
+  8349.TWO: 恒耀
+  8383.TWO: 千附
+  8446.TWO: 華研
+  8942.TWO: 森鉅
