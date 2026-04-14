@@ -32,7 +32,7 @@
       "position_pct": 0.0826,
       "divergence_low": 126.68000030517578,
       "signal_score": 0.21701138394482775,
-      "peak_price": 142.6199951171875,
+      "peak_price": 145.61000061035156,
       "note": "自動掃描 score=0.22"
     },
     {
@@ -43,7 +43,7 @@
       "position_pct": 0.0994,
       "divergence_low": 97.88999938964844,
       "signal_score": 0.32966275436955994,
-      "peak_price": 149.0500030517578,
+      "peak_price": 166.7949981689453,
       "note": "自動掃描 score=0.33"
     },
     {
@@ -71,44 +71,25 @@
     {
       "date": "2026-04-11",
       "equity": 70086.79991722107
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 70877.82007789612
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-11",
+  "last_scan_date": "2026-04-14",
   "last_scan_summary": {
-    "scanned": 1068,
-    "new_entries": [
-      {
-        "symbol": "XLK",
-        "entry_price": 142.6199951171875,
-        "shares": 40,
-        "position_pct": 0.0826,
-        "signal_score": 0.21701138394482775,
-        "reason": "底背離+右側確認 (RSI=29.8, score=0.22, pos=8%)"
-      },
-      {
-        "symbol": "ALAB",
-        "entry_price": 149.0500030517578,
-        "shares": 46,
-        "position_pct": 0.0994,
-        "signal_score": 0.32966275436955994,
-        "reason": "底背離+右側確認 (RSI=32.7, score=0.33, pos=10%)"
-      },
-      {
-        "symbol": "1565.TWO",
-        "entry_price": 106.0,
-        "shares": 43,
-        "position_pct": 0.0657,
-        "signal_score": 0.10435627847855969,
-        "reason": "底背離+右側確認 (RSI=34.5, score=0.10, pos=7%)"
-      }
-    ],
+    "scanned": 1122,
+    "new_entries": [],
     "auto_exits": [],
     "skipped": [
+      "2365.TW",
       "2542.TW",
-      "3706.TW"
+      "5474.TWO",
+      "8464.TW"
     ],
     "errors": [],
-    "run_at": "2026-04-11 00:35"
+    "run_at": "2026-04-14 00:47"
   }
 }

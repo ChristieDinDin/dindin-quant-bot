@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-04-10 | 986 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-04-13 | 1040 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -831,7 +831,7 @@ high_volume:
   5347.TWO: 世界
   5351.TWO: 鈺創
   5371.TWO: 中光電
-  5381.TWO: 合正
+  5381.TWO: 光譜
   5386.TWO: 青雲
   5392.TWO: 能率
   5425.TWO: 台半
@@ -998,7 +998,7 @@ high_volume:
   8927.TWO: 北基
   8932.TWO: 智通*
   8936.TWO: 國統
-  8937.TWO: 合騏
+  8937.TWO: 合騏*
   8938.TWO: 明安
   1449.TW: 佳和
   1563.TW: 巧新
@@ -1149,3 +1149,57 @@ high_volume:
   8383.TWO: 千附
   8446.TWO: 華研
   8942.TWO: 森鉅
+  1219.TW: 福壽
+  1227.TW: 佳格
+  1232.TW: 大統益
+  1440.TW: 南紡
+  1524.TW: 耿鼎
+  1568.TW: 倉佑
+  1604.TW: 聲寶
+  1709.TW: 和益
+  2020.TW: 美亞
+  2248.TW: 華勝-KY
+  2423.TW: 固緯
+  2480.TW: 敦陽科
+  2488.TW: 漢平
+  2545.TW: 皇翔
+  2705.TW: 六福
+  2739.TW: 寒舍
+  2748.TW: 雲品
+  3003.TW: 健和興
+  3055.TW: 蔚華科
+  3311.TW: 閎暉
+  3312.TW: 弘憶股
+  3703.TW: 欣陸
+  5258.TW: 虹堡
+  6558.TW: 興能高
+  6742.TW: 澤米
+  6863.TW: 永道-KY
+  6901.TW: 鑽石投資
+  6902.TW: GOGOLOOK
+  8473.TW: 山林水
+  1570.TWO: 力肯
+  2743.TWO: 山富
+  2745.TWO: 五福
+  3071.TWO: 協禧
+  3171.TWO: 炎洲流通
+  3354.TWO: 律勝
+  3390.TWO: 旭軟
+  3466.TWO: 德晉
+  3556.TWO: 禾瑞亞
+  3570.TWO: 大塚
+  4417.TWO: 金洲
+  4716.TWO: 大立
+  4745.TWO: 合富-KY
+  5228.TWO: 鈺鎧
+  5403.TWO: 中菲
+  5410.TWO: 國眾
+  5511.TWO: 德昌
+  6023.TWO: 元大期
+  6174.TWO: 安碁
+  6263.TWO: 普萊德
+  6425.TWO: 易發
+  6716.TWO: 應廣
+  6741.TWO: 91APP*-KY
+  6823.TWO: 濾能
+  8040.TWO: 九暘
