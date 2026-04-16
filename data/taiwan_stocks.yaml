@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-04-14 | 1059 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-04-15 | 1098 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -1222,3 +1222,42 @@ high_volume:
   6165.TW: 浪凡
   6835.TW: 圓裕
   7631.TW: 聚賢研發-創
+  1218.TW: 泰山
+  1442.TW: 名軒
+  1702.TW: 南僑
+  2015.TW: 豐興
+  2362.TW: 藍天
+  2453.TW: 凌群
+  2636.TW: 台驊控股
+  2702.TW: 華園
+  3047.TW: 訊舟
+  3051.TW: 力特
+  3056.TW: 富華新
+  3057.TW: 喬鼎
+  3518.TW: 柏騰
+  6164.TW: 華興
+  6756.TW: 威鋒電子
+  6799.TW: 來頡
+  8045.TW: 達運光電
+  8222.TW: 寶一
+  3434.TWO: 哲固
+  3467.TWO: 台灣精材
+  3685.TWO: 元創精密
+  4128.TWO: 中天
+  4174.TWO: 浩鼎
+  4561.TWO: 健椿
+  6113.TWO: 亞矽
+  6156.TWO: 松上
+  6194.TWO: 育富
+  6204.TWO: 艾華
+  6229.TWO: 研通
+  6233.TWO: 旺玖
+  6259.TWO: 百徽
+  6423.TWO: 億而得
+  6517.TWO: 保勝光學
+  6523.TWO: 達爾膚
+  6629.TWO: 泰金-KY
+  6642.TWO: 富致
+  6791.TWO: 虎門科技
+  8068.TWO: 全達
+  8433.TWO: 弘帆
