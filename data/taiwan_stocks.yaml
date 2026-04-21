@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-04-17 | 1133 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-04-20 | 1167 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -708,7 +708,7 @@ high_volume:
   3066.TWO: 李洲
   3078.TWO: 僑威
   3081.TWO: 聯亞
-  3086.TWO: 華義
+  3086.TWO: 華義*
   3088.TWO: 艾訊
   3093.TWO: 港建*
   3105.TWO: 穩懋
@@ -1296,3 +1296,37 @@ high_volume:
   6668.TW: 中揚光
   6923.TW: 中台
   9136.TW: 巨騰-DR
+  1256.TW: 鮮活果汁-KY
+  1471.TW: 首利
+  2008.TW: 高興昌
+  2440.TW: 太空梭
+  2459.TW: 敦吉
+  2832.TW: 台產
+  3419.TW: 譁裕
+  6142.TW: 友勁
+  6921.TW: 嘉雨思-創
+  7821.TW: 神數
+  1580.TWO: 新麥
+  1799.TWO: 易威
+  2070.TWO: 精湛
+  3226.TWO: 龍鋒
+  3322.TWO: 建舜電
+  3511.TWO: 矽瑪
+  3710.TWO: 連展投控
+  4503.TWO: 金雨
+  4556.TWO: 旭然
+  4951.TWO: 精拓科
+  5202.TWO: 力新
+  5272.TWO: 笙科
+  5299.TWO: 杰力
+  5464.TWO: 霖宏
+  6221.TWO: 晉泰
+  6270.TWO: 倍微
+  6441.TWO: 廣錠
+  6576.TWO: 逸達
+  6785.TWO: 昱展新藥
+  6840.TWO: 東研信超
+  6895.TWO: 宏碩系統
+  7794.TWO: 宏碁智新
+  8092.TWO: 建暐
+  8354.TWO: 冠好

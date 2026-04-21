@@ -1,29 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 42622.69997215271,
+  "cash": 57605.85013771057,
   "open_positions": [
-    {
-      "symbol": "4129.TWO",
-      "entry_date": "2026-04-10",
-      "entry_price": 102.5,
-      "shares": 48,
-      "position_pct": 0.0717,
-      "divergence_low": 96.9000015258789,
-      "signal_score": 0.14458340084580795,
-      "peak_price": 107.0,
-      "note": "自動掃描 score=0.14"
-    },
-    {
-      "symbol": "6179.TWO",
-      "entry_date": "2026-04-10",
-      "entry_price": 24.600000381469727,
-      "shares": 217,
-      "position_pct": 0.0763,
-      "divergence_low": 23.299999237060547,
-      "signal_score": 0.17539527835515342,
-      "peak_price": 25.0,
-      "note": "自動掃描 score=0.18"
-    },
     {
       "symbol": "XLK",
       "entry_date": "2026-04-11",
@@ -32,7 +10,7 @@
       "position_pct": 0.0826,
       "divergence_low": 126.68000030517578,
       "signal_score": 0.21701138394482775,
-      "peak_price": 154.35000610351562,
+      "peak_price": 154.55999755859375,
       "note": "自動掃描 score=0.22"
     },
     {
@@ -43,22 +21,54 @@
       "position_pct": 0.0994,
       "divergence_low": 97.88999938964844,
       "signal_score": 0.32966275436955994,
-      "peak_price": 174.0500030517578,
+      "peak_price": 175.8000030517578,
       "note": "自動掃描 score=0.33"
+    }
+  ],
+  "closed_trades": [
+    {
+      "symbol": "4129.TWO",
+      "entry_date": "2026-04-10",
+      "exit_date": "2026-04-21",
+      "entry_price": 102.5,
+      "exit_price": 103.5,
+      "shares": 48,
+      "position_pct": 0.0717,
+      "signal_score": 0.14458340084580795,
+      "pnl_twd": 28.0,
+      "pnl_pct": 0.98,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-04-21 00:56"
+    },
+    {
+      "symbol": "6179.TWO",
+      "entry_date": "2026-04-10",
+      "exit_date": "2026-04-21",
+      "entry_price": 24.600000381469727,
+      "exit_price": 24.950000762939453,
+      "shares": 217,
+      "position_pct": 0.0763,
+      "signal_score": 0.17539527835515342,
+      "pnl_twd": 54.0,
+      "pnl_pct": 1.42,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-04-21 00:56"
     },
     {
       "symbol": "1565.TWO",
       "entry_date": "2026-04-11",
+      "exit_date": "2026-04-21",
       "entry_price": 106.0,
+      "exit_price": 107.0,
       "shares": 43,
       "position_pct": 0.0657,
-      "divergence_low": 102.0,
       "signal_score": 0.10435627847855969,
-      "peak_price": 109.0,
-      "note": "自動掃描 score=0.10"
+      "pnl_twd": 25.0,
+      "pnl_pct": 0.94,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-04-21 00:56"
     }
   ],
-  "closed_trades": [],
   "equity_curve": [
     {
       "date": "2026-03-12",
@@ -91,19 +101,73 @@
     {
       "date": "2026-04-18",
       "equity": 71827.30027389526
+    },
+    {
+      "date": "2026-04-21",
+      "equity": 70048.0
+    },
+    {
+      "date": "2026-04-21",
+      "equity": 70123.95008277893
+    },
+    {
+      "date": "2026-04-21",
+      "equity": 71875.05018043518
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-18",
+  "last_scan_date": "2026-04-21",
   "last_scan_summary": {
-    "scanned": 1215,
+    "scanned": 1248,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "4129.TWO",
+        "entry_date": "2026-04-10",
+        "exit_date": "2026-04-21",
+        "entry_price": 102.5,
+        "exit_price": 103.5,
+        "shares": 48,
+        "position_pct": 0.0717,
+        "signal_score": 0.14458340084580795,
+        "pnl_twd": 28.0,
+        "pnl_pct": 0.98,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-04-21 00:56"
+      },
+      {
+        "symbol": "6179.TWO",
+        "entry_date": "2026-04-10",
+        "exit_date": "2026-04-21",
+        "entry_price": 24.600000381469727,
+        "exit_price": 24.950000762939453,
+        "shares": 217,
+        "position_pct": 0.0763,
+        "signal_score": 0.17539527835515342,
+        "pnl_twd": 54.0,
+        "pnl_pct": 1.42,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-04-21 00:56"
+      },
+      {
+        "symbol": "1565.TWO",
+        "entry_date": "2026-04-11",
+        "exit_date": "2026-04-21",
+        "entry_price": 106.0,
+        "exit_price": 107.0,
+        "shares": 43,
+        "position_pct": 0.0657,
+        "signal_score": 0.10435627847855969,
+        "pnl_twd": 25.0,
+        "pnl_pct": 0.94,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-04-21 00:56"
+      }
+    ],
     "skipped": [
-      "MDB",
-      "6603.TWO"
+      "8044.TWO"
     ],
     "errors": [],
-    "run_at": "2026-04-18 00:52"
+    "run_at": "2026-04-21 00:56"
   }
 }
