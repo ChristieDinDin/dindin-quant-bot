@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 52895.7499332428,
+  "cash": 45985.36986732483,
   "open_positions": [
     {
       "symbol": "XLK",
@@ -10,7 +10,7 @@
       "position_pct": 0.0826,
       "divergence_low": 126.68000030517578,
       "signal_score": 0.21701138394482775,
-      "peak_price": 154.69000244140625,
+      "peak_price": 158.08999633789062,
       "note": "自動掃描 score=0.22"
     },
     {
@@ -21,7 +21,7 @@
       "position_pct": 0.0994,
       "divergence_low": 97.88999938964844,
       "signal_score": 0.32966275436955994,
-      "peak_price": 191.97000122070312,
+      "peak_price": 194.05999755859375,
       "note": "自動掃描 score=0.33"
     },
     {
@@ -32,8 +32,19 @@
       "position_pct": 0.0675,
       "divergence_low": 67.0999984741211,
       "signal_score": 0.11653507215838085,
-      "peak_price": 70.30000305175781,
+      "peak_price": 70.5,
       "note": "自動掃描 score=0.12"
+    },
+    {
+      "symbol": "ADBE",
+      "entry_date": "2026-04-23",
+      "entry_price": 255.94000244140625,
+      "shares": 27,
+      "position_pct": 0.1019,
+      "divergence_low": 224.14999389648438,
+      "signal_score": 0.3459240117087147,
+      "peak_price": 255.94000244140625,
+      "note": "自動掃描 score=0.35"
     }
   ],
   "closed_trades": [
@@ -128,25 +139,29 @@
     {
       "date": "2026-04-22",
       "equity": 72624.07029151917
+    },
+    {
+      "date": "2026-04-23",
+      "equity": 72869.60967445374
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-22",
+  "last_scan_date": "2026-04-23",
   "last_scan_summary": {
-    "scanned": 1268,
+    "scanned": 1293,
     "new_entries": [
       {
-        "symbol": "9921.TW",
-        "entry_price": 70.30000305175781,
-        "shares": 67,
-        "position_pct": 0.0675,
-        "signal_score": 0.11653507215838085,
-        "reason": "底背離+右側確認 (RSI=32.9, score=0.12, pos=7%)"
+        "symbol": "ADBE",
+        "entry_price": 255.94000244140625,
+        "shares": 27,
+        "position_pct": 0.1019,
+        "signal_score": 0.3459240117087147,
+        "reason": "底背離+右側確認 (RSI=29.2, score=0.35, pos=10%)"
       }
     ],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-04-22 00:54"
+    "run_at": "2026-04-23 01:17"
   }
 }
