@@ -21,7 +21,7 @@
       "position_pct": 0.0994,
       "divergence_low": 97.88999938964844,
       "signal_score": 0.32966275436955994,
-      "peak_price": 194.05999755859375,
+      "peak_price": 197.5399932861328,
       "note": "自動掃描 score=0.33"
     },
     {
@@ -143,25 +143,20 @@
     {
       "date": "2026-04-23",
       "equity": 72869.60967445374
+    },
+    {
+      "date": "2026-04-24",
+      "equity": 72361.16909217834
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-23",
+  "last_scan_date": "2026-04-24",
   "last_scan_summary": {
-    "scanned": 1293,
-    "new_entries": [
-      {
-        "symbol": "ADBE",
-        "entry_price": 255.94000244140625,
-        "shares": 27,
-        "position_pct": 0.1019,
-        "signal_score": 0.3459240117087147,
-        "reason": "底背離+右側確認 (RSI=29.2, score=0.35, pos=10%)"
-      }
-    ],
+    "scanned": 1325,
+    "new_entries": [],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-04-23 01:17"
+    "run_at": "2026-04-24 01:11"
   }
 }
