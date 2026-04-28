@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 45985.36986732483,
+  "cash": 54562.80983924866,
   "open_positions": [
     {
       "symbol": "XLK",
@@ -10,30 +10,8 @@
       "position_pct": 0.0826,
       "divergence_low": 126.68000030517578,
       "signal_score": 0.21701138394482775,
-      "peak_price": 160.22000122070312,
+      "peak_price": 160.57000732421875,
       "note": "自動掃描 score=0.22"
-    },
-    {
-      "symbol": "ALAB",
-      "entry_date": "2026-04-11",
-      "entry_price": 149.0500030517578,
-      "shares": 46,
-      "position_pct": 0.0994,
-      "divergence_low": 97.88999938964844,
-      "signal_score": 0.32966275436955994,
-      "peak_price": 212.83999633789062,
-      "note": "自動掃描 score=0.33"
-    },
-    {
-      "symbol": "9921.TW",
-      "entry_date": "2026-04-22",
-      "entry_price": 70.30000305175781,
-      "shares": 67,
-      "position_pct": 0.0675,
-      "divergence_low": 67.0999984741211,
-      "signal_score": 0.11653507215838085,
-      "peak_price": 70.5,
-      "note": "自動掃描 score=0.12"
     },
     {
       "symbol": "ADBE",
@@ -45,6 +23,17 @@
       "signal_score": 0.3459240117087147,
       "peak_price": 255.94000244140625,
       "note": "自動掃描 score=0.35"
+    },
+    {
+      "symbol": "6576.TWO",
+      "entry_date": "2026-04-28",
+      "entry_price": 81.5,
+      "shares": 60,
+      "position_pct": 0.0708,
+      "divergence_low": 75.0999984741211,
+      "signal_score": 0.13898005848995024,
+      "peak_price": 81.5,
+      "note": "自動掃描 score=0.14"
     }
   ],
   "closed_trades": [
@@ -89,6 +78,34 @@
       "pnl_pct": 0.94,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-04-21 00:56"
+    },
+    {
+      "symbol": "ALAB",
+      "entry_date": "2026-04-11",
+      "exit_date": "2026-04-28",
+      "entry_price": 149.0500030517578,
+      "exit_price": 196.63999938964844,
+      "shares": 46,
+      "position_pct": 0.0994,
+      "signal_score": 0.32966275436955994,
+      "pnl_twd": 2157.0,
+      "pnl_pct": 31.93,
+      "exit_reason": "trailing_stop",
+      "exit_time": "2026-04-28 01:19"
+    },
+    {
+      "symbol": "9921.TW",
+      "entry_date": "2026-04-22",
+      "exit_date": "2026-04-28",
+      "entry_price": 70.30000305175781,
+      "exit_price": 66.0,
+      "shares": 67,
+      "position_pct": 0.0675,
+      "signal_score": 0.11653507215838085,
+      "pnl_twd": -306.0,
+      "pnl_pct": -6.12,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-04-28 01:19"
     }
   ],
   "equity_curve": [
@@ -151,16 +168,62 @@
     {
       "date": "2026-04-25",
       "equity": 73320.79001808167
+    },
+    {
+      "date": "2026-04-28",
+      "equity": 72356.0899143219
+    },
+    {
+      "date": "2026-04-28",
+      "equity": 72336.98006629944
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-25",
+  "last_scan_date": "2026-04-28",
   "last_scan_summary": {
-    "scanned": 1330,
-    "new_entries": [],
-    "auto_exits": [],
+    "scanned": 1340,
+    "new_entries": [
+      {
+        "symbol": "6576.TWO",
+        "entry_price": 81.5,
+        "shares": 60,
+        "position_pct": 0.0708,
+        "signal_score": 0.13898005848995024,
+        "reason": "底背離+右側確認 (RSI=31.8, score=0.14, pos=7%)"
+      }
+    ],
+    "auto_exits": [
+      {
+        "symbol": "ALAB",
+        "entry_date": "2026-04-11",
+        "exit_date": "2026-04-28",
+        "entry_price": 149.0500030517578,
+        "exit_price": 196.63999938964844,
+        "shares": 46,
+        "position_pct": 0.0994,
+        "signal_score": 0.32966275436955994,
+        "pnl_twd": 2157.0,
+        "pnl_pct": 31.93,
+        "exit_reason": "trailing_stop",
+        "exit_time": "2026-04-28 01:19"
+      },
+      {
+        "symbol": "9921.TW",
+        "entry_date": "2026-04-22",
+        "exit_date": "2026-04-28",
+        "entry_price": 70.30000305175781,
+        "exit_price": 66.0,
+        "shares": 67,
+        "position_pct": 0.0675,
+        "signal_score": 0.11653507215838085,
+        "pnl_twd": -306.0,
+        "pnl_pct": -6.12,
+        "exit_reason": "hard_stop",
+        "exit_time": "2026-04-28 01:19"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-04-25 00:24"
+    "run_at": "2026-04-28 01:19"
   }
 }
