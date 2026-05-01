@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 54562.80983924866,
+  "cash": 60942.80983924866,
   "open_positions": [
-    {
-      "symbol": "XLK",
-      "entry_date": "2026-04-11",
-      "entry_price": 142.6199951171875,
-      "shares": 40,
-      "position_pct": 0.0826,
-      "divergence_low": 126.68000030517578,
-      "signal_score": 0.21701138394482775,
-      "peak_price": 160.57000732421875,
-      "note": "自動掃描 score=0.22"
-    },
     {
       "symbol": "ADBE",
       "entry_date": "2026-04-23",
@@ -106,6 +95,20 @@
       "pnl_pct": -6.12,
       "exit_reason": "hard_stop",
       "exit_time": "2026-04-28 01:19"
+    },
+    {
+      "symbol": "XLK",
+      "entry_date": "2026-04-11",
+      "exit_date": "2026-05-01",
+      "entry_price": 142.6199951171875,
+      "exit_price": 159.5,
+      "shares": 40,
+      "position_pct": 0.0826,
+      "signal_score": 0.21701138394482775,
+      "pnl_twd": 651.0,
+      "pnl_pct": 11.84,
+      "exit_reason": "time_stop_20d",
+      "exit_time": "2026-05-01 01:22"
     }
   ],
   "equity_curve": [
@@ -184,16 +187,35 @@
     {
       "date": "2026-04-30",
       "equity": 72345.59987831116
+    },
+    {
+      "date": "2026-05-01",
+      "equity": 72387.51000404358
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-04-30",
+  "last_scan_date": "2026-05-01",
   "last_scan_summary": {
-    "scanned": 1348,
+    "scanned": 1351,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "XLK",
+        "entry_date": "2026-04-11",
+        "exit_date": "2026-05-01",
+        "entry_price": 142.6199951171875,
+        "exit_price": 159.5,
+        "shares": 40,
+        "position_pct": 0.0826,
+        "signal_score": 0.21701138394482775,
+        "pnl_twd": 651.0,
+        "pnl_pct": 11.84,
+        "exit_reason": "time_stop_20d",
+        "exit_time": "2026-05-01 01:22"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-04-30 01:26"
+    "run_at": "2026-05-01 01:22"
   }
 }
