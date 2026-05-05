@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 60942.80983924866,
+  "cash": 67799.73002052307,
   "open_positions": [
-    {
-      "symbol": "ADBE",
-      "entry_date": "2026-04-23",
-      "entry_price": 255.94000244140625,
-      "shares": 27,
-      "position_pct": 0.1019,
-      "divergence_low": 224.14999389648438,
-      "signal_score": 0.3459240117087147,
-      "peak_price": 255.94000244140625,
-      "note": "自動掃描 score=0.35"
-    },
     {
       "symbol": "6576.TWO",
       "entry_date": "2026-04-28",
@@ -109,6 +98,20 @@
       "pnl_pct": 11.84,
       "exit_reason": "time_stop_20d",
       "exit_time": "2026-05-01 01:22"
+    },
+    {
+      "symbol": "ADBE",
+      "entry_date": "2026-04-23",
+      "exit_date": "2026-05-05",
+      "entry_price": 255.94000244140625,
+      "exit_price": 253.9600067138672,
+      "shares": 27,
+      "position_pct": 0.1019,
+      "signal_score": 0.3459240117087147,
+      "pnl_twd": -81.0,
+      "pnl_pct": -0.77,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-05-05 01:19"
     }
   ],
   "equity_curve": [
@@ -195,16 +198,35 @@
     {
       "date": "2026-05-02",
       "equity": 72511.98002052307
+    },
+    {
+      "date": "2026-05-05",
+      "equity": 72569.73002052307
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-02",
+  "last_scan_date": "2026-05-05",
   "last_scan_summary": {
-    "scanned": 1351,
+    "scanned": 1358,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "ADBE",
+        "entry_date": "2026-04-23",
+        "exit_date": "2026-05-05",
+        "entry_price": 255.94000244140625,
+        "exit_price": 253.9600067138672,
+        "shares": 27,
+        "position_pct": 0.1019,
+        "signal_score": 0.3459240117087147,
+        "pnl_twd": -81.0,
+        "pnl_pct": -0.77,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-05-05 01:19"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-05-02 01:24"
+    "run_at": "2026-05-05 01:19"
   }
 }
