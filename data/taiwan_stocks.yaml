@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-05-05 | 1280 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-05-06 | 1284 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -1443,3 +1443,7 @@ high_volume:
   4923.TWO: 力士
   5210.TWO: 寶碩
   8071.TWO: 能率網通
+  3485.TWO: 敘豐
+  3520.TWO: 華盈
+  6498.TWO: 久禾光
+  8924.TWO: 大田
