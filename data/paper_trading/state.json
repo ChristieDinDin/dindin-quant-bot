@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 46489.82995033264,
+  "cash": 51271.82976722717,
   "open_positions": [
-    {
-      "symbol": "6576.TWO",
-      "entry_date": "2026-04-28",
-      "entry_price": 81.5,
-      "shares": 60,
-      "position_pct": 0.0708,
-      "divergence_low": 75.0999984741211,
-      "signal_score": 0.13898005848995024,
-      "peak_price": 81.5,
-      "note": "自動掃描 score=0.14"
-    },
     {
       "symbol": "1319.TW",
       "entry_date": "2026-05-06",
@@ -21,7 +10,7 @@
       "position_pct": 0.0708,
       "divergence_low": 73.30000305175781,
       "signal_score": 0.13868657317230187,
-      "peak_price": 76.4000015258789,
+      "peak_price": 80.0,
       "note": "自動掃描 score=0.14"
     },
     {
@@ -43,7 +32,7 @@
       "position_pct": 0.0853,
       "divergence_low": 61.79999923706055,
       "signal_score": 0.23546643371714165,
-      "peak_price": 65.4000015258789,
+      "peak_price": 65.69999694824219,
       "note": "自動掃描 score=0.24"
     },
     {
@@ -54,7 +43,7 @@
       "position_pct": 0.0706,
       "divergence_low": 82.19999694824219,
       "signal_score": 0.13709769906802038,
-      "peak_price": 91.5999984741211,
+      "peak_price": 94.4000015258789,
       "note": "自動掃描 score=0.14"
     }
   ],
@@ -156,6 +145,20 @@
       "pnl_pct": -0.77,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-05-05 01:19"
+    },
+    {
+      "symbol": "6576.TWO",
+      "entry_date": "2026-04-28",
+      "exit_date": "2026-05-08",
+      "entry_price": 81.5,
+      "exit_price": 79.69999694824219,
+      "shares": 60,
+      "position_pct": 0.0708,
+      "signal_score": 0.13898005848995024,
+      "pnl_twd": -127.0,
+      "pnl_pct": -2.21,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-05-08 01:22"
     }
   ],
   "equity_curve": [
@@ -254,19 +257,42 @@
     {
       "date": "2026-05-07",
       "equity": 72397.0300540924
+    },
+    {
+      "date": "2026-05-08",
+      "equity": 72967.62965583801
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-07",
+  "last_scan_date": "2026-05-08",
   "last_scan_summary": {
-    "scanned": 1366,
+    "scanned": 1381,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "6576.TWO",
+        "entry_date": "2026-04-28",
+        "exit_date": "2026-05-08",
+        "entry_price": 81.5,
+        "exit_price": 79.69999694824219,
+        "shares": 60,
+        "position_pct": 0.0708,
+        "signal_score": 0.13898005848995024,
+        "pnl_twd": -127.0,
+        "pnl_pct": -2.21,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-05-08 01:22"
+      }
+    ],
     "skipped": [
+      "1319.TW",
       "2641.TWO",
-      "8390.TWO"
+      "3005.TW",
+      "6869.TW",
+      "1522.TW",
+      "1603.TW"
     ],
     "errors": [],
-    "run_at": "2026-05-07 00:29"
+    "run_at": "2026-05-08 01:22"
   }
 }
