@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 51271.82976722717,
+  "cash": 46597.02967262268,
   "open_positions": [
     {
       "symbol": "1319.TW",
@@ -10,7 +10,7 @@
       "position_pct": 0.0708,
       "divergence_low": 73.30000305175781,
       "signal_score": 0.13868657317230187,
-      "peak_price": 80.0,
+      "peak_price": 80.19999694824219,
       "note": "自動掃描 score=0.14"
     },
     {
@@ -32,7 +32,7 @@
       "position_pct": 0.0853,
       "divergence_low": 61.79999923706055,
       "signal_score": 0.23546643371714165,
-      "peak_price": 65.69999694824219,
+      "peak_price": 70.0,
       "note": "自動掃描 score=0.24"
     },
     {
@@ -45,6 +45,17 @@
       "signal_score": 0.13709769906802038,
       "peak_price": 94.4000015258789,
       "note": "自動掃描 score=0.14"
+    },
+    {
+      "symbol": "4105.TWO",
+      "entry_date": "2026-05-09",
+      "entry_price": 75.4000015258789,
+      "shares": 62,
+      "position_pct": 0.0647,
+      "divergence_low": 71.5999984741211,
+      "signal_score": 0.09769715133062151,
+      "peak_price": 75.4000015258789,
+      "note": "自動掃描 score=0.10"
     }
   ],
   "closed_trades": [
@@ -261,38 +272,32 @@
     {
       "date": "2026-05-08",
       "equity": 72967.62965583801
+    },
+    {
+      "date": "2026-05-09",
+      "equity": 73310.12956428528
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-08",
+  "last_scan_date": "2026-05-09",
   "last_scan_summary": {
-    "scanned": 1381,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1398,
+    "new_entries": [
       {
-        "symbol": "6576.TWO",
-        "entry_date": "2026-04-28",
-        "exit_date": "2026-05-08",
-        "entry_price": 81.5,
-        "exit_price": 79.69999694824219,
-        "shares": 60,
-        "position_pct": 0.0708,
-        "signal_score": 0.13898005848995024,
-        "pnl_twd": -127.0,
-        "pnl_pct": -2.21,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-05-08 01:22"
+        "symbol": "4105.TWO",
+        "entry_price": 75.4000015258789,
+        "shares": 62,
+        "position_pct": 0.0647,
+        "signal_score": 0.09769715133062151,
+        "reason": "底背離+右側確認 (RSI=27.9, score=0.10, pos=6%)"
       }
     ],
+    "auto_exits": [],
     "skipped": [
-      "1319.TW",
-      "2641.TWO",
-      "3005.TW",
-      "6869.TW",
-      "1522.TW",
-      "1603.TW"
+      "6546.TWO",
+      "6768.TW"
     ],
     "errors": [],
-    "run_at": "2026-05-08 01:22"
+    "run_at": "2026-05-09 01:29"
   }
 }
