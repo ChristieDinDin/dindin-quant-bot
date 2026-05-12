@@ -10,7 +10,7 @@
       "position_pct": 0.0708,
       "divergence_low": 73.30000305175781,
       "signal_score": 0.13868657317230187,
-      "peak_price": 80.19999694824219,
+      "peak_price": 80.80000305175781,
       "note": "自動掃描 score=0.14"
     },
     {
@@ -43,7 +43,7 @@
       "position_pct": 0.0706,
       "divergence_low": 82.19999694824219,
       "signal_score": 0.13709769906802038,
-      "peak_price": 94.4000015258789,
+      "peak_price": 103.5,
       "note": "自動掃描 score=0.14"
     },
     {
@@ -276,28 +276,20 @@
     {
       "date": "2026-05-09",
       "equity": 73310.12956428528
+    },
+    {
+      "date": "2026-05-12",
+      "equity": 73888.52988624573
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-09",
+  "last_scan_date": "2026-05-12",
   "last_scan_summary": {
-    "scanned": 1398,
-    "new_entries": [
-      {
-        "symbol": "4105.TWO",
-        "entry_price": 75.4000015258789,
-        "shares": 62,
-        "position_pct": 0.0647,
-        "signal_score": 0.09769715133062151,
-        "reason": "底背離+右側確認 (RSI=27.9, score=0.10, pos=6%)"
-      }
-    ],
+    "scanned": 1410,
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [
-      "6546.TWO",
-      "6768.TW"
-    ],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-05-09 01:29"
+    "run_at": "2026-05-12 00:50"
   }
 }
