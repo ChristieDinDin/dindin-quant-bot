@@ -32,7 +32,7 @@
       "position_pct": 0.0853,
       "divergence_low": 61.79999923706055,
       "signal_score": 0.23546643371714165,
-      "peak_price": 70.0,
+      "peak_price": 70.9000015258789,
       "note": "自動掃描 score=0.24"
     },
     {
@@ -43,7 +43,7 @@
       "position_pct": 0.0706,
       "divergence_low": 82.19999694824219,
       "signal_score": 0.13709769906802038,
-      "peak_price": 103.5,
+      "peak_price": 110.5,
       "note": "自動掃描 score=0.14"
     },
     {
@@ -280,16 +280,22 @@
     {
       "date": "2026-05-12",
       "equity": 73888.52988624573
+    },
+    {
+      "date": "2026-05-13",
+      "equity": 74356.32982826233
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-12",
+  "last_scan_date": "2026-05-13",
   "last_scan_summary": {
-    "scanned": 1410,
+    "scanned": 1414,
     "new_entries": [],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "1477.TW"
+    ],
     "errors": [],
-    "run_at": "2026-05-12 00:50"
+    "run_at": "2026-05-13 01:36"
   }
 }
