@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 67372.02986335754,
+  "cash": 63462.029863357544,
   "open_positions": [
     {
       "symbol": "8390.TWO",
@@ -12,6 +12,17 @@
       "signal_score": 0.13709769906802038,
       "peak_price": 119.5,
       "note": "自動掃描 score=0.14"
+    },
+    {
+      "symbol": "JNJ",
+      "entry_date": "2026-05-20",
+      "entry_price": 230.0,
+      "shares": 17,
+      "position_pct": 0.0556,
+      "divergence_low": 220.37010192871094,
+      "signal_score": 0.03742314259821929,
+      "peak_price": 230.0,
+      "note": "自動掃描 score=0.04"
     }
   ],
   "closed_trades": [
@@ -316,31 +327,29 @@
     {
       "date": "2026-05-19",
       "equity": 74155.02986335754
+    },
+    {
+      "date": "2026-05-20",
+      "equity": 73898.52986335754
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-19",
+  "last_scan_date": "2026-05-20",
   "last_scan_summary": {
-    "scanned": 1447,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1450,
+    "new_entries": [
       {
-        "symbol": "4105.TWO",
-        "entry_date": "2026-05-09",
-        "exit_date": "2026-05-19",
-        "entry_price": 75.4000015258789,
-        "exit_price": 74.4000015258789,
-        "shares": 62,
-        "position_pct": 0.0647,
-        "signal_score": 0.09769715133062151,
-        "pnl_twd": -81.0,
-        "pnl_pct": -1.33,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-05-19 01:40"
+        "symbol": "JNJ",
+        "entry_price": 230.0,
+        "shares": 17,
+        "position_pct": 0.0556,
+        "signal_score": 0.03742314259821929,
+        "reason": "底背離+右側確認 (RSI=33.1, score=0.04, pos=6%)"
       }
     ],
+    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-05-19 01:40"
+    "run_at": "2026-05-20 01:23"
   }
 }
