@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 63462.029863357544,
+  "cash": 69903.02986335754,
   "open_positions": [
-    {
-      "symbol": "8390.TWO",
-      "entry_date": "2026-05-06",
-      "entry_price": 89.0999984741211,
-      "shares": 57,
-      "position_pct": 0.0706,
-      "divergence_low": 82.19999694824219,
-      "signal_score": 0.13709769906802038,
-      "peak_price": 119.5,
-      "note": "自動掃描 score=0.14"
-    },
     {
       "symbol": "JNJ",
       "entry_date": "2026-05-20",
@@ -193,6 +182,20 @@
       "pnl_pct": -1.33,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-05-19 01:40"
+    },
+    {
+      "symbol": "8390.TWO",
+      "entry_date": "2026-05-06",
+      "exit_date": "2026-05-21",
+      "entry_price": 89.0999984741211,
+      "exit_price": 113.0,
+      "shares": 57,
+      "position_pct": 0.0706,
+      "signal_score": 0.13709769906802038,
+      "pnl_twd": 1339.0,
+      "pnl_pct": 26.82,
+      "exit_reason": "trailing_stop",
+      "exit_time": "2026-05-21 01:50"
     }
   ],
   "equity_curve": [
@@ -331,25 +334,35 @@
     {
       "date": "2026-05-20",
       "equity": 73898.52986335754
+    },
+    {
+      "date": "2026-05-21",
+      "equity": 73801.46998786926
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-20",
+  "last_scan_date": "2026-05-21",
   "last_scan_summary": {
-    "scanned": 1450,
-    "new_entries": [
+    "scanned": 1453,
+    "new_entries": [],
+    "auto_exits": [
       {
-        "symbol": "JNJ",
-        "entry_price": 230.0,
-        "shares": 17,
-        "position_pct": 0.0556,
-        "signal_score": 0.03742314259821929,
-        "reason": "底背離+右側確認 (RSI=33.1, score=0.04, pos=6%)"
+        "symbol": "8390.TWO",
+        "entry_date": "2026-05-06",
+        "exit_date": "2026-05-21",
+        "entry_price": 89.0999984741211,
+        "exit_price": 113.0,
+        "shares": 57,
+        "position_pct": 0.0706,
+        "signal_score": 0.13709769906802038,
+        "pnl_twd": 1339.0,
+        "pnl_pct": 26.82,
+        "exit_reason": "trailing_stop",
+        "exit_time": "2026-05-21 01:50"
       }
     ],
-    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-05-20 01:23"
+    "run_at": "2026-05-21 01:50"
   }
 }
