@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 69903.02986335754,
+  "cash": 52391.9798412323,
   "open_positions": [
     {
       "symbol": "JNJ",
@@ -12,6 +12,39 @@
       "signal_score": 0.03742314259821929,
       "peak_price": 234.33999633789062,
       "note": "自動掃描 score=0.04"
+    },
+    {
+      "symbol": "2002.TW",
+      "entry_date": "2026-05-26",
+      "entry_price": 19.950000762939453,
+      "shares": 273,
+      "position_pct": 0.074,
+      "divergence_low": 18.049999237060547,
+      "signal_score": 0.16014855788445823,
+      "peak_price": 19.950000762939453,
+      "note": "自動掃描 score=0.16"
+    },
+    {
+      "symbol": "6625.TW",
+      "entry_date": "2026-05-26",
+      "entry_price": 73.69999694824219,
+      "shares": 61,
+      "position_pct": 0.0611,
+      "divergence_low": 71.5999984741211,
+      "signal_score": 0.07369276562831421,
+      "peak_price": 73.69999694824219,
+      "note": "自動掃描 score=0.07"
+    },
+    {
+      "symbol": "2020.TW",
+      "entry_date": "2026-05-26",
+      "entry_price": 21.75,
+      "shares": 348,
+      "position_pct": 0.1028,
+      "divergence_low": 21.100000381469727,
+      "signal_score": 0.35198697773652105,
+      "peak_price": 21.75,
+      "note": "自動掃描 score=0.35"
     }
   ],
   "closed_trades": [
@@ -346,16 +379,45 @@
     {
       "date": "2026-05-23",
       "equity": 73886.80980110168
+    },
+    {
+      "date": "2026-05-26",
+      "equity": 73886.80980110168
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-23",
+  "last_scan_date": "2026-05-26",
   "last_scan_summary": {
-    "scanned": 1460,
-    "new_entries": [],
+    "scanned": 1467,
+    "new_entries": [
+      {
+        "symbol": "2002.TW",
+        "entry_price": 19.950000762939453,
+        "shares": 273,
+        "position_pct": 0.074,
+        "signal_score": 0.16014855788445823,
+        "reason": "底背離+右側確認 (RSI=33.3, score=0.16, pos=7%)"
+      },
+      {
+        "symbol": "6625.TW",
+        "entry_price": 73.69999694824219,
+        "shares": 61,
+        "position_pct": 0.0611,
+        "signal_score": 0.07369276562831421,
+        "reason": "底背離+右側確認 (RSI=33.0, score=0.07, pos=6%)"
+      },
+      {
+        "symbol": "2020.TW",
+        "entry_price": 21.75,
+        "shares": 348,
+        "position_pct": 0.1028,
+        "signal_score": 0.35198697773652105,
+        "reason": "底背離+右側確認 (RSI=24.7, score=0.35, pos=10%)"
+      }
+    ],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-05-23 01:42"
+    "run_at": "2026-05-26 01:26"
   }
 }
