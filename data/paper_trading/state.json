@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 52391.9798412323,
+  "cash": 45415.22995376587,
   "open_positions": [
     {
       "symbol": "JNJ",
@@ -45,6 +45,17 @@
       "signal_score": 0.35198697773652105,
       "peak_price": 21.75,
       "note": "自動掃描 score=0.35"
+    },
+    {
+      "symbol": "9945.TW",
+      "entry_date": "2026-05-27",
+      "entry_price": 23.649999618530273,
+      "shares": 295,
+      "position_pct": 0.0948,
+      "divergence_low": 22.950000762939453,
+      "signal_score": 0.2986740129425327,
+      "peak_price": 23.649999618530273,
+      "note": "自動掃描 score=0.30"
     }
   ],
   "closed_trades": [
@@ -383,41 +394,32 @@
     {
       "date": "2026-05-26",
       "equity": 73886.80980110168
+    },
+    {
+      "date": "2026-05-27",
+      "equity": 73562.63926506042
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-26",
+  "last_scan_date": "2026-05-27",
   "last_scan_summary": {
-    "scanned": 1467,
+    "scanned": 1472,
     "new_entries": [
       {
-        "symbol": "2002.TW",
-        "entry_price": 19.950000762939453,
-        "shares": 273,
-        "position_pct": 0.074,
-        "signal_score": 0.16014855788445823,
-        "reason": "底背離+右側確認 (RSI=33.3, score=0.16, pos=7%)"
-      },
-      {
-        "symbol": "6625.TW",
-        "entry_price": 73.69999694824219,
-        "shares": 61,
-        "position_pct": 0.0611,
-        "signal_score": 0.07369276562831421,
-        "reason": "底背離+右側確認 (RSI=33.0, score=0.07, pos=6%)"
-      },
-      {
-        "symbol": "2020.TW",
-        "entry_price": 21.75,
-        "shares": 348,
-        "position_pct": 0.1028,
-        "signal_score": 0.35198697773652105,
-        "reason": "底背離+右側確認 (RSI=24.7, score=0.35, pos=10%)"
+        "symbol": "9945.TW",
+        "entry_price": 23.649999618530273,
+        "shares": 295,
+        "position_pct": 0.0948,
+        "signal_score": 0.2986740129425327,
+        "reason": "底背離+右側確認 (RSI=28.3, score=0.30, pos=9%)"
       }
     ],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "2915.TW",
+      "6180.TWO"
+    ],
     "errors": [],
-    "run_at": "2026-05-26 01:26"
+    "run_at": "2026-05-27 01:03"
   }
 }
