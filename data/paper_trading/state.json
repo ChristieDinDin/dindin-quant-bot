@@ -398,28 +398,20 @@
     {
       "date": "2026-05-27",
       "equity": 73562.63926506042
+    },
+    {
+      "date": "2026-05-28",
+      "equity": 73225.51012992859
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-27",
+  "last_scan_date": "2026-05-28",
   "last_scan_summary": {
-    "scanned": 1472,
-    "new_entries": [
-      {
-        "symbol": "9945.TW",
-        "entry_price": 23.649999618530273,
-        "shares": 295,
-        "position_pct": 0.0948,
-        "signal_score": 0.2986740129425327,
-        "reason": "底背離+右側確認 (RSI=28.3, score=0.30, pos=9%)"
-      }
-    ],
+    "scanned": 1481,
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [
-      "2915.TW",
-      "6180.TWO"
-    ],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-05-27 01:03"
+    "run_at": "2026-05-28 01:07"
   }
 }
