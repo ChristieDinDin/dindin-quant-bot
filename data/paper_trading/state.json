@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 49245.8399848938,
+  "cash": 42851.339824676514,
   "open_positions": [
     {
       "symbol": "2002.TW",
@@ -43,8 +43,19 @@
       "position_pct": 0.0948,
       "divergence_low": 22.950000762939453,
       "signal_score": 0.2986740129425327,
-      "peak_price": 23.649999618530273,
+      "peak_price": 23.700000762939453,
       "note": "自動掃描 score=0.30"
+    },
+    {
+      "symbol": "2890.TW",
+      "entry_date": "2026-06-02",
+      "entry_price": 30.450000762939453,
+      "shares": 210,
+      "position_pct": 0.0868,
+      "divergence_low": 28.649999618530273,
+      "signal_score": 0.2450051279943318,
+      "peak_price": 30.450000762939453,
+      "note": "自動掃描 score=0.25"
     }
   ],
   "closed_trades": [
@@ -413,34 +424,33 @@
     {
       "date": "2026-05-30",
       "equity": 73171.23982429504
+    },
+    {
+      "date": "2026-06-02",
+      "equity": 73336.24022102356
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-05-30",
+  "last_scan_date": "2026-06-02",
   "last_scan_summary": {
-    "scanned": 1498,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1509,
+    "new_entries": [
       {
-        "symbol": "JNJ",
-        "entry_date": "2026-05-20",
-        "exit_date": "2026-05-30",
-        "entry_price": 230.0,
-        "exit_price": 225.3300018310547,
-        "shares": 17,
-        "position_pct": 0.0556,
-        "signal_score": 0.03742314259821929,
-        "pnl_twd": -95.0,
-        "pnl_pct": -2.03,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-05-30 01:56"
+        "symbol": "2890.TW",
+        "entry_price": 30.450000762939453,
+        "shares": 210,
+        "position_pct": 0.0868,
+        "signal_score": 0.2450051279943318,
+        "reason": "底背離+右側確認 (RSI=24.5, score=0.25, pos=9%)"
       }
     ],
+    "auto_exits": [],
     "skipped": [
       "2753.TW",
-      "2636.TW"
+      "3078.TWO",
+      "3703.TW"
     ],
     "errors": [],
-    "run_at": "2026-05-30 01:56"
+    "run_at": "2026-06-02 01:40"
   }
 }
