@@ -21,7 +21,7 @@
       "position_pct": 0.1162,
       "divergence_low": 17.700000762939453,
       "signal_score": 0.44102006984558006,
-      "peak_price": 19.600000381469727,
+      "peak_price": 20.25,
       "note": "自動掃描 score=0.44"
     },
     {
@@ -54,7 +54,7 @@
       "position_pct": 0.0732,
       "divergence_low": 29.5,
       "signal_score": 0.15452042285052398,
-      "peak_price": 32.45000076293945,
+      "peak_price": 32.75,
       "note": "自動掃描 score=0.15"
     }
   ],
@@ -516,37 +516,22 @@
     {
       "date": "2026-06-10",
       "equity": 74542.88955116272
+    },
+    {
+      "date": "2026-06-11",
+      "equity": 74742.28959083557
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-06-10",
+  "last_scan_date": "2026-06-11",
   "last_scan_summary": {
-    "scanned": 1549,
-    "new_entries": [
-      {
-        "symbol": "9904.TW",
-        "entry_price": 26.5,
-        "shares": 251,
-        "position_pct": 0.0901,
-        "signal_score": 0.2673903541774636,
-        "reason": "底背離+右側確認 (RSI=29.7, score=0.27, pos=9%)"
-      },
-      {
-        "symbol": "2101.TW",
-        "entry_price": 32.45000076293945,
-        "shares": 166,
-        "position_pct": 0.0732,
-        "signal_score": 0.15452042285052398,
-        "reason": "底背離+右側確認 (RSI=32.1, score=0.15, pos=7%)"
-      }
-    ],
+    "scanned": 1552,
+    "new_entries": [],
     "auto_exits": [],
     "skipped": [
-      "2753.TW",
-      "2845.TW",
-      "9938.TW"
+      "2528.TW"
     ],
     "errors": [],
-    "run_at": "2026-06-10 02:06"
+    "run_at": "2026-06-11 02:13"
   }
 }
