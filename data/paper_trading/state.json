@@ -54,7 +54,7 @@
       "position_pct": 0.0732,
       "divergence_low": 29.5,
       "signal_score": 0.15452042285052398,
-      "peak_price": 32.75,
+      "peak_price": 33.0,
       "note": "自動掃描 score=0.15"
     }
   ],
@@ -520,18 +520,20 @@
     {
       "date": "2026-06-11",
       "equity": 74742.28959083557
+    },
+    {
+      "date": "2026-06-12",
+      "equity": 74591.98923301697
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-06-11",
+  "last_scan_date": "2026-06-12",
   "last_scan_summary": {
-    "scanned": 1552,
+    "scanned": 1556,
     "new_entries": [],
     "auto_exits": [],
-    "skipped": [
-      "2528.TW"
-    ],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-06-11 02:13"
+    "run_at": "2026-06-12 02:15"
   }
 }
