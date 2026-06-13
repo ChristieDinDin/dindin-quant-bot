@@ -32,7 +32,7 @@
       "position_pct": 0.0721,
       "divergence_low": 112.0,
       "signal_score": 0.1472106658730969,
-      "peak_price": 117.0,
+      "peak_price": 118.0,
       "note": "自動掃描 score=0.15"
     },
     {
@@ -43,7 +43,7 @@
       "position_pct": 0.0901,
       "divergence_low": 25.100000381469727,
       "signal_score": 0.2673903541774636,
-      "peak_price": 26.5,
+      "peak_price": 26.649999618530273,
       "note": "自動掃描 score=0.27"
     },
     {
@@ -54,7 +54,7 @@
       "position_pct": 0.0732,
       "divergence_low": 29.5,
       "signal_score": 0.15452042285052398,
-      "peak_price": 33.0,
+      "peak_price": 33.349998474121094,
       "note": "自動掃描 score=0.15"
     }
   ],
@@ -524,16 +524,22 @@
     {
       "date": "2026-06-12",
       "equity": 74591.98923301697
+    },
+    {
+      "date": "2026-06-13",
+      "equity": 75124.53956222534
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-06-12",
+  "last_scan_date": "2026-06-13",
   "last_scan_summary": {
-    "scanned": 1556,
+    "scanned": 1557,
     "new_entries": [],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "5287.TWO"
+    ],
     "errors": [],
-    "run_at": "2026-06-12 02:15"
+    "run_at": "2026-06-13 02:15"
   }
 }
