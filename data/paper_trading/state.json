@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 57807.13963699341,
+  "cash": 46425.13963699341,
   "open_positions": [
     {
       "symbol": "2890.TW",
@@ -34,6 +34,28 @@
       "signal_score": 0.1245831080925825,
       "peak_price": 94.30000305175781,
       "note": "自動掃描 score=0.12"
+    },
+    {
+      "symbol": "5222.TW",
+      "entry_date": "2026-06-23",
+      "entry_price": 125.0,
+      "shares": 45,
+      "position_pct": 0.0768,
+      "divergence_low": 110.5,
+      "signal_score": 0.1788897352281531,
+      "peak_price": 125.0,
+      "note": "自動掃描 score=0.18"
+    },
+    {
+      "symbol": "7402.TWO",
+      "entry_date": "2026-06-23",
+      "entry_price": 101.0,
+      "shares": 57,
+      "position_pct": 0.0785,
+      "divergence_low": 88.5,
+      "signal_score": 0.1899385091362858,
+      "peak_price": 101.0,
+      "note": "自動掃描 score=0.19"
     }
   ],
   "closed_trades": [
@@ -590,54 +612,37 @@
     {
       "date": "2026-06-20",
       "equity": 75890.13947677612
+    },
+    {
+      "date": "2026-06-23",
+      "equity": 75839.13947677612
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-06-20",
+  "last_scan_date": "2026-06-23",
   "last_scan_summary": {
-    "scanned": 1570,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1575,
+    "new_entries": [
       {
-        "symbol": "9904.TW",
-        "entry_date": "2026-06-10",
-        "exit_date": "2026-06-20",
-        "entry_price": 26.5,
-        "exit_price": 26.149999618530273,
-        "shares": 251,
-        "position_pct": 0.0901,
-        "signal_score": 0.2673903541774636,
-        "pnl_twd": -114.0,
-        "pnl_pct": -1.32,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-06-20 01:50"
+        "symbol": "5222.TW",
+        "entry_price": 125.0,
+        "shares": 45,
+        "position_pct": 0.0768,
+        "signal_score": 0.1788897352281531,
+        "reason": "底背離+右側確認 (RSI=30.4, score=0.18, pos=8%)"
       },
       {
-        "symbol": "2101.TW",
-        "entry_date": "2026-06-10",
-        "exit_date": "2026-06-20",
-        "entry_price": 32.45000076293945,
-        "exit_price": 32.45000076293945,
-        "shares": 166,
-        "position_pct": 0.0732,
-        "signal_score": 0.15452042285052398,
-        "pnl_twd": -22.0,
-        "pnl_pct": 0.0,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-06-20 01:50"
+        "symbol": "7402.TWO",
+        "entry_price": 101.0,
+        "shares": 57,
+        "position_pct": 0.0785,
+        "signal_score": 0.1899385091362858,
+        "reason": "底背離+右側確認 (RSI=29.2, score=0.19, pos=8%)"
       }
     ],
-    "skipped": [
-      "3230.TWO",
-      "3689.TWO",
-      "4157.TWO",
-      "4989.TW",
-      "6438.TW",
-      "6725.TWO",
-      "1702.TW",
-      "6266.TWO"
-    ],
+    "auto_exits": [],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-06-20 01:50"
+    "run_at": "2026-06-23 01:17"
   }
 }
