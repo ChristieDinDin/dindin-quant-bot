@@ -54,7 +54,7 @@
       "position_pct": 0.0785,
       "divergence_low": 88.5,
       "signal_score": 0.1899385091362858,
-      "peak_price": 101.0,
+      "peak_price": 103.0,
       "note": "自動掃描 score=0.19"
     }
   ],
@@ -616,33 +616,23 @@
     {
       "date": "2026-06-23",
       "equity": 75839.13947677612
+    },
+    {
+      "date": "2026-06-24",
+      "equity": 75684.03940200806
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-06-23",
+  "last_scan_date": "2026-06-24",
   "last_scan_summary": {
-    "scanned": 1575,
-    "new_entries": [
-      {
-        "symbol": "5222.TW",
-        "entry_price": 125.0,
-        "shares": 45,
-        "position_pct": 0.0768,
-        "signal_score": 0.1788897352281531,
-        "reason": "底背離+右側確認 (RSI=30.4, score=0.18, pos=8%)"
-      },
-      {
-        "symbol": "7402.TWO",
-        "entry_price": 101.0,
-        "shares": 57,
-        "position_pct": 0.0785,
-        "signal_score": 0.1899385091362858,
-        "reason": "底背離+右側確認 (RSI=29.2, score=0.19, pos=8%)"
-      }
-    ],
+    "scanned": 1576,
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "7402.TWO",
+      "6909.TW"
+    ],
     "errors": [],
-    "run_at": "2026-06-23 01:17"
+    "run_at": "2026-06-24 01:03"
   }
 }
