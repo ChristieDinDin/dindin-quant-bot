@@ -620,19 +620,22 @@
     {
       "date": "2026-06-24",
       "equity": 75684.03940200806
+    },
+    {
+      "date": "2026-06-25",
+      "equity": 75510.43963241577
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-06-24",
+  "last_scan_date": "2026-06-25",
   "last_scan_summary": {
-    "scanned": 1576,
+    "scanned": 1579,
     "new_entries": [],
     "auto_exits": [],
     "skipped": [
-      "7402.TWO",
-      "6909.TW"
+      "PYPL"
     ],
     "errors": [],
-    "run_at": "2026-06-24 01:03"
+    "run_at": "2026-06-25 01:36"
   }
 }
