@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 43007.03978729248,
+  "cash": 48542.03978729248,
   "open_positions": [
     {
       "symbol": "2890.TW",
@@ -12,17 +12,6 @@
       "signal_score": 0.2450051279943318,
       "peak_price": 40.0,
       "note": "自動掃描 score=0.25"
-    },
-    {
-      "symbol": "5222.TW",
-      "entry_date": "2026-06-23",
-      "entry_price": 125.0,
-      "shares": 45,
-      "position_pct": 0.0768,
-      "divergence_low": 110.5,
-      "signal_score": 0.1788897352281531,
-      "peak_price": 126.5,
-      "note": "自動掃描 score=0.18"
     },
     {
       "symbol": "7402.TWO",
@@ -394,6 +383,20 @@
       "pnl_pct": -2.01,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-06-30 01:46"
+    },
+    {
+      "symbol": "5222.TW",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-07-03",
+      "entry_price": 125.0,
+      "exit_price": 123.0,
+      "shares": 45,
+      "position_pct": 0.0768,
+      "signal_score": 0.1788897352281531,
+      "pnl_twd": -112.0,
+      "pnl_pct": -1.6,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-07-03 01:58"
     }
   ],
   "equity_curve": [
@@ -672,18 +675,37 @@
     {
       "date": "2026-07-02",
       "equity": 76946.5394744873
+    },
+    {
+      "date": "2026-07-03",
+      "equity": 76507.83961486816
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-02",
+  "last_scan_date": "2026-07-03",
   "last_scan_summary": {
-    "scanned": 1586,
+    "scanned": 1592,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "5222.TW",
+        "entry_date": "2026-06-23",
+        "exit_date": "2026-07-03",
+        "entry_price": 125.0,
+        "exit_price": 123.0,
+        "shares": 45,
+        "position_pct": 0.0768,
+        "signal_score": 0.1788897352281531,
+        "pnl_twd": -112.0,
+        "pnl_pct": -1.6,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-07-03 01:58"
+      }
+    ],
     "skipped": [
-      "2504.TW"
+      "MCD"
     ],
     "errors": [],
-    "run_at": "2026-07-02 02:04"
+    "run_at": "2026-07-03 01:58"
   }
 }
