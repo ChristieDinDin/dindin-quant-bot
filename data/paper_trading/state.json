@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 48542.03978729248,
+  "cash": 43210.06969451904,
   "open_positions": [
     {
       "symbol": "2890.TW",
@@ -21,7 +21,7 @@
       "position_pct": 0.0785,
       "divergence_low": 88.5,
       "signal_score": 0.1899385091362858,
-      "peak_price": 126.5,
+      "peak_price": 138.5,
       "note": "自動掃描 score=0.19"
     },
     {
@@ -45,6 +45,17 @@
       "signal_score": 0.28268430217721535,
       "peak_price": 30.100000381469727,
       "note": "自動掃描 score=0.28"
+    },
+    {
+      "symbol": "MCD",
+      "entry_date": "2026-07-04",
+      "entry_price": 280.6300048828125,
+      "shares": 19,
+      "position_pct": 0.0733,
+      "divergence_low": 264.5299987792969,
+      "signal_score": 0.15559616042826202,
+      "peak_price": 280.6300048828125,
+      "note": "自動掃描 score=0.16"
     }
   ],
   "closed_trades": [
@@ -679,33 +690,35 @@
     {
       "date": "2026-07-03",
       "equity": 76507.83961486816
+    },
+    {
+      "date": "2026-07-04",
+      "equity": 77559.04026031494
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-03",
+  "last_scan_date": "2026-07-04",
   "last_scan_summary": {
     "scanned": 1592,
-    "new_entries": [],
-    "auto_exits": [
+    "new_entries": [
       {
-        "symbol": "5222.TW",
-        "entry_date": "2026-06-23",
-        "exit_date": "2026-07-03",
-        "entry_price": 125.0,
-        "exit_price": 123.0,
-        "shares": 45,
-        "position_pct": 0.0768,
-        "signal_score": 0.1788897352281531,
-        "pnl_twd": -112.0,
-        "pnl_pct": -1.6,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-07-03 01:58"
+        "symbol": "MCD",
+        "entry_price": 280.6300048828125,
+        "shares": 19,
+        "position_pct": 0.0733,
+        "signal_score": 0.15559616042826202,
+        "reason": "底背離+右側確認 (RSI=32.6, score=0.16, pos=7%)"
       }
     ],
+    "auto_exits": [],
     "skipped": [
-      "MCD"
+      "2913.TW",
+      "6477.TW",
+      "9907.TW",
+      "1104.TW",
+      "2534.TW"
     ],
     "errors": [],
-    "run_at": "2026-07-03 01:58"
+    "run_at": "2026-07-04 01:52"
   }
 }
