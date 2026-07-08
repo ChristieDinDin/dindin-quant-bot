@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 43210.06969451904,
+  "cash": 50249.56969451904,
   "open_positions": [
     {
       "symbol": "2890.TW",
@@ -10,19 +10,8 @@
       "position_pct": 0.0868,
       "divergence_low": 28.649999618530273,
       "signal_score": 0.2450051279943318,
-      "peak_price": 41.0,
+      "peak_price": 41.099998474121094,
       "note": "自動掃描 score=0.25"
-    },
-    {
-      "symbol": "7402.TWO",
-      "entry_date": "2026-06-23",
-      "entry_price": 101.0,
-      "shares": 57,
-      "position_pct": 0.0785,
-      "divergence_low": 88.5,
-      "signal_score": 0.1899385091362858,
-      "peak_price": 138.5,
-      "note": "自動掃描 score=0.19"
     },
     {
       "symbol": "2504.TW",
@@ -54,7 +43,7 @@
       "position_pct": 0.0733,
       "divergence_low": 264.5299987792969,
       "signal_score": 0.15559616042826202,
-      "peak_price": 280.6300048828125,
+      "peak_price": 282.2099914550781,
       "note": "自動掃描 score=0.16"
     }
   ],
@@ -408,6 +397,20 @@
       "pnl_pct": -1.6,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-07-03 01:58"
+    },
+    {
+      "symbol": "7402.TWO",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-07-08",
+      "entry_price": 101.0,
+      "exit_price": 123.5,
+      "shares": 57,
+      "position_pct": 0.0785,
+      "signal_score": 0.1899385091362858,
+      "pnl_twd": 1257.0,
+      "pnl_pct": 22.28,
+      "exit_reason": "trailing_stop",
+      "exit_time": "2026-07-08 01:48"
     }
   ],
   "equity_curve": [
@@ -698,20 +701,37 @@
     {
       "date": "2026-07-07",
       "equity": 77603.66958618164
+    },
+    {
+      "date": "2026-07-08",
+      "equity": 76825.15949249268
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-07",
+  "last_scan_date": "2026-07-08",
   "last_scan_summary": {
-    "scanned": 1593,
+    "scanned": 1594,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "7402.TWO",
+        "entry_date": "2026-06-23",
+        "exit_date": "2026-07-08",
+        "entry_price": 101.0,
+        "exit_price": 123.5,
+        "shares": 57,
+        "position_pct": 0.0785,
+        "signal_score": 0.1899385091362858,
+        "pnl_twd": 1257.0,
+        "pnl_pct": 22.28,
+        "exit_reason": "trailing_stop",
+        "exit_time": "2026-07-08 01:48"
+      }
+    ],
     "skipped": [
-      "GOOG",
-      "6477.TW",
-      "1104.TW"
+      "MCD"
     ],
     "errors": [],
-    "run_at": "2026-07-07 01:51"
+    "run_at": "2026-07-08 01:48"
   }
 }
