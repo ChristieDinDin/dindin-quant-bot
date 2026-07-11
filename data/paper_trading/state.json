@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 50249.56969451904,
+  "cash": 56602.76950073242,
   "open_positions": [
     {
       "symbol": "2890.TW",
@@ -14,28 +14,6 @@
       "note": "自動掃描 score=0.25"
     },
     {
-      "symbol": "2504.TW",
-      "entry_date": "2026-07-01",
-      "entry_price": 33.25,
-      "shares": 184,
-      "position_pct": 0.0834,
-      "divergence_low": 32.29999923706055,
-      "signal_score": 0.22234143877547333,
-      "peak_price": 33.29999923706055,
-      "note": "自動掃描 score=0.22"
-    },
-    {
-      "symbol": "4174.TWO",
-      "entry_date": "2026-07-01",
-      "entry_price": 30.100000381469727,
-      "shares": 226,
-      "position_pct": 0.0924,
-      "divergence_low": 27.600000381469727,
-      "signal_score": 0.28268430217721535,
-      "peak_price": 30.200000762939453,
-      "note": "自動掃描 score=0.28"
-    },
-    {
       "symbol": "MCD",
       "entry_date": "2026-07-04",
       "entry_price": 280.6300048828125,
@@ -45,6 +23,17 @@
       "signal_score": 0.15559616042826202,
       "peak_price": 282.2099914550781,
       "note": "自動掃描 score=0.16"
+    },
+    {
+      "symbol": "WMT",
+      "entry_date": "2026-07-11",
+      "entry_price": 113.9000015258789,
+      "shares": 56,
+      "position_pct": 0.0853,
+      "divergence_low": 107.25,
+      "signal_score": 0.2350870486314291,
+      "peak_price": 113.9000015258789,
+      "note": "自動掃描 score=0.24"
     }
   ],
   "closed_trades": [
@@ -411,6 +400,34 @@
       "pnl_pct": 22.28,
       "exit_reason": "trailing_stop",
       "exit_time": "2026-07-08 01:48"
+    },
+    {
+      "symbol": "2504.TW",
+      "entry_date": "2026-07-01",
+      "exit_date": "2026-07-11",
+      "entry_price": 33.25,
+      "exit_price": 32.099998474121094,
+      "shares": 184,
+      "position_pct": 0.0834,
+      "signal_score": 0.22234143877547333,
+      "pnl_twd": -236.0,
+      "pnl_pct": -3.46,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-07-11 01:43"
+    },
+    {
+      "symbol": "4174.TWO",
+      "entry_date": "2026-07-01",
+      "exit_date": "2026-07-11",
+      "entry_price": 30.100000381469727,
+      "exit_price": 30.200000762939453,
+      "shares": 226,
+      "position_pct": 0.0924,
+      "signal_score": 0.28268430217721535,
+      "pnl_twd": -5.0,
+      "pnl_pct": 0.33,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-07-11 01:43"
     }
   ],
   "equity_curve": [
@@ -713,16 +730,62 @@
     {
       "date": "2026-07-10",
       "equity": 76728.97956085205
+    },
+    {
+      "date": "2026-07-11",
+      "equity": 74685.0397529602
+    },
+    {
+      "date": "2026-07-11",
+      "equity": 76693.06986236572
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-10",
+  "last_scan_date": "2026-07-11",
   "last_scan_summary": {
-    "scanned": 1596,
-    "new_entries": [],
-    "auto_exits": [],
+    "scanned": 1597,
+    "new_entries": [
+      {
+        "symbol": "WMT",
+        "entry_price": 113.9000015258789,
+        "shares": 56,
+        "position_pct": 0.0853,
+        "signal_score": 0.2350870486314291,
+        "reason": "底背離+右側確認 (RSI=25.8, score=0.24, pos=9%)"
+      }
+    ],
+    "auto_exits": [
+      {
+        "symbol": "2504.TW",
+        "entry_date": "2026-07-01",
+        "exit_date": "2026-07-11",
+        "entry_price": 33.25,
+        "exit_price": 32.099998474121094,
+        "shares": 184,
+        "position_pct": 0.0834,
+        "signal_score": 0.22234143877547333,
+        "pnl_twd": -236.0,
+        "pnl_pct": -3.46,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-07-11 01:43"
+      },
+      {
+        "symbol": "4174.TWO",
+        "entry_date": "2026-07-01",
+        "exit_date": "2026-07-11",
+        "entry_price": 30.100000381469727,
+        "exit_price": 30.200000762939453,
+        "shares": 226,
+        "position_pct": 0.0924,
+        "signal_score": 0.28268430217721535,
+        "pnl_twd": -5.0,
+        "pnl_pct": 0.33,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-07-11 01:43"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-10 02:05"
+    "run_at": "2026-07-11 01:43"
   }
 }
