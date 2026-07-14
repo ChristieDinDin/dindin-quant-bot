@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 56602.76950073242,
+  "cash": 56796.7190246582,
   "open_positions": [
     {
       "symbol": "2890.TW",
@@ -14,17 +14,6 @@
       "note": "自動掃描 score=0.25"
     },
     {
-      "symbol": "MCD",
-      "entry_date": "2026-07-04",
-      "entry_price": 280.6300048828125,
-      "shares": 19,
-      "position_pct": 0.0733,
-      "divergence_low": 264.5299987792969,
-      "signal_score": 0.15559616042826202,
-      "peak_price": 282.2099914550781,
-      "note": "自動掃描 score=0.16"
-    },
-    {
       "symbol": "WMT",
       "entry_date": "2026-07-11",
       "entry_price": 113.9000015258789,
@@ -32,8 +21,19 @@
       "position_pct": 0.0853,
       "divergence_low": 107.25,
       "signal_score": 0.2350870486314291,
-      "peak_price": 113.9000015258789,
+      "peak_price": 114.77999877929688,
       "note": "自動掃描 score=0.24"
+    },
+    {
+      "symbol": "PEP",
+      "entry_date": "2026-07-14",
+      "entry_price": 138.49000549316406,
+      "shares": 36,
+      "position_pct": 0.068,
+      "divergence_low": 134.94000244140625,
+      "signal_score": 0.12024335452383962,
+      "peak_price": 138.49000549316406,
+      "note": "自動掃描 score=0.12"
     }
   ],
   "closed_trades": [
@@ -428,6 +428,20 @@
       "pnl_pct": 0.33,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-07-11 01:43"
+    },
+    {
+      "symbol": "MCD",
+      "entry_date": "2026-07-04",
+      "exit_date": "2026-07-14",
+      "entry_price": 280.6300048828125,
+      "exit_price": 272.6099853515625,
+      "shares": 19,
+      "position_pct": 0.0733,
+      "signal_score": 0.15559616042826202,
+      "pnl_twd": -173.0,
+      "pnl_pct": -2.86,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-07-14 00:57"
     }
   ],
   "equity_curve": [
@@ -738,54 +752,46 @@
     {
       "date": "2026-07-11",
       "equity": 76693.06986236572
+    },
+    {
+      "date": "2026-07-14",
+      "equity": 76652.03931427002
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-11",
+  "last_scan_date": "2026-07-14",
   "last_scan_summary": {
-    "scanned": 1597,
+    "scanned": 1598,
     "new_entries": [
       {
-        "symbol": "WMT",
-        "entry_price": 113.9000015258789,
-        "shares": 56,
-        "position_pct": 0.0853,
-        "signal_score": 0.2350870486314291,
-        "reason": "底背離+右側確認 (RSI=25.8, score=0.24, pos=9%)"
+        "symbol": "PEP",
+        "entry_price": 138.49000549316406,
+        "shares": 36,
+        "position_pct": 0.068,
+        "signal_score": 0.12024335452383962,
+        "reason": "底背離+右側確認 (RSI=31.7, score=0.12, pos=7%)"
       }
     ],
     "auto_exits": [
       {
-        "symbol": "2504.TW",
-        "entry_date": "2026-07-01",
-        "exit_date": "2026-07-11",
-        "entry_price": 33.25,
-        "exit_price": 32.099998474121094,
-        "shares": 184,
-        "position_pct": 0.0834,
-        "signal_score": 0.22234143877547333,
-        "pnl_twd": -236.0,
-        "pnl_pct": -3.46,
+        "symbol": "MCD",
+        "entry_date": "2026-07-04",
+        "exit_date": "2026-07-14",
+        "entry_price": 280.6300048828125,
+        "exit_price": 272.6099853515625,
+        "shares": 19,
+        "position_pct": 0.0733,
+        "signal_score": 0.15559616042826202,
+        "pnl_twd": -173.0,
+        "pnl_pct": -2.86,
         "exit_reason": "time_stop_10d",
-        "exit_time": "2026-07-11 01:43"
-      },
-      {
-        "symbol": "4174.TWO",
-        "entry_date": "2026-07-01",
-        "exit_date": "2026-07-11",
-        "entry_price": 30.100000381469727,
-        "exit_price": 30.200000762939453,
-        "shares": 226,
-        "position_pct": 0.0924,
-        "signal_score": 0.28268430217721535,
-        "pnl_twd": -5.0,
-        "pnl_pct": 0.33,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-07-11 01:43"
+        "exit_time": "2026-07-14 00:57"
       }
     ],
-    "skipped": [],
+    "skipped": [
+      "WMT"
+    ],
     "errors": [],
-    "run_at": "2026-07-11 01:43"
+    "run_at": "2026-07-14 00:57"
   }
 }
