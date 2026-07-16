@@ -763,31 +763,20 @@
     {
       "date": "2026-07-15",
       "equity": 76366.61906433105
+    },
+    {
+      "date": "2026-07-16",
+      "equity": 76299.29905700684
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-15",
+  "last_scan_date": "2026-07-16",
   "last_scan_summary": {
-    "scanned": 1601,
+    "scanned": 1602,
     "new_entries": [],
-    "auto_exits": [
-      {
-        "symbol": "2890.TW",
-        "entry_date": "2026-06-02",
-        "exit_date": "2026-07-15",
-        "entry_price": 30.450000762939453,
-        "exit_price": 39.650001525878906,
-        "shares": 210,
-        "position_pct": 0.0868,
-        "signal_score": 0.2450051279943318,
-        "pnl_twd": 1903.0,
-        "pnl_pct": 30.21,
-        "exit_reason": "trailing_stop",
-        "exit_time": "2026-07-15 00:57"
-      }
-    ],
+    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-15 00:57"
+    "run_at": "2026-07-16 01:00"
   }
 }
