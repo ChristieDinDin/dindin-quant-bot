@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 65123.21934509277,
+  "cash": 71406.41917419434,
   "open_positions": [
-    {
-      "symbol": "WMT",
-      "entry_date": "2026-07-11",
-      "entry_price": 113.9000015258789,
-      "shares": 56,
-      "position_pct": 0.0853,
-      "divergence_low": 107.25,
-      "signal_score": 0.2350870486314291,
-      "peak_price": 114.94999694824219,
-      "note": "自動掃描 score=0.24"
-    },
     {
       "symbol": "PEP",
       "entry_date": "2026-07-14",
@@ -445,6 +434,20 @@
       "pnl_pct": 30.21,
       "exit_reason": "trailing_stop",
       "exit_time": "2026-07-15 00:57"
+    },
+    {
+      "symbol": "WMT",
+      "entry_date": "2026-07-11",
+      "exit_date": "2026-07-21",
+      "entry_price": 113.9000015258789,
+      "exit_price": 112.19999694824219,
+      "shares": 56,
+      "position_pct": 0.0853,
+      "signal_score": 0.2350870486314291,
+      "pnl_twd": -121.0,
+      "pnl_pct": -1.49,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-07-21 01:49"
     }
   ],
   "equity_curve": [
@@ -775,16 +778,35 @@
     {
       "date": "2026-07-18",
       "equity": 76456.97904968262
+    },
+    {
+      "date": "2026-07-21",
+      "equity": 76282.97941589355
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-18",
+  "last_scan_date": "2026-07-21",
   "last_scan_summary": {
-    "scanned": 1611,
+    "scanned": 1614,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "WMT",
+        "entry_date": "2026-07-11",
+        "exit_date": "2026-07-21",
+        "entry_price": 113.9000015258789,
+        "exit_price": 112.19999694824219,
+        "shares": 56,
+        "position_pct": 0.0853,
+        "signal_score": 0.2350870486314291,
+        "pnl_twd": -121.0,
+        "pnl_pct": -1.49,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-07-21 01:49"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-18 01:48"
+    "run_at": "2026-07-21 01:49"
   }
 }
