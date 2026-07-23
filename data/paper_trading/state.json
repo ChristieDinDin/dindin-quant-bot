@@ -786,16 +786,20 @@
     {
       "date": "2026-07-22",
       "equity": 76266.41917419434
+    },
+    {
+      "date": "2026-07-23",
+      "equity": 76289.81895446777
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-22",
+  "last_scan_date": "2026-07-23",
   "last_scan_summary": {
     "scanned": 1614,
     "new_entries": [],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-22 01:03"
+    "run_at": "2026-07-23 01:15"
   }
 }
