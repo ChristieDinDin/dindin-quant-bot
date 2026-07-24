@@ -1,19 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 71406.41917419434,
-  "open_positions": [
-    {
-      "symbol": "PEP",
-      "entry_date": "2026-07-14",
-      "entry_price": 138.49000549316406,
-      "shares": 36,
-      "position_pct": 0.068,
-      "divergence_low": 134.94000244140625,
-      "signal_score": 0.12024335452383962,
-      "peak_price": 139.42999267578125,
-      "note": "自動掃描 score=0.12"
-    }
-  ],
+  "cash": 76264.61906433105,
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "4129.TWO",
@@ -448,6 +436,20 @@
       "pnl_pct": -1.49,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-07-21 01:49"
+    },
+    {
+      "symbol": "PEP",
+      "entry_date": "2026-07-14",
+      "exit_date": "2026-07-24",
+      "entry_price": 138.49000549316406,
+      "exit_price": 134.9499969482422,
+      "shares": 36,
+      "position_pct": 0.068,
+      "signal_score": 0.12024335452383962,
+      "pnl_twd": -147.0,
+      "pnl_pct": -2.56,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-07-24 01:51"
     }
   ],
   "equity_curve": [
@@ -790,16 +792,35 @@
     {
       "date": "2026-07-23",
       "equity": 76289.81895446777
+    },
+    {
+      "date": "2026-07-24",
+      "equity": 76264.61906433105
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-23",
+  "last_scan_date": "2026-07-24",
   "last_scan_summary": {
     "scanned": 1614,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "PEP",
+        "entry_date": "2026-07-14",
+        "exit_date": "2026-07-24",
+        "entry_price": 138.49000549316406,
+        "exit_price": 134.9499969482422,
+        "shares": 36,
+        "position_pct": 0.068,
+        "signal_score": 0.12024335452383962,
+        "pnl_twd": -147.0,
+        "pnl_pct": -2.56,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-07-24 01:51"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-23 01:15"
+    "run_at": "2026-07-24 01:51"
   }
 }
