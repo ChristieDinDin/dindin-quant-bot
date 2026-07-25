@@ -1,7 +1,30 @@
 {
   "initial_equity": 70000,
-  "cash": 76264.61906433105,
-  "open_positions": [],
+  "cash": 60556.449478149414,
+  "open_positions": [
+    {
+      "symbol": "NFLX",
+      "entry_date": "2026-07-25",
+      "entry_price": 70.08999633789062,
+      "shares": 113,
+      "position_pct": 0.1044,
+      "divergence_low": 65.09500122070312,
+      "signal_score": 0.36263261804902835,
+      "peak_price": 70.08999633789062,
+      "note": "自動掃描 score=0.36"
+    },
+    {
+      "symbol": "4441.TW",
+      "entry_date": "2026-07-25",
+      "entry_price": 177.0,
+      "shares": 44,
+      "position_pct": 0.1027,
+      "divergence_low": 172.0,
+      "signal_score": 0.35146788521424205,
+      "peak_price": 177.0,
+      "note": "自動掃描 score=0.35"
+    }
+  ],
   "closed_trades": [
     {
       "symbol": "4129.TWO",
@@ -796,31 +819,37 @@
     {
       "date": "2026-07-24",
       "equity": 76264.61906433105
+    },
+    {
+      "date": "2026-07-25",
+      "equity": 76264.61906433105
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-24",
+  "last_scan_date": "2026-07-25",
   "last_scan_summary": {
-    "scanned": 1614,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1618,
+    "new_entries": [
       {
-        "symbol": "PEP",
-        "entry_date": "2026-07-14",
-        "exit_date": "2026-07-24",
-        "entry_price": 138.49000549316406,
-        "exit_price": 134.9499969482422,
-        "shares": 36,
-        "position_pct": 0.068,
-        "signal_score": 0.12024335452383962,
-        "pnl_twd": -147.0,
-        "pnl_pct": -2.56,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-07-24 01:51"
+        "symbol": "NFLX",
+        "entry_price": 70.08999633789062,
+        "shares": 113,
+        "position_pct": 0.1044,
+        "signal_score": 0.36263261804902835,
+        "reason": "底背離+右側確認 (RSI=30.7, score=0.36, pos=10%)"
+      },
+      {
+        "symbol": "4441.TW",
+        "entry_price": 177.0,
+        "shares": 44,
+        "position_pct": 0.1027,
+        "signal_score": 0.35146788521424205,
+        "reason": "底背離+右側確認 (RSI=27.2, score=0.35, pos=10%)"
       }
     ],
+    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-24 01:51"
+    "run_at": "2026-07-25 00:57"
   }
 }
