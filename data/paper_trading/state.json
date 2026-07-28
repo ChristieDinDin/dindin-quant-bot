@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 60556.449478149414,
+  "cash": 43332.64954376221,
   "open_positions": [
     {
       "symbol": "NFLX",
@@ -10,7 +10,7 @@
       "position_pct": 0.1044,
       "divergence_low": 65.09500122070312,
       "signal_score": 0.36263261804902835,
-      "peak_price": 70.08999633789062,
+      "peak_price": 70.4000015258789,
       "note": "自動掃描 score=0.36"
     },
     {
@@ -23,6 +23,39 @@
       "signal_score": 0.35146788521424205,
       "peak_price": 177.0,
       "note": "自動掃描 score=0.35"
+    },
+    {
+      "symbol": "2731.TW",
+      "entry_date": "2026-07-28",
+      "entry_price": 146.0,
+      "shares": 42,
+      "position_pct": 0.0822,
+      "divergence_low": 141.5,
+      "signal_score": 0.21493433663263967,
+      "peak_price": 146.0,
+      "note": "自動掃描 score=0.21"
+    },
+    {
+      "symbol": "3622.TW",
+      "entry_date": "2026-07-28",
+      "entry_price": 54.29999923706055,
+      "shares": 86,
+      "position_pct": 0.0617,
+      "divergence_low": 52.0,
+      "signal_score": 0.07807514330635312,
+      "peak_price": 54.29999923706055,
+      "note": "自動掃描 score=0.08"
+    },
+    {
+      "symbol": "4772.TWO",
+      "entry_date": "2026-07-28",
+      "entry_price": 247.0,
+      "shares": 26,
+      "position_pct": 0.0849,
+      "divergence_low": 228.0,
+      "signal_score": 0.23267686835275944,
+      "peak_price": 247.0,
+      "note": "自動掃描 score=0.23"
     }
   ],
   "closed_trades": [
@@ -823,33 +856,45 @@
     {
       "date": "2026-07-25",
       "equity": 76264.61906433105
+    },
+    {
+      "date": "2026-07-28",
+      "equity": 76233.64965057373
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-25",
+  "last_scan_date": "2026-07-28",
   "last_scan_summary": {
-    "scanned": 1618,
+    "scanned": 1619,
     "new_entries": [
       {
-        "symbol": "NFLX",
-        "entry_price": 70.08999633789062,
-        "shares": 113,
-        "position_pct": 0.1044,
-        "signal_score": 0.36263261804902835,
-        "reason": "底背離+右側確認 (RSI=30.7, score=0.36, pos=10%)"
+        "symbol": "2731.TW",
+        "entry_price": 146.0,
+        "shares": 42,
+        "position_pct": 0.0822,
+        "signal_score": 0.21493433663263967,
+        "reason": "底背離+右側確認 (RSI=33.0, score=0.21, pos=8%)"
       },
       {
-        "symbol": "4441.TW",
-        "entry_price": 177.0,
-        "shares": 44,
-        "position_pct": 0.1027,
-        "signal_score": 0.35146788521424205,
-        "reason": "底背離+右側確認 (RSI=27.2, score=0.35, pos=10%)"
+        "symbol": "3622.TW",
+        "entry_price": 54.29999923706055,
+        "shares": 86,
+        "position_pct": 0.0617,
+        "signal_score": 0.07807514330635312,
+        "reason": "底背離+右側確認 (RSI=33.6, score=0.08, pos=6%)"
+      },
+      {
+        "symbol": "4772.TWO",
+        "entry_price": 247.0,
+        "shares": 26,
+        "position_pct": 0.0849,
+        "signal_score": 0.23267686835275944,
+        "reason": "底背離+右側確認 (RSI=27.4, score=0.23, pos=8%)"
       }
     ],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-25 00:57"
+    "run_at": "2026-07-28 01:31"
   }
 }
