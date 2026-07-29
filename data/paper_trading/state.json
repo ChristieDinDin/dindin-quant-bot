@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 43332.64954376221,
+  "cash": 49286.64954376221,
   "open_positions": [
     {
       "symbol": "NFLX",
@@ -10,7 +10,7 @@
       "position_pct": 0.1044,
       "divergence_low": 65.09500122070312,
       "signal_score": 0.36263261804902835,
-      "peak_price": 70.4000015258789,
+      "peak_price": 72.38999938964844,
       "note": "自動掃描 score=0.36"
     },
     {
@@ -45,17 +45,6 @@
       "signal_score": 0.07807514330635312,
       "peak_price": 54.29999923706055,
       "note": "自動掃描 score=0.08"
-    },
-    {
-      "symbol": "4772.TWO",
-      "entry_date": "2026-07-28",
-      "entry_price": 247.0,
-      "shares": 26,
-      "position_pct": 0.0849,
-      "divergence_low": 228.0,
-      "signal_score": 0.23267686835275944,
-      "peak_price": 247.0,
-      "note": "自動掃描 score=0.23"
     }
   ],
   "closed_trades": [
@@ -506,6 +495,20 @@
       "pnl_pct": -2.56,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-07-24 01:51"
+    },
+    {
+      "symbol": "4772.TWO",
+      "entry_date": "2026-07-28",
+      "exit_date": "2026-07-29",
+      "entry_price": 247.0,
+      "exit_price": 229.0,
+      "shares": 26,
+      "position_pct": 0.0849,
+      "signal_score": 0.23267686835275944,
+      "pnl_twd": -493.0,
+      "pnl_pct": -7.29,
+      "exit_reason": "max_loss_stop",
+      "exit_time": "2026-07-29 01:43"
     }
   ],
   "equity_curve": [
@@ -860,41 +863,37 @@
     {
       "date": "2026-07-28",
       "equity": 76233.64965057373
+    },
+    {
+      "date": "2026-07-29",
+      "equity": 75673.3193435669
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-28",
+  "last_scan_date": "2026-07-29",
   "last_scan_summary": {
-    "scanned": 1619,
-    "new_entries": [
-      {
-        "symbol": "2731.TW",
-        "entry_price": 146.0,
-        "shares": 42,
-        "position_pct": 0.0822,
-        "signal_score": 0.21493433663263967,
-        "reason": "底背離+右側確認 (RSI=33.0, score=0.21, pos=8%)"
-      },
-      {
-        "symbol": "3622.TW",
-        "entry_price": 54.29999923706055,
-        "shares": 86,
-        "position_pct": 0.0617,
-        "signal_score": 0.07807514330635312,
-        "reason": "底背離+右側確認 (RSI=33.6, score=0.08, pos=6%)"
-      },
+    "scanned": 1621,
+    "new_entries": [],
+    "auto_exits": [
       {
         "symbol": "4772.TWO",
+        "entry_date": "2026-07-28",
+        "exit_date": "2026-07-29",
         "entry_price": 247.0,
+        "exit_price": 229.0,
         "shares": 26,
         "position_pct": 0.0849,
         "signal_score": 0.23267686835275944,
-        "reason": "底背離+右側確認 (RSI=27.4, score=0.23, pos=8%)"
+        "pnl_twd": -493.0,
+        "pnl_pct": -7.29,
+        "exit_reason": "max_loss_stop",
+        "exit_time": "2026-07-29 01:43"
       }
     ],
-    "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "NFLX"
+    ],
     "errors": [],
-    "run_at": "2026-07-28 01:31"
+    "run_at": "2026-07-29 01:43"
   }
 }
