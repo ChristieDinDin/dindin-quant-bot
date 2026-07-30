@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 49286.64954376221,
+  "cash": 41483.64964675903,
   "open_positions": [
     {
       "symbol": "NFLX",
@@ -10,7 +10,7 @@
       "position_pct": 0.1044,
       "divergence_low": 65.09500122070312,
       "signal_score": 0.36263261804902835,
-      "peak_price": 72.38999938964844,
+      "peak_price": 73.62999725341797,
       "note": "自動掃描 score=0.36"
     },
     {
@@ -45,6 +45,17 @@
       "signal_score": 0.07807514330635312,
       "peak_price": 54.29999923706055,
       "note": "自動掃描 score=0.08"
+    },
+    {
+      "symbol": "1720.TW",
+      "entry_date": "2026-07-30",
+      "entry_price": 57.79999923706055,
+      "shares": 135,
+      "position_pct": 0.1031,
+      "divergence_low": 55.551751390668,
+      "signal_score": 0.353955278162607,
+      "peak_price": 57.79999923706055,
+      "note": "自動掃描 score=0.35"
     }
   ],
   "closed_trades": [
@@ -867,33 +878,29 @@
     {
       "date": "2026-07-29",
       "equity": 75673.3193435669
+    },
+    {
+      "date": "2026-07-30",
+      "equity": 75755.03929901123
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-29",
+  "last_scan_date": "2026-07-30",
   "last_scan_summary": {
-    "scanned": 1621,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1622,
+    "new_entries": [
       {
-        "symbol": "4772.TWO",
-        "entry_date": "2026-07-28",
-        "exit_date": "2026-07-29",
-        "entry_price": 247.0,
-        "exit_price": 229.0,
-        "shares": 26,
-        "position_pct": 0.0849,
-        "signal_score": 0.23267686835275944,
-        "pnl_twd": -493.0,
-        "pnl_pct": -7.29,
-        "exit_reason": "max_loss_stop",
-        "exit_time": "2026-07-29 01:43"
+        "symbol": "1720.TW",
+        "entry_price": 57.79999923706055,
+        "shares": 135,
+        "position_pct": 0.1031,
+        "signal_score": 0.353955278162607,
+        "reason": "底背離+右側確認 (RSI=18.6, score=0.35, pos=10%)"
       }
     ],
-    "skipped": [
-      "NFLX"
-    ],
+    "auto_exits": [],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-07-29 01:43"
+    "run_at": "2026-07-30 01:01"
   }
 }
