@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 41483.64964675903,
+  "cash": 53332.44958114624,
   "open_positions": [
     {
       "symbol": "NFLX",
@@ -14,17 +14,6 @@
       "note": "自動掃描 score=0.36"
     },
     {
-      "symbol": "4441.TW",
-      "entry_date": "2026-07-25",
-      "entry_price": 177.0,
-      "shares": 44,
-      "position_pct": 0.1027,
-      "divergence_low": 172.0,
-      "signal_score": 0.35146788521424205,
-      "peak_price": 177.0,
-      "note": "自動掃描 score=0.35"
-    },
-    {
       "symbol": "2731.TW",
       "entry_date": "2026-07-28",
       "entry_price": 146.0,
@@ -34,17 +23,6 @@
       "signal_score": 0.21493433663263967,
       "peak_price": 146.0,
       "note": "自動掃描 score=0.21"
-    },
-    {
-      "symbol": "3622.TW",
-      "entry_date": "2026-07-28",
-      "entry_price": 54.29999923706055,
-      "shares": 86,
-      "position_pct": 0.0617,
-      "divergence_low": 52.0,
-      "signal_score": 0.07807514330635312,
-      "peak_price": 54.29999923706055,
-      "note": "自動掃描 score=0.08"
     },
     {
       "symbol": "1720.TW",
@@ -520,6 +498,34 @@
       "pnl_pct": -7.29,
       "exit_reason": "max_loss_stop",
       "exit_time": "2026-07-29 01:43"
+    },
+    {
+      "symbol": "4441.TW",
+      "entry_date": "2026-07-25",
+      "exit_date": "2026-07-31",
+      "entry_price": 177.0,
+      "exit_price": 170.0,
+      "shares": 44,
+      "position_pct": 0.1027,
+      "signal_score": 0.35146788521424205,
+      "pnl_twd": -339.0,
+      "pnl_pct": -3.95,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-07-31 01:03"
+    },
+    {
+      "symbol": "3622.TW",
+      "entry_date": "2026-07-28",
+      "exit_date": "2026-07-31",
+      "entry_price": 54.29999923706055,
+      "exit_price": 50.79999923706055,
+      "shares": 86,
+      "position_pct": 0.0617,
+      "signal_score": 0.07807514330635312,
+      "pnl_twd": -319.0,
+      "pnl_pct": -6.45,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-07-31 01:03"
     }
   ],
   "equity_curve": [
@@ -882,25 +888,53 @@
     {
       "date": "2026-07-30",
       "equity": 75755.03929901123
+    },
+    {
+      "date": "2026-07-31",
+      "equity": 75488.61906433105
+    },
+    {
+      "date": "2026-07-31",
+      "equity": 75432.15937423706
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-30",
+  "last_scan_date": "2026-07-31",
   "last_scan_summary": {
-    "scanned": 1622,
-    "new_entries": [
+    "scanned": 1624,
+    "new_entries": [],
+    "auto_exits": [
       {
-        "symbol": "1720.TW",
-        "entry_price": 57.79999923706055,
-        "shares": 135,
-        "position_pct": 0.1031,
-        "signal_score": 0.353955278162607,
-        "reason": "底背離+右側確認 (RSI=18.6, score=0.35, pos=10%)"
+        "symbol": "4441.TW",
+        "entry_date": "2026-07-25",
+        "exit_date": "2026-07-31",
+        "entry_price": 177.0,
+        "exit_price": 170.0,
+        "shares": 44,
+        "position_pct": 0.1027,
+        "signal_score": 0.35146788521424205,
+        "pnl_twd": -339.0,
+        "pnl_pct": -3.95,
+        "exit_reason": "hard_stop",
+        "exit_time": "2026-07-31 01:03"
+      },
+      {
+        "symbol": "3622.TW",
+        "entry_date": "2026-07-28",
+        "exit_date": "2026-07-31",
+        "entry_price": 54.29999923706055,
+        "exit_price": 50.79999923706055,
+        "shares": 86,
+        "position_pct": 0.0617,
+        "signal_score": 0.07807514330635312,
+        "pnl_twd": -319.0,
+        "pnl_pct": -6.45,
+        "exit_reason": "hard_stop",
+        "exit_time": "2026-07-31 01:03"
       }
     ],
-    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-30 01:01"
+    "run_at": "2026-07-31 01:03"
   }
 }
