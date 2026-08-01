@@ -21,7 +21,7 @@
       "position_pct": 0.0822,
       "divergence_low": 141.5,
       "signal_score": 0.21493433663263967,
-      "peak_price": 146.0,
+      "peak_price": 147.0,
       "note": "自動掃描 score=0.21"
     },
     {
@@ -896,45 +896,20 @@
     {
       "date": "2026-07-31",
       "equity": 75432.15937423706
+    },
+    {
+      "date": "2026-08-01",
+      "equity": 75264.17958068848
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-07-31",
+  "last_scan_date": "2026-08-01",
   "last_scan_summary": {
     "scanned": 1624,
     "new_entries": [],
-    "auto_exits": [
-      {
-        "symbol": "4441.TW",
-        "entry_date": "2026-07-25",
-        "exit_date": "2026-07-31",
-        "entry_price": 177.0,
-        "exit_price": 170.0,
-        "shares": 44,
-        "position_pct": 0.1027,
-        "signal_score": 0.35146788521424205,
-        "pnl_twd": -339.0,
-        "pnl_pct": -3.95,
-        "exit_reason": "hard_stop",
-        "exit_time": "2026-07-31 01:03"
-      },
-      {
-        "symbol": "3622.TW",
-        "entry_date": "2026-07-28",
-        "exit_date": "2026-07-31",
-        "entry_price": 54.29999923706055,
-        "exit_price": 50.79999923706055,
-        "shares": 86,
-        "position_pct": 0.0617,
-        "signal_score": 0.07807514330635312,
-        "pnl_twd": -319.0,
-        "pnl_pct": -6.45,
-        "exit_reason": "hard_stop",
-        "exit_time": "2026-07-31 01:03"
-      }
-    ],
+    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-07-31 01:03"
+    "run_at": "2026-08-01 01:49"
   }
 }
