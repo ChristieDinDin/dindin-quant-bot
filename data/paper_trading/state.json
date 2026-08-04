@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 53332.44958114624,
+  "cash": 61618.73978805542,
   "open_positions": [
-    {
-      "symbol": "NFLX",
-      "entry_date": "2026-07-25",
-      "entry_price": 70.08999633789062,
-      "shares": 113,
-      "position_pct": 0.1044,
-      "divergence_low": 65.09500122070312,
-      "signal_score": 0.36263261804902835,
-      "peak_price": 73.62999725341797,
-      "note": "自動掃描 score=0.36"
-    },
     {
       "symbol": "2731.TW",
       "entry_date": "2026-07-28",
@@ -526,6 +515,20 @@
       "pnl_pct": -6.45,
       "exit_reason": "hard_stop",
       "exit_time": "2026-07-31 01:03"
+    },
+    {
+      "symbol": "NFLX",
+      "entry_date": "2026-07-25",
+      "exit_date": "2026-08-04",
+      "entry_price": 70.08999633789062,
+      "exit_price": 73.33000183105469,
+      "shares": 113,
+      "position_pct": 0.1044,
+      "signal_score": 0.36263261804902835,
+      "pnl_twd": 334.0,
+      "pnl_pct": 4.62,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-08-04 01:32"
     }
   ],
   "equity_curve": [
@@ -900,16 +903,35 @@
     {
       "date": "2026-08-01",
       "equity": 75264.17958068848
+    },
+    {
+      "date": "2026-08-04",
+      "equity": 75453.23999404907
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-08-01",
+  "last_scan_date": "2026-08-04",
   "last_scan_summary": {
     "scanned": 1624,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "NFLX",
+        "entry_date": "2026-07-25",
+        "exit_date": "2026-08-04",
+        "entry_price": 70.08999633789062,
+        "exit_price": 73.33000183105469,
+        "shares": 113,
+        "position_pct": 0.1044,
+        "signal_score": 0.36263261804902835,
+        "pnl_twd": 334.0,
+        "pnl_pct": 4.62,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-08-04 01:32"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-08-01 01:49"
+    "run_at": "2026-08-04 01:32"
   }
 }
