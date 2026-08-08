@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 50231.239601135254,
+  "cash": 44936.239601135254,
   "open_positions": [
     {
       "symbol": "1720.TW",
@@ -45,6 +45,17 @@
       "signal_score": 0.1918449206146566,
       "peak_price": 58.900001525878906,
       "note": "自動掃描 score=0.19"
+    },
+    {
+      "symbol": "6805.TW",
+      "entry_date": "2026-08-08",
+      "entry_price": 1765.0,
+      "shares": 3,
+      "position_pct": 0.072,
+      "divergence_low": 1205.0,
+      "signal_score": 0.14699970411681734,
+      "peak_price": 1765.0,
+      "note": "自動掃描 score=0.15"
     }
   ],
   "closed_trades": [
@@ -955,34 +966,31 @@
     {
       "date": "2026-08-07",
       "equity": 75436.03953552246
+    },
+    {
+      "date": "2026-08-08",
+      "equity": 75436.03953552246
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-08-07",
+  "last_scan_date": "2026-08-08",
   "last_scan_summary": {
-    "scanned": 1625,
-    "new_entries": [],
-    "auto_exits": [
+    "scanned": 1628,
+    "new_entries": [
       {
-        "symbol": "2731.TW",
-        "entry_date": "2026-07-28",
-        "exit_date": "2026-08-07",
-        "entry_price": 146.0,
-        "exit_price": 145.0,
-        "shares": 42,
-        "position_pct": 0.0822,
-        "signal_score": 0.21493433663263967,
-        "pnl_twd": -66.0,
-        "pnl_pct": -0.68,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-08-07 03:50"
+        "symbol": "6805.TW",
+        "entry_price": 1765.0,
+        "shares": 3,
+        "position_pct": 0.072,
+        "signal_score": 0.14699970411681734,
+        "reason": "底背離+右側確認 (RSI=34.2, score=0.15, pos=7%)"
       }
     ],
+    "auto_exits": [],
     "skipped": [
-      "1319.TW",
-      "6805.TW"
+      "1319.TW"
     ],
     "errors": [],
-    "run_at": "2026-08-07 03:50"
+    "run_at": "2026-08-08 00:13"
   }
 }
