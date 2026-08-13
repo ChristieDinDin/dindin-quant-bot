@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 52590.73970413208,
+  "cash": 45990.73970413208,
   "open_positions": [
     {
       "symbol": "1319.TW",
@@ -10,7 +10,7 @@
       "position_pct": 0.07,
       "divergence_low": 68.80000305175781,
       "signal_score": 0.13337684769329664,
-      "peak_price": 78.80000305175781,
+      "peak_price": 79.19999694824219,
       "note": "自動掃描 score=0.13"
     },
     {
@@ -43,8 +43,19 @@
       "position_pct": 0.072,
       "divergence_low": 1205.0,
       "signal_score": 0.14699970411681734,
-      "peak_price": 1790.0,
+      "peak_price": 1835.0,
       "note": "自動掃描 score=0.15"
+    },
+    {
+      "symbol": "3491.TWO",
+      "entry_date": "2026-08-13",
+      "entry_price": 1320.0,
+      "shares": 5,
+      "position_pct": 0.0944,
+      "divergence_low": 909.0,
+      "signal_score": 0.2958706935301203,
+      "peak_price": 1320.0,
+      "note": "自動掃描 score=0.30"
     }
   ],
   "closed_trades": [
@@ -981,16 +992,31 @@
     {
       "date": "2026-08-12",
       "equity": 75531.13984680176
+    },
+    {
+      "date": "2026-08-13",
+      "equity": 75493.63948440552
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-08-12",
+  "last_scan_date": "2026-08-13",
   "last_scan_summary": {
-    "scanned": 1630,
-    "new_entries": [],
+    "scanned": 1634,
+    "new_entries": [
+      {
+        "symbol": "3491.TWO",
+        "entry_price": 1320.0,
+        "shares": 5,
+        "position_pct": 0.0944,
+        "signal_score": 0.2958706935301203,
+        "reason": "底背離+右側確認 (RSI=33.1, score=0.30, pos=9%)"
+      }
+    ],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "9933.TW"
+    ],
     "errors": [],
-    "run_at": "2026-08-12 01:33"
+    "run_at": "2026-08-13 01:32"
   }
 }
