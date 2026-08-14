@@ -54,7 +54,7 @@
       "position_pct": 0.0944,
       "divergence_low": 909.0,
       "signal_score": 0.2958706935301203,
-      "peak_price": 1320.0,
+      "peak_price": 1345.0,
       "note": "自動掃描 score=0.30"
     }
   ],
@@ -996,27 +996,20 @@
     {
       "date": "2026-08-13",
       "equity": 75493.63948440552
+    },
+    {
+      "date": "2026-08-14",
+      "equity": 75584.13948440552
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-08-13",
+  "last_scan_date": "2026-08-14",
   "last_scan_summary": {
-    "scanned": 1634,
-    "new_entries": [
-      {
-        "symbol": "3491.TWO",
-        "entry_price": 1320.0,
-        "shares": 5,
-        "position_pct": 0.0944,
-        "signal_score": 0.2958706935301203,
-        "reason": "底背離+右側確認 (RSI=33.1, score=0.30, pos=9%)"
-      }
-    ],
+    "scanned": 1635,
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [
-      "9933.TW"
-    ],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-08-13 01:32"
+    "run_at": "2026-08-14 00:51"
   }
 }
