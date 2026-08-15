@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 45990.73970413208,
+  "cash": 51323.539627075195,
   "open_positions": [
     {
       "symbol": "1319.TW",
@@ -10,7 +10,7 @@
       "position_pct": 0.07,
       "divergence_low": 68.80000305175781,
       "signal_score": 0.13337684769329664,
-      "peak_price": 79.19999694824219,
+      "peak_price": 83.9000015258789,
       "note": "自動掃描 score=0.13"
     },
     {
@@ -23,17 +23,6 @@
       "signal_score": 0.23660962582066986,
       "peak_price": 229.0,
       "note": "自動掃描 score=0.24"
-    },
-    {
-      "symbol": "3209.TW",
-      "entry_date": "2026-08-06",
-      "entry_price": 58.70000076293945,
-      "shares": 101,
-      "position_pct": 0.0788,
-      "divergence_low": 51.400001525878906,
-      "signal_score": 0.1918449206146566,
-      "peak_price": 58.900001525878906,
-      "note": "自動掃描 score=0.19"
     },
     {
       "symbol": "6805.TW",
@@ -54,7 +43,7 @@
       "position_pct": 0.0944,
       "divergence_low": 909.0,
       "signal_score": 0.2958706935301203,
-      "peak_price": 1345.0,
+      "peak_price": 1375.0,
       "note": "自動掃描 score=0.30"
     }
   ],
@@ -590,6 +579,20 @@
       "pnl_pct": -1.9,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-08-11 01:28"
+    },
+    {
+      "symbol": "3209.TW",
+      "entry_date": "2026-08-06",
+      "exit_date": "2026-08-15",
+      "entry_price": 58.70000076293945,
+      "exit_price": 52.79999923706055,
+      "shares": 101,
+      "position_pct": 0.0788,
+      "signal_score": 0.1918449206146566,
+      "pnl_twd": -618.0,
+      "pnl_pct": -10.05,
+      "exit_reason": "max_loss_stop",
+      "exit_time": "2026-08-15 01:11"
     }
   ],
   "equity_curve": [
@@ -1000,16 +1003,35 @@
     {
       "date": "2026-08-14",
       "equity": 75584.13948440552
+    },
+    {
+      "date": "2026-08-15",
+      "equity": 75534.33973693848
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-08-14",
+  "last_scan_date": "2026-08-15",
   "last_scan_summary": {
-    "scanned": 1635,
+    "scanned": 1636,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "3209.TW",
+        "entry_date": "2026-08-06",
+        "exit_date": "2026-08-15",
+        "entry_price": 58.70000076293945,
+        "exit_price": 52.79999923706055,
+        "shares": 101,
+        "position_pct": 0.0788,
+        "signal_score": 0.1918449206146566,
+        "pnl_twd": -618.0,
+        "pnl_pct": -10.05,
+        "exit_reason": "max_loss_stop",
+        "exit_time": "2026-08-15 01:11"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-08-14 00:51"
+    "run_at": "2026-08-15 01:11"
   }
 }
