@@ -32,7 +32,7 @@
       "position_pct": 0.0564,
       "divergence_low": 61.400001525878906,
       "signal_score": 0.0427780549129935,
-      "peak_price": 64.0999984741211,
+      "peak_price": 64.19999694824219,
       "note": "自動掃描 score=0.04"
     }
   ],
@@ -1058,25 +1058,20 @@
     {
       "date": "2026-08-21",
       "equity": 74493.8397064209
+    },
+    {
+      "date": "2026-08-22",
+      "equity": 74465.03974914551
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-08-21",
+  "last_scan_date": "2026-08-22",
   "last_scan_summary": {
-    "scanned": 1637,
-    "new_entries": [
-      {
-        "symbol": "5522.TW",
-        "entry_price": 64.0999984741211,
-        "shares": 64,
-        "position_pct": 0.0564,
-        "signal_score": 0.0427780549129935,
-        "reason": "底背離+右側確認 (RSI=34.5, score=0.04, pos=6%)"
-      }
-    ],
+    "scanned": 1638,
+    "new_entries": [],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-08-21 00:27"
+    "run_at": "2026-08-22 00:23"
   }
 }
