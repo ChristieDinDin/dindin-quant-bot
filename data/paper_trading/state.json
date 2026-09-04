@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 65489.33964538574,
+  "cash": 59831.33964538574,
   "open_positions": [
     {
       "symbol": "NXPI",
@@ -21,8 +21,19 @@
       "position_pct": 0.0542,
       "divergence_low": 74.76131728012474,
       "signal_score": 0.028027945985813377,
-      "peak_price": 76.30000305175781,
+      "peak_price": 76.5999984741211,
       "note": "自動掃描 score=0.03"
+    },
+    {
+      "symbol": "3004.TW",
+      "entry_date": "2026-09-04",
+      "entry_price": 123.0,
+      "shares": 46,
+      "position_pct": 0.0774,
+      "divergence_low": 117.0,
+      "signal_score": 0.18282183987456335,
+      "peak_price": 123.0,
+      "note": "自動掃描 score=0.18"
     }
   ],
   "closed_trades": [
@@ -1125,33 +1136,31 @@
     {
       "date": "2026-09-03",
       "equity": 74255.43980407715
+    },
+    {
+      "date": "2026-09-04",
+      "equity": 74197.32968139648
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-03",
+  "last_scan_date": "2026-09-04",
   "last_scan_summary": {
     "scanned": 1645,
     "new_entries": [
       {
-        "symbol": "NXPI",
-        "entry_price": 228.5,
-        "shares": 21,
-        "position_pct": 0.0666,
-        "signal_score": 0.11081567029866495,
-        "reason": "底背離+右側確認 (RSI=34.5, score=0.11, pos=7%)"
-      },
-      {
-        "symbol": "5534.TW",
-        "entry_price": 76.30000305175781,
-        "shares": 52,
-        "position_pct": 0.0542,
-        "signal_score": 0.028027945985813377,
-        "reason": "底背離+右側確認 (RSI=34.4, score=0.03, pos=5%)"
+        "symbol": "3004.TW",
+        "entry_price": 123.0,
+        "shares": 46,
+        "position_pct": 0.0774,
+        "signal_score": 0.18282183987456335,
+        "reason": "底背離+右側確認 (RSI=34.2, score=0.18, pos=8%)"
       }
     ],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "5534.TW"
+    ],
     "errors": [],
-    "run_at": "2026-09-03 02:50"
+    "run_at": "2026-09-04 01:48"
   }
 }
