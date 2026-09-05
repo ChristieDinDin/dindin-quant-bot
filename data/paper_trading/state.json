@@ -1140,27 +1140,20 @@
     {
       "date": "2026-09-04",
       "equity": 74197.32968139648
+    },
+    {
+      "date": "2026-09-05",
+      "equity": 74188.07470703125
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-04",
+  "last_scan_date": "2026-09-05",
   "last_scan_summary": {
     "scanned": 1645,
-    "new_entries": [
-      {
-        "symbol": "3004.TW",
-        "entry_price": 123.0,
-        "shares": 46,
-        "position_pct": 0.0774,
-        "signal_score": 0.18282183987456335,
-        "reason": "底背離+右側確認 (RSI=34.2, score=0.18, pos=8%)"
-      }
-    ],
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [
-      "5534.TW"
-    ],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-09-04 01:48"
+    "run_at": "2026-09-05 01:53"
   }
 }
