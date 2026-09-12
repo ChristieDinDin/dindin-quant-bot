@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 59831.33964538574,
+  "cash": 63679.33964538574,
   "open_positions": [
     {
       "symbol": "NXPI",
@@ -10,19 +10,8 @@
       "position_pct": 0.0666,
       "divergence_low": 217.97999572753906,
       "signal_score": 0.11081567029866495,
-      "peak_price": 228.5,
+      "peak_price": 236.6199951171875,
       "note": "自動掃描 score=0.11"
-    },
-    {
-      "symbol": "5534.TW",
-      "entry_date": "2026-09-03",
-      "entry_price": 76.30000305175781,
-      "shares": 52,
-      "position_pct": 0.0542,
-      "divergence_low": 74.76131728012474,
-      "signal_score": 0.028027945985813377,
-      "peak_price": 76.5999984741211,
-      "note": "自動掃描 score=0.03"
     },
     {
       "symbol": "3004.TW",
@@ -666,6 +655,20 @@
       "pnl_pct": -3.59,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-09-01 03:47"
+    },
+    {
+      "symbol": "5534.TW",
+      "entry_date": "2026-09-03",
+      "exit_date": "2026-09-12",
+      "entry_price": 76.30000305175781,
+      "exit_price": 74.0,
+      "shares": 52,
+      "position_pct": 0.0542,
+      "signal_score": 0.028027945985813377,
+      "pnl_twd": -135.0,
+      "pnl_pct": -3.01,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-09-12 02:00"
     }
   ],
   "equity_curve": [
@@ -1160,16 +1163,35 @@
     {
       "date": "2026-09-11",
       "equity": 74050.10456848145
+    },
+    {
+      "date": "2026-09-12",
+      "equity": 74099.35954284668
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-11",
+  "last_scan_date": "2026-09-12",
   "last_scan_summary": {
     "scanned": 1649,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "5534.TW",
+        "entry_date": "2026-09-03",
+        "exit_date": "2026-09-12",
+        "entry_price": 76.30000305175781,
+        "exit_price": 74.0,
+        "shares": 52,
+        "position_pct": 0.0542,
+        "signal_score": 0.028027945985813377,
+        "pnl_twd": -135.0,
+        "pnl_pct": -3.01,
+        "exit_reason": "hard_stop",
+        "exit_time": "2026-09-12 02:00"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-09-11 02:44"
+    "run_at": "2026-09-12 02:00"
   }
 }
