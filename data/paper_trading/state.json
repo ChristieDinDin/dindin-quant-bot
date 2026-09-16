@@ -10,7 +10,7 @@
       "position_pct": 0.1091,
       "divergence_low": 70.0,
       "signal_score": 0.393681580555869,
-      "peak_price": 72.9000015258789,
+      "peak_price": 73.0,
       "note": "自動掃描 score=0.39"
     }
   ],
@@ -1192,54 +1192,22 @@
     {
       "date": "2026-09-15",
       "equity": 73701.16955566406
+    },
+    {
+      "date": "2026-09-16",
+      "equity": 73712.16938781738
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-15",
+  "last_scan_date": "2026-09-16",
   "last_scan_summary": {
     "scanned": 1649,
-    "new_entries": [
-      {
-        "symbol": "5904.TWO",
-        "entry_price": 72.9000015258789,
-        "shares": 110,
-        "position_pct": 0.1091,
-        "signal_score": 0.393681580555869,
-        "reason": "底背離+右側確認 (RSI=17.5, score=0.39, pos=11%)"
-      }
+    "new_entries": [],
+    "auto_exits": [],
+    "skipped": [
+      "5904.TWO"
     ],
-    "auto_exits": [
-      {
-        "symbol": "NXPI",
-        "entry_date": "2026-09-03",
-        "exit_date": "2026-09-15",
-        "entry_price": 228.5,
-        "exit_price": 224.22999572753906,
-        "shares": 21,
-        "position_pct": 0.0666,
-        "signal_score": 0.11081567029866495,
-        "pnl_twd": -109.0,
-        "pnl_pct": -1.87,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-09-15 03:10"
-      },
-      {
-        "symbol": "3004.TW",
-        "entry_date": "2026-09-04",
-        "exit_date": "2026-09-15",
-        "entry_price": 123.0,
-        "exit_price": 115.5,
-        "shares": 46,
-        "position_pct": 0.0774,
-        "signal_score": 0.18282183987456335,
-        "pnl_twd": -367.0,
-        "pnl_pct": -6.1,
-        "exit_reason": "hard_stop",
-        "exit_time": "2026-09-15 03:10"
-      }
-    ],
-    "skipped": [],
     "errors": [],
-    "run_at": "2026-09-15 03:10"
+    "run_at": "2026-09-16 01:37"
   }
 }
