@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 65682.16938781738,
+  "cash": 58569.569480895996,
   "open_positions": [
     {
       "symbol": "5904.TWO",
@@ -10,8 +10,19 @@
       "position_pct": 0.1091,
       "divergence_low": 70.0,
       "signal_score": 0.393681580555869,
-      "peak_price": 73.0,
+      "peak_price": 73.5999984741211,
       "note": "自動掃描 score=0.39"
+    },
+    {
+      "symbol": "4560.TW",
+      "entry_date": "2026-09-17",
+      "entry_price": 29.149999618530273,
+      "shares": 244,
+      "position_pct": 0.0969,
+      "divergence_low": 28.549999237060547,
+      "signal_score": 0.3129609028223064,
+      "peak_price": 29.149999618530273,
+      "note": "自動掃描 score=0.31"
     }
   ],
   "closed_trades": [
@@ -1196,18 +1207,29 @@
     {
       "date": "2026-09-16",
       "equity": 73712.16938781738
+    },
+    {
+      "date": "2026-09-17",
+      "equity": 73778.1692199707
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-16",
+  "last_scan_date": "2026-09-17",
   "last_scan_summary": {
     "scanned": 1649,
-    "new_entries": [],
-    "auto_exits": [],
-    "skipped": [
-      "5904.TWO"
+    "new_entries": [
+      {
+        "symbol": "4560.TW",
+        "entry_price": 29.149999618530273,
+        "shares": 244,
+        "position_pct": 0.0969,
+        "signal_score": 0.3129609028223064,
+        "reason": "底背離+右側確認 (RSI=24.9, score=0.31, pos=10%)"
+      }
     ],
+    "auto_exits": [],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-09-16 01:37"
+    "run_at": "2026-09-17 02:21"
   }
 }
