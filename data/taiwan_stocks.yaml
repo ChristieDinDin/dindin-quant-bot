@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-09-18 | 1569 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-09-19 | 1574 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -1732,3 +1732,8 @@ high_volume:
   1456.TW: 怡華
   6872.TWO: 浩宇生醫
   7825.TWO: 和亞智慧
+  1103.TW: 嘉泥
+  1201.TW: 味全
+  2102.TW: 泰豐
+  5531.TW: 鄉林
+  6184.TW: 大豐電
