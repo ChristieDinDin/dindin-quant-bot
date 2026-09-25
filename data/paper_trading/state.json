@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 41404.96920013428,
+  "cash": 49027.96953582764,
   "open_positions": [
-    {
-      "symbol": "5904.TWO",
-      "entry_date": "2026-09-15",
-      "entry_price": 72.9000015258789,
-      "shares": 110,
-      "position_pct": 0.1091,
-      "divergence_low": 70.0,
-      "signal_score": 0.393681580555869,
-      "peak_price": 73.5999984741211,
-      "note": "自動掃描 score=0.39"
-    },
     {
       "symbol": "4560.TW",
       "entry_date": "2026-09-17",
@@ -21,7 +10,7 @@
       "position_pct": 0.0969,
       "divergence_low": 28.549999237060547,
       "signal_score": 0.3129609028223064,
-      "peak_price": 29.200000762939453,
+      "peak_price": 29.549999237060547,
       "note": "自動掃描 score=0.31"
     },
     {
@@ -730,6 +719,20 @@
       "pnl_pct": -6.1,
       "exit_reason": "hard_stop",
       "exit_time": "2026-09-15 03:10"
+    },
+    {
+      "symbol": "5904.TWO",
+      "entry_date": "2026-09-15",
+      "exit_date": "2026-09-25",
+      "entry_price": 72.9000015258789,
+      "exit_price": 69.30000305175781,
+      "shares": 110,
+      "position_pct": 0.1091,
+      "signal_score": 0.393681580555869,
+      "pnl_twd": -427.0,
+      "pnl_pct": -4.94,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-09-25 01:51"
     }
   ],
   "equity_curve": [
@@ -1260,16 +1263,37 @@
     {
       "date": "2026-09-24",
       "equity": 73182.76972198486
+    },
+    {
+      "date": "2026-09-25",
+      "equity": 73188.06906890869
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-24",
+  "last_scan_date": "2026-09-25",
   "last_scan_summary": {
     "scanned": 1658,
     "new_entries": [],
-    "auto_exits": [],
-    "skipped": [],
+    "auto_exits": [
+      {
+        "symbol": "5904.TWO",
+        "entry_date": "2026-09-15",
+        "exit_date": "2026-09-25",
+        "entry_price": 72.9000015258789,
+        "exit_price": 69.30000305175781,
+        "shares": 110,
+        "position_pct": 0.1091,
+        "signal_score": 0.393681580555869,
+        "pnl_twd": -427.0,
+        "pnl_pct": -4.94,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-09-25 01:51"
+      }
+    ],
+    "skipped": [
+      "8028.TW"
+    ],
     "errors": [],
-    "run_at": "2026-09-24 02:16"
+    "run_at": "2026-09-25 01:51"
   }
 }
