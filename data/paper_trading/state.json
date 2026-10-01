@@ -32,7 +32,7 @@
       "position_pct": 0.072,
       "divergence_low": 106.5,
       "signal_score": 0.14677721647863876,
-      "peak_price": 107.5,
+      "peak_price": 108.5,
       "note": "自動掃描 score=0.15"
     }
   ],
@@ -1318,25 +1318,20 @@
     {
       "date": "2026-09-30",
       "equity": 73477.76949310303
+    },
+    {
+      "date": "2026-10-01",
+      "equity": 73479.4694442749
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-09-30",
+  "last_scan_date": "2026-10-01",
   "last_scan_summary": {
-    "scanned": 1659,
-    "new_entries": [
-      {
-        "symbol": "2236.TW",
-        "entry_price": 107.5,
-        "shares": 49,
-        "position_pct": 0.072,
-        "signal_score": 0.14677721647863876,
-        "reason": "底背離+右側確認 (RSI=34.8, score=0.15, pos=7%)"
-      }
-    ],
+    "scanned": 1661,
+    "new_entries": [],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-09-30 03:47"
+    "run_at": "2026-10-01 03:45"
   }
 }
