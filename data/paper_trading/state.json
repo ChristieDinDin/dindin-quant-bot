@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 57739.66939544678,
+  "cash": 63049.16939544678,
   "open_positions": [
-    {
-      "symbol": "3217.TWO",
-      "entry_date": "2026-09-22",
-      "entry_price": 131.0,
-      "shares": 41,
-      "position_pct": 0.0731,
-      "divergence_low": 125.0,
-      "signal_score": 0.15411471378704963,
-      "peak_price": 131.0,
-      "note": "自動掃描 score=0.15"
-    },
     {
       "symbol": "AMAT",
       "entry_date": "2026-09-26",
@@ -21,7 +10,7 @@
       "position_pct": 0.0725,
       "divergence_low": 411.510009765625,
       "signal_score": 0.14975036823318583,
-      "peak_price": 512.010009765625,
+      "peak_price": 529.2999877929688,
       "note": "自動掃描 score=0.15"
     },
     {
@@ -764,6 +753,20 @@
       "pnl_pct": -1.16,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-09-29 04:29"
+    },
+    {
+      "symbol": "3217.TWO",
+      "entry_date": "2026-09-22",
+      "exit_date": "2026-10-02",
+      "entry_price": 131.0,
+      "exit_price": 129.5,
+      "shares": 41,
+      "position_pct": 0.0731,
+      "signal_score": 0.15411471378704963,
+      "pnl_twd": -83.0,
+      "pnl_pct": -1.15,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-10-02 03:00"
     }
   ],
   "equity_curve": [
@@ -1322,16 +1325,35 @@
     {
       "date": "2026-10-01",
       "equity": 73479.4694442749
+    },
+    {
+      "date": "2026-10-02",
+      "equity": 73585.16927337646
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-01",
+  "last_scan_date": "2026-10-02",
   "last_scan_summary": {
-    "scanned": 1661,
+    "scanned": 1664,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "3217.TWO",
+        "entry_date": "2026-09-22",
+        "exit_date": "2026-10-02",
+        "entry_price": 131.0,
+        "exit_price": 129.5,
+        "shares": 41,
+        "position_pct": 0.0731,
+        "signal_score": 0.15411471378704963,
+        "pnl_twd": -83.0,
+        "pnl_pct": -1.15,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-10-02 03:00"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-10-01 03:45"
+    "run_at": "2026-10-02 03:00"
   }
 }
