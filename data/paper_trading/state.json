@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 63049.16939544678,
+  "cash": 63576.269470214844,
   "open_positions": [
     {
       "symbol": "AMAT",
@@ -10,19 +10,19 @@
       "position_pct": 0.0725,
       "divergence_low": 411.510009765625,
       "signal_score": 0.14975036823318583,
-      "peak_price": 540.0399780273438,
+      "peak_price": 542.280029296875,
       "note": "自動掃描 score=0.15"
     },
     {
-      "symbol": "2236.TW",
-      "entry_date": "2026-09-30",
-      "entry_price": 107.5,
-      "shares": 49,
-      "position_pct": 0.072,
-      "divergence_low": 106.5,
-      "signal_score": 0.14677721647863876,
-      "peak_price": 108.5,
-      "note": "自動掃描 score=0.15"
+      "symbol": "1477.TW",
+      "entry_date": "2026-10-06",
+      "entry_price": 201.0,
+      "shares": 21,
+      "position_pct": 0.0602,
+      "divergence_low": 188.5,
+      "signal_score": 0.06812427478804206,
+      "peak_price": 201.0,
+      "note": "自動掃描 score=0.07"
     }
   ],
   "closed_trades": [
@@ -767,6 +767,20 @@
       "pnl_pct": -1.15,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-10-02 03:00"
+    },
+    {
+      "symbol": "2236.TW",
+      "entry_date": "2026-09-30",
+      "exit_date": "2026-10-06",
+      "entry_price": 107.5,
+      "exit_price": 96.9000015258789,
+      "shares": 49,
+      "position_pct": 0.072,
+      "signal_score": 0.14677721647863876,
+      "pnl_twd": -539.0,
+      "pnl_pct": -9.86,
+      "exit_reason": "max_loss_stop",
+      "exit_time": "2026-10-06 04:43"
     }
   ],
   "equity_curve": [
@@ -1333,16 +1347,44 @@
     {
       "date": "2026-10-03",
       "equity": 73717.06917572021
+    },
+    {
+      "date": "2026-10-06",
+      "equity": 73220.0697631836
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-03",
+  "last_scan_date": "2026-10-06",
   "last_scan_summary": {
-    "scanned": 1666,
-    "new_entries": [],
-    "auto_exits": [],
+    "scanned": 1667,
+    "new_entries": [
+      {
+        "symbol": "1477.TW",
+        "entry_price": 201.0,
+        "shares": 21,
+        "position_pct": 0.0602,
+        "signal_score": 0.06812427478804206,
+        "reason": "底背離+右側確認 (RSI=34.3, score=0.07, pos=6%)"
+      }
+    ],
+    "auto_exits": [
+      {
+        "symbol": "2236.TW",
+        "entry_date": "2026-09-30",
+        "exit_date": "2026-10-06",
+        "entry_price": 107.5,
+        "exit_price": 96.9000015258789,
+        "shares": 49,
+        "position_pct": 0.072,
+        "signal_score": 0.14677721647863876,
+        "pnl_twd": -539.0,
+        "pnl_pct": -9.86,
+        "exit_reason": "max_loss_stop",
+        "exit_time": "2026-10-06 04:43"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-10-03 02:53"
+    "run_at": "2026-10-06 04:43"
   }
 }
