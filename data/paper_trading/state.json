@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 63576.269470214844,
+  "cash": 58526.269470214844,
   "open_positions": [
     {
       "symbol": "AMAT",
@@ -23,6 +23,17 @@
       "signal_score": 0.06812427478804206,
       "peak_price": 206.0,
       "note": "自動掃描 score=0.07"
+    },
+    {
+      "symbol": "7805.TWO",
+      "entry_date": "2026-10-08",
+      "entry_price": 505.0,
+      "shares": 10,
+      "position_pct": 0.0728,
+      "divergence_low": 489.5,
+      "signal_score": 0.15202757349732487,
+      "peak_price": 505.0,
+      "note": "自動掃描 score=0.15"
     }
   ],
   "closed_trades": [
@@ -1355,16 +1366,29 @@
     {
       "date": "2026-10-07",
       "equity": 73204.96966552734
+    },
+    {
+      "date": "2026-10-08",
+      "equity": 73056.26971435547
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-07",
+  "last_scan_date": "2026-10-08",
   "last_scan_summary": {
-    "scanned": 1668,
-    "new_entries": [],
+    "scanned": 1669,
+    "new_entries": [
+      {
+        "symbol": "7805.TWO",
+        "entry_price": 505.0,
+        "shares": 10,
+        "position_pct": 0.0728,
+        "signal_score": 0.15202757349732487,
+        "reason": "底背離+右側確認 (RSI=31.5, score=0.15, pos=7%)"
+      }
+    ],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-10-07 03:20"
+    "run_at": "2026-10-08 03:53"
   }
 }
