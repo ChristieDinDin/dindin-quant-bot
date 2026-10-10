@@ -1,18 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 58526.269470214844,
+  "cash": 56769.169677734375,
   "open_positions": [
-    {
-      "symbol": "AMAT",
-      "entry_date": "2026-09-26",
-      "entry_price": 485.0,
-      "shares": 10,
-      "position_pct": 0.0725,
-      "divergence_low": 411.510009765625,
-      "signal_score": 0.14975036823318583,
-      "peak_price": 542.280029296875,
-      "note": "自動掃描 score=0.15"
-    },
     {
       "symbol": "1477.TW",
       "entry_date": "2026-10-06",
@@ -34,6 +23,17 @@
       "signal_score": 0.15202757349732487,
       "peak_price": 505.0,
       "note": "自動掃描 score=0.15"
+    },
+    {
+      "symbol": "UNH",
+      "entry_date": "2026-10-10",
+      "entry_price": 379.29998779296875,
+      "shares": 18,
+      "position_pct": 0.0992,
+      "divergence_low": 362.6000061035156,
+      "signal_score": 0.32802299153929665,
+      "peak_price": 379.29998779296875,
+      "note": "自動掃描 score=0.33"
     }
   ],
   "closed_trades": [
@@ -792,6 +792,20 @@
       "pnl_pct": -9.86,
       "exit_reason": "max_loss_stop",
       "exit_time": "2026-10-06 04:43"
+    },
+    {
+      "symbol": "AMAT",
+      "entry_date": "2026-09-26",
+      "exit_date": "2026-10-10",
+      "entry_price": 485.0,
+      "exit_price": 507.0299987792969,
+      "shares": 10,
+      "position_pct": 0.0725,
+      "signal_score": 0.14975036823318583,
+      "pnl_twd": 200.0,
+      "pnl_pct": 4.54,
+      "exit_reason": "time_stop_10d",
+      "exit_time": "2026-10-10 04:22"
     }
   ],
   "equity_curve": [
@@ -1374,18 +1388,46 @@
     {
       "date": "2026-10-09",
       "equity": 72955.96954345703
+    },
+    {
+      "date": "2026-10-10",
+      "equity": 72930.56945800781
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-09",
+  "last_scan_date": "2026-10-10",
   "last_scan_summary": {
     "scanned": 1672,
-    "new_entries": [],
-    "auto_exits": [],
+    "new_entries": [
+      {
+        "symbol": "UNH",
+        "entry_price": 379.29998779296875,
+        "shares": 18,
+        "position_pct": 0.0992,
+        "signal_score": 0.32802299153929665,
+        "reason": "底背離+右側確認 (RSI=32.2, score=0.33, pos=10%)"
+      }
+    ],
+    "auto_exits": [
+      {
+        "symbol": "AMAT",
+        "entry_date": "2026-09-26",
+        "exit_date": "2026-10-10",
+        "entry_price": 485.0,
+        "exit_price": 507.0299987792969,
+        "shares": 10,
+        "position_pct": 0.0725,
+        "signal_score": 0.14975036823318583,
+        "pnl_twd": 200.0,
+        "pnl_pct": 4.54,
+        "exit_reason": "time_stop_10d",
+        "exit_time": "2026-10-10 04:22"
+      }
+    ],
     "skipped": [
       "7805.TWO"
     ],
     "errors": [],
-    "run_at": "2026-10-09 03:21"
+    "run_at": "2026-10-10 04:22"
   }
 }
