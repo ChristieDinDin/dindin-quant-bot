@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 56769.169677734375,
+  "cash": 57407.669509887695,
   "open_positions": [
     {
       "symbol": "1477.TW",
@@ -14,17 +14,6 @@
       "note": "自動掃描 score=0.07"
     },
     {
-      "symbol": "7805.TWO",
-      "entry_date": "2026-10-08",
-      "entry_price": 505.0,
-      "shares": 10,
-      "position_pct": 0.0728,
-      "divergence_low": 489.5,
-      "signal_score": 0.15202757349732487,
-      "peak_price": 505.0,
-      "note": "自動掃描 score=0.15"
-    },
-    {
       "symbol": "UNH",
       "entry_date": "2026-10-10",
       "entry_price": 379.29998779296875,
@@ -34,6 +23,17 @@
       "signal_score": 0.32802299153929665,
       "peak_price": 379.29998779296875,
       "note": "自動掃描 score=0.33"
+    },
+    {
+      "symbol": "1216.TW",
+      "entry_date": "2026-10-13",
+      "entry_price": 76.30000305175781,
+      "shares": 55,
+      "position_pct": 0.058,
+      "divergence_low": 72.5999984741211,
+      "signal_score": 0.05312966075999231,
+      "peak_price": 76.30000305175781,
+      "note": "自動掃描 score=0.05"
     }
   ],
   "closed_trades": [
@@ -806,6 +806,20 @@
       "pnl_pct": 4.54,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-10-10 04:22"
+    },
+    {
+      "symbol": "7805.TWO",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-13",
+      "entry_price": 505.0,
+      "exit_price": 483.5,
+      "shares": 10,
+      "position_pct": 0.0728,
+      "signal_score": 0.15202757349732487,
+      "pnl_twd": -235.0,
+      "pnl_pct": -4.26,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-10-13 05:35"
     }
   ],
   "equity_curve": [
@@ -1392,42 +1406,44 @@
     {
       "date": "2026-10-10",
       "equity": 72930.56945800781
+    },
+    {
+      "date": "2026-10-13",
+      "equity": 72743.52947998047
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-10",
+  "last_scan_date": "2026-10-13",
   "last_scan_summary": {
     "scanned": 1672,
     "new_entries": [
       {
-        "symbol": "UNH",
-        "entry_price": 379.29998779296875,
-        "shares": 18,
-        "position_pct": 0.0992,
-        "signal_score": 0.32802299153929665,
-        "reason": "底背離+右側確認 (RSI=32.2, score=0.33, pos=10%)"
+        "symbol": "1216.TW",
+        "entry_price": 76.30000305175781,
+        "shares": 55,
+        "position_pct": 0.058,
+        "signal_score": 0.05312966075999231,
+        "reason": "底背離+右側確認 (RSI=33.8, score=0.05, pos=6%)"
       }
     ],
     "auto_exits": [
       {
-        "symbol": "AMAT",
-        "entry_date": "2026-09-26",
-        "exit_date": "2026-10-10",
-        "entry_price": 485.0,
-        "exit_price": 507.0299987792969,
+        "symbol": "7805.TWO",
+        "entry_date": "2026-10-08",
+        "exit_date": "2026-10-13",
+        "entry_price": 505.0,
+        "exit_price": 483.5,
         "shares": 10,
-        "position_pct": 0.0725,
-        "signal_score": 0.14975036823318583,
-        "pnl_twd": 200.0,
-        "pnl_pct": 4.54,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-10-10 04:22"
+        "position_pct": 0.0728,
+        "signal_score": 0.15202757349732487,
+        "pnl_twd": -235.0,
+        "pnl_pct": -4.26,
+        "exit_reason": "hard_stop",
+        "exit_time": "2026-10-13 05:35"
       }
     ],
-    "skipped": [
-      "7805.TWO"
-    ],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-10-10 04:22"
+    "run_at": "2026-10-13 05:35"
   }
 }
