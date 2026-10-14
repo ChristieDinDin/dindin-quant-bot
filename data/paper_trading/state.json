@@ -10,7 +10,7 @@
       "position_pct": 0.0602,
       "divergence_low": 188.5,
       "signal_score": 0.06812427478804206,
-      "peak_price": 206.0,
+      "peak_price": 208.0,
       "note": "自動掃描 score=0.07"
     },
     {
@@ -32,7 +32,7 @@
       "position_pct": 0.058,
       "divergence_low": 72.5999984741211,
       "signal_score": 0.05312966075999231,
-      "peak_price": 76.30000305175781,
+      "peak_price": 77.0999984741211,
       "note": "自動掃描 score=0.05"
     }
   ],
@@ -1410,40 +1410,22 @@
     {
       "date": "2026-10-13",
       "equity": 72743.52947998047
+    },
+    {
+      "date": "2026-10-14",
+      "equity": 72815.8496017456
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-13",
+  "last_scan_date": "2026-10-14",
   "last_scan_summary": {
-    "scanned": 1672,
-    "new_entries": [
-      {
-        "symbol": "1216.TW",
-        "entry_price": 76.30000305175781,
-        "shares": 55,
-        "position_pct": 0.058,
-        "signal_score": 0.05312966075999231,
-        "reason": "底背離+右側確認 (RSI=33.8, score=0.05, pos=6%)"
-      }
+    "scanned": 1675,
+    "new_entries": [],
+    "auto_exits": [],
+    "skipped": [
+      "1216.TW"
     ],
-    "auto_exits": [
-      {
-        "symbol": "7805.TWO",
-        "entry_date": "2026-10-08",
-        "exit_date": "2026-10-13",
-        "entry_price": 505.0,
-        "exit_price": 483.5,
-        "shares": 10,
-        "position_pct": 0.0728,
-        "signal_score": 0.15202757349732487,
-        "pnl_twd": -235.0,
-        "pnl_pct": -4.26,
-        "exit_reason": "hard_stop",
-        "exit_time": "2026-10-13 05:35"
-      }
-    ],
-    "skipped": [],
     "errors": [],
-    "run_at": "2026-10-13 05:35"
+    "run_at": "2026-10-14 03:46"
   }
 }
