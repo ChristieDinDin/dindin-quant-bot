@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 57407.669509887695,
+  "cash": 47000.86923599243,
   "open_positions": [
     {
       "symbol": "1477.TW",
@@ -21,7 +21,7 @@
       "position_pct": 0.0992,
       "divergence_low": 362.6000061035156,
       "signal_score": 0.32802299153929665,
-      "peak_price": 379.29998779296875,
+      "peak_price": 395.6199951171875,
       "note": "自動掃描 score=0.33"
     },
     {
@@ -32,8 +32,30 @@
       "position_pct": 0.058,
       "divergence_low": 72.5999984741211,
       "signal_score": 0.05312966075999231,
-      "peak_price": 77.0999984741211,
+      "peak_price": 78.19999694824219,
       "note": "自動掃描 score=0.05"
+    },
+    {
+      "symbol": "1907.TW",
+      "entry_date": "2026-10-15",
+      "entry_price": 28.700000762939453,
+      "shares": 152,
+      "position_pct": 0.0602,
+      "divergence_low": 27.549999237060547,
+      "signal_score": 0.0678474818981672,
+      "peak_price": 28.700000762939453,
+      "note": "自動掃描 score=0.07"
+    },
+    {
+      "symbol": "6186.TWO",
+      "entry_date": "2026-10-15",
+      "entry_price": 29.200000762939453,
+      "shares": 207,
+      "position_pct": 0.0834,
+      "divergence_low": 28.549999237060547,
+      "signal_score": 0.22277635222191627,
+      "peak_price": 29.200000762939453,
+      "note": "自動掃描 score=0.22"
     }
   ],
   "closed_trades": [
@@ -1414,18 +1436,39 @@
     {
       "date": "2026-10-14",
       "equity": 72815.8496017456
+    },
+    {
+      "date": "2026-10-15",
+      "equity": 73155.82925415039
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-14",
+  "last_scan_date": "2026-10-15",
   "last_scan_summary": {
-    "scanned": 1675,
-    "new_entries": [],
+    "scanned": 1676,
+    "new_entries": [
+      {
+        "symbol": "1907.TW",
+        "entry_price": 28.700000762939453,
+        "shares": 152,
+        "position_pct": 0.0602,
+        "signal_score": 0.0678474818981672,
+        "reason": "底背離+右側確認 (RSI=33.1, score=0.07, pos=6%)"
+      },
+      {
+        "symbol": "6186.TWO",
+        "entry_price": 29.200000762939453,
+        "shares": 207,
+        "position_pct": 0.0834,
+        "signal_score": 0.22277635222191627,
+        "reason": "底背離+右側確認 (RSI=21.0, score=0.22, pos=8%)"
+      }
+    ],
     "auto_exits": [],
     "skipped": [
       "1216.TW"
     ],
     "errors": [],
-    "run_at": "2026-10-14 03:46"
+    "run_at": "2026-10-15 03:11"
   }
 }

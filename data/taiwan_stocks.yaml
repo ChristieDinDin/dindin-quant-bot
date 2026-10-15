@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-10-14 | 1592 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-10-15 | 1593 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -1755,3 +1755,4 @@ high_volume:
   9943.TW: 好樂迪
   4430.TWO: 耀億
   6843.TWO: 進典
+  1516.TW: 川飛
