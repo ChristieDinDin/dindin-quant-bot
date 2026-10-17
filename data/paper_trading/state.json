@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 51379.36923599243,
+  "cash": 45941.469371795654,
   "open_positions": [
     {
       "symbol": "UNH",
@@ -21,7 +21,7 @@
       "position_pct": 0.058,
       "divergence_low": 72.5999984741211,
       "signal_score": 0.05312966075999231,
-      "peak_price": 79.5,
+      "peak_price": 79.5999984741211,
       "note": "自動掃描 score=0.05"
     },
     {
@@ -43,8 +43,19 @@
       "position_pct": 0.0834,
       "divergence_low": 28.549999237060547,
       "signal_score": 0.22277635222191627,
-      "peak_price": 29.200000762939453,
+      "peak_price": 29.25,
       "note": "自動掃描 score=0.22"
+    },
+    {
+      "symbol": "2101.TW",
+      "entry_date": "2026-10-17",
+      "entry_price": 30.549999237060547,
+      "shares": 178,
+      "position_pct": 0.0749,
+      "divergence_low": 28.649999618530273,
+      "signal_score": 0.1657261307911885,
+      "peak_price": 30.549999237060547,
+      "note": "自動掃描 score=0.17"
     }
   ],
   "closed_trades": [
@@ -1447,35 +1458,29 @@
     {
       "date": "2026-10-16",
       "equity": 73566.52936172485
+    },
+    {
+      "date": "2026-10-17",
+      "equity": 73529.45890426636
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-16",
+  "last_scan_date": "2026-10-17",
   "last_scan_summary": {
     "scanned": 1677,
-    "new_entries": [],
-    "auto_exits": [
+    "new_entries": [
       {
-        "symbol": "1477.TW",
-        "entry_date": "2026-10-06",
-        "exit_date": "2026-10-16",
-        "entry_price": 201.0,
-        "exit_price": 208.5,
-        "shares": 21,
-        "position_pct": 0.0602,
-        "signal_score": 0.06812427478804206,
-        "pnl_twd": 140.0,
-        "pnl_pct": 3.73,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-10-16 01:35"
+        "symbol": "2101.TW",
+        "entry_price": 30.549999237060547,
+        "shares": 178,
+        "position_pct": 0.0749,
+        "signal_score": 0.1657261307911885,
+        "reason": "底背離+右側確認 (RSI=27.9, score=0.17, pos=7%)"
       }
     ],
-    "skipped": [
-      "1227.TW",
-      "1907.TW",
-      "2101.TW"
-    ],
+    "auto_exits": [],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-10-16 01:35"
+    "run_at": "2026-10-17 03:05"
   }
 }
