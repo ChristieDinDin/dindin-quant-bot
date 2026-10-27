@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-10-24 | 1598 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-10-27 | 1597 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -383,7 +383,6 @@ high_volume:
   2838.TW: 聯邦銀
   2845.TW: 遠東銀
   2855.TW: 統一證
-  2867.TW: 三商壽
   2880.TW: 華南金
   2881.TW: 富邦金
   2882.TW: 國泰金
