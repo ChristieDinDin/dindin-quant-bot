@@ -1,29 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 50437.21949386597,
+  "cash": 62905.5493812561,
   "open_positions": [
-    {
-      "symbol": "UNH",
-      "entry_date": "2026-10-10",
-      "entry_price": 379.29998779296875,
-      "shares": 18,
-      "position_pct": 0.0992,
-      "divergence_low": 362.6000061035156,
-      "signal_score": 0.32802299153929665,
-      "peak_price": 424.9800109863281,
-      "note": "自動掃描 score=0.33"
-    },
-    {
-      "symbol": "1536.TW",
-      "entry_date": "2026-10-27",
-      "entry_price": 44.04999923706055,
-      "shares": 117,
-      "position_pct": 0.0708,
-      "divergence_low": 43.79999923706055,
-      "signal_score": 0.1384135724190174,
-      "peak_price": 46.20000076293945,
-      "note": "自動掃描 score=0.14"
-    },
     {
       "symbol": "6166.TW",
       "entry_date": "2026-10-28",
@@ -901,6 +879,34 @@
       "pnl_pct": -4.58,
       "exit_reason": "time_stop_10d",
       "exit_time": "2026-10-27 03:43"
+    },
+    {
+      "symbol": "UNH",
+      "entry_date": "2026-10-10",
+      "exit_date": "2026-10-30",
+      "entry_price": 379.29998779296875,
+      "exit_price": 410.9100036621094,
+      "shares": 18,
+      "position_pct": 0.0992,
+      "signal_score": 0.32802299153929665,
+      "pnl_twd": 541.0,
+      "pnl_pct": 8.33,
+      "exit_reason": "time_stop_20d",
+      "exit_time": "2026-10-30 02:57"
+    },
+    {
+      "symbol": "1536.TW",
+      "entry_date": "2026-10-27",
+      "exit_date": "2026-10-30",
+      "entry_price": 44.04999923706055,
+      "exit_price": 43.349998474121094,
+      "shares": 117,
+      "position_pct": 0.0708,
+      "signal_score": 0.1384135724190174,
+      "pnl_twd": -102.0,
+      "pnl_pct": -1.59,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-10-30 02:57"
     }
   ],
   "equity_curve": [
@@ -1547,25 +1553,53 @@
     {
       "date": "2026-10-29",
       "equity": 73110.91942977905
+    },
+    {
+      "date": "2026-10-30",
+      "equity": 73162.24938583374
+    },
+    {
+      "date": "2026-10-30",
+      "equity": 72604.09929656982
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-29",
+  "last_scan_date": "2026-10-30",
   "last_scan_summary": {
     "scanned": 1685,
-    "new_entries": [
+    "new_entries": [],
+    "auto_exits": [
       {
-        "symbol": "6265.TWO",
-        "entry_price": 45.29999923706055,
-        "shares": 111,
-        "position_pct": 0.0696,
-        "signal_score": 0.1304071243235258,
-        "reason": "底背離+右側確認 (RSI=34.1, score=0.13, pos=7%)"
+        "symbol": "UNH",
+        "entry_date": "2026-10-10",
+        "exit_date": "2026-10-30",
+        "entry_price": 379.29998779296875,
+        "exit_price": 410.9100036621094,
+        "shares": 18,
+        "position_pct": 0.0992,
+        "signal_score": 0.32802299153929665,
+        "pnl_twd": 541.0,
+        "pnl_pct": 8.33,
+        "exit_reason": "time_stop_20d",
+        "exit_time": "2026-10-30 02:57"
+      },
+      {
+        "symbol": "1536.TW",
+        "entry_date": "2026-10-27",
+        "exit_date": "2026-10-30",
+        "entry_price": 44.04999923706055,
+        "exit_price": 43.349998474121094,
+        "shares": 117,
+        "position_pct": 0.0708,
+        "signal_score": 0.1384135724190174,
+        "pnl_twd": -102.0,
+        "pnl_pct": -1.59,
+        "exit_reason": "hard_stop",
+        "exit_time": "2026-10-30 02:57"
       }
     ],
-    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-10-29 04:08"
+    "run_at": "2026-10-30 02:57"
   }
 }
