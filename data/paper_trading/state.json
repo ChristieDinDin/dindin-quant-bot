@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 62905.5493812561,
+  "cash": 67672.99946594238,
   "open_positions": [
     {
       "symbol": "6166.TW",
@@ -12,17 +12,6 @@
       "signal_score": 0.14293075945417705,
       "peak_price": 109.5,
       "note": "自動掃描 score=0.14"
-    },
-    {
-      "symbol": "6265.TWO",
-      "entry_date": "2026-10-29",
-      "entry_price": 45.29999923706055,
-      "shares": 111,
-      "position_pct": 0.0696,
-      "divergence_low": 43.599998474121094,
-      "signal_score": 0.1304071243235258,
-      "peak_price": 45.29999923706055,
-      "note": "自動掃描 score=0.13"
     }
   ],
   "closed_trades": [
@@ -907,6 +896,20 @@
       "pnl_pct": -1.59,
       "exit_reason": "hard_stop",
       "exit_time": "2026-10-30 02:57"
+    },
+    {
+      "symbol": "6265.TWO",
+      "entry_date": "2026-10-29",
+      "exit_date": "2026-10-31",
+      "entry_price": 45.29999923706055,
+      "exit_price": 42.95000076293945,
+      "shares": 111,
+      "position_pct": 0.0696,
+      "signal_score": 0.1304071243235258,
+      "pnl_twd": -280.0,
+      "pnl_pct": -5.19,
+      "exit_reason": "hard_stop",
+      "exit_time": "2026-10-31 03:56"
     }
   ],
   "equity_curve": [
@@ -1561,45 +1564,35 @@
     {
       "date": "2026-10-30",
       "equity": 72604.09929656982
+    },
+    {
+      "date": "2026-10-31",
+      "equity": 72537.49946594238
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-30",
+  "last_scan_date": "2026-10-31",
   "last_scan_summary": {
-    "scanned": 1685,
+    "scanned": 1689,
     "new_entries": [],
     "auto_exits": [
       {
-        "symbol": "UNH",
-        "entry_date": "2026-10-10",
-        "exit_date": "2026-10-30",
-        "entry_price": 379.29998779296875,
-        "exit_price": 410.9100036621094,
-        "shares": 18,
-        "position_pct": 0.0992,
-        "signal_score": 0.32802299153929665,
-        "pnl_twd": 541.0,
-        "pnl_pct": 8.33,
-        "exit_reason": "time_stop_20d",
-        "exit_time": "2026-10-30 02:57"
-      },
-      {
-        "symbol": "1536.TW",
-        "entry_date": "2026-10-27",
-        "exit_date": "2026-10-30",
-        "entry_price": 44.04999923706055,
-        "exit_price": 43.349998474121094,
-        "shares": 117,
-        "position_pct": 0.0708,
-        "signal_score": 0.1384135724190174,
-        "pnl_twd": -102.0,
-        "pnl_pct": -1.59,
+        "symbol": "6265.TWO",
+        "entry_date": "2026-10-29",
+        "exit_date": "2026-10-31",
+        "entry_price": 45.29999923706055,
+        "exit_price": 42.95000076293945,
+        "shares": 111,
+        "position_pct": 0.0696,
+        "signal_score": 0.1304071243235258,
+        "pnl_twd": -280.0,
+        "pnl_pct": -5.19,
         "exit_reason": "hard_stop",
-        "exit_time": "2026-10-30 02:57"
+        "exit_time": "2026-10-31 03:56"
       }
     ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-10-30 02:57"
+    "run_at": "2026-10-31 03:56"
   }
 }
