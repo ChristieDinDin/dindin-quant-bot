@@ -1,19 +1,7 @@
 {
   "initial_equity": 70000,
-  "cash": 67672.99946594238,
-  "open_positions": [
-    {
-      "symbol": "6166.TW",
-      "entry_date": "2026-10-28",
-      "entry_price": 109.5,
-      "shares": 47,
-      "position_pct": 0.0714,
-      "divergence_low": 102.5,
-      "signal_score": 0.14293075945417705,
-      "peak_price": 109.5,
-      "note": "自動掃描 score=0.14"
-    }
-  ],
+  "cash": 72316.599609375,
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "4129.TWO",
@@ -910,6 +898,20 @@
       "pnl_pct": -5.19,
       "exit_reason": "hard_stop",
       "exit_time": "2026-10-31 03:56"
+    },
+    {
+      "symbol": "6166.TW",
+      "entry_date": "2026-10-28",
+      "exit_date": "2026-11-03",
+      "entry_price": 109.5,
+      "exit_price": 98.80000305175781,
+      "shares": 47,
+      "position_pct": 0.0714,
+      "signal_score": 0.14293075945417705,
+      "pnl_twd": -522.0,
+      "pnl_pct": -9.77,
+      "exit_reason": "max_loss_stop",
+      "exit_time": "2026-11-03 04:49"
     }
   ],
   "equity_curve": [
@@ -1568,31 +1570,35 @@
     {
       "date": "2026-10-31",
       "equity": 72537.49946594238
+    },
+    {
+      "date": "2026-11-03",
+      "equity": 72316.599609375
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-10-31",
+  "last_scan_date": "2026-11-03",
   "last_scan_summary": {
-    "scanned": 1689,
+    "scanned": 1690,
     "new_entries": [],
     "auto_exits": [
       {
-        "symbol": "6265.TWO",
-        "entry_date": "2026-10-29",
-        "exit_date": "2026-10-31",
-        "entry_price": 45.29999923706055,
-        "exit_price": 42.95000076293945,
-        "shares": 111,
-        "position_pct": 0.0696,
-        "signal_score": 0.1304071243235258,
-        "pnl_twd": -280.0,
-        "pnl_pct": -5.19,
-        "exit_reason": "hard_stop",
-        "exit_time": "2026-10-31 03:56"
+        "symbol": "6166.TW",
+        "entry_date": "2026-10-28",
+        "exit_date": "2026-11-03",
+        "entry_price": 109.5,
+        "exit_price": 98.80000305175781,
+        "shares": 47,
+        "position_pct": 0.0714,
+        "signal_score": 0.14293075945417705,
+        "pnl_twd": -522.0,
+        "pnl_pct": -9.77,
+        "exit_reason": "max_loss_stop",
+        "exit_time": "2026-11-03 04:49"
       }
     ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-10-31 03:56"
+    "run_at": "2026-11-03 04:49"
   }
 }
