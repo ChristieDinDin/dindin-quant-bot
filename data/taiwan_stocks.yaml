@@ -1,7 +1,7 @@
 # Taiwan Stock Master List
 # This file contains stock codes and their Chinese/English names
 # Source: TWSE + TPEX OpenAPI
-# Last Updated: 2026-11-03 | 1604 stocks | ≥20.0M TWD/day
+# Last Updated: 2026-11-04 | 1608 stocks | ≥20.0M TWD/day
 # Policy: append-only (stocks removed only after ≥45 days with no data)
 
 blue_chips:
@@ -1767,3 +1767,7 @@ high_volume:
   5245.TWO: 智晶
   6825.TWO: 和暢科技
   4568.TWO: 科際精密
+  4116.TWO: 明基醫
+  6865.TWO: 偉康科技
+  7767.TWO: 仁大資訊
+  8272.TWO: 全景軟體

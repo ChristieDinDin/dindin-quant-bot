@@ -1574,31 +1574,20 @@
     {
       "date": "2026-11-03",
       "equity": 72316.599609375
+    },
+    {
+      "date": "2026-11-04",
+      "equity": 72316.599609375
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-03",
+  "last_scan_date": "2026-11-04",
   "last_scan_summary": {
-    "scanned": 1690,
+    "scanned": 1694,
     "new_entries": [],
-    "auto_exits": [
-      {
-        "symbol": "6166.TW",
-        "entry_date": "2026-10-28",
-        "exit_date": "2026-11-03",
-        "entry_price": 109.5,
-        "exit_price": 98.80000305175781,
-        "shares": 47,
-        "position_pct": 0.0714,
-        "signal_score": 0.14293075945417705,
-        "pnl_twd": -522.0,
-        "pnl_pct": -9.77,
-        "exit_reason": "max_loss_stop",
-        "exit_time": "2026-11-03 04:49"
-      }
-    ],
+    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-11-03 04:49"
+    "run_at": "2026-11-04 03:54"
   }
 }
