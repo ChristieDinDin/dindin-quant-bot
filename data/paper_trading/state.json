@@ -1,7 +1,19 @@
 {
   "initial_equity": 70000,
-  "cash": 72316.599609375,
-  "open_positions": [],
+  "cash": 65442.59982299805,
+  "open_positions": [
+    {
+      "symbol": "1786.TW",
+      "entry_date": "2026-11-05",
+      "entry_price": 49.099998474121094,
+      "shares": 140,
+      "position_pct": 0.0951,
+      "divergence_low": 38.79999923706055,
+      "signal_score": 0.3006187916910921,
+      "peak_price": 49.099998474121094,
+      "note": "自動掃描 score=0.30"
+    }
+  ],
   "closed_trades": [
     {
       "symbol": "4129.TWO",
@@ -1578,16 +1590,29 @@
     {
       "date": "2026-11-04",
       "equity": 72316.599609375
+    },
+    {
+      "date": "2026-11-05",
+      "equity": 72316.599609375
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-04",
+  "last_scan_date": "2026-11-05",
   "last_scan_summary": {
-    "scanned": 1694,
-    "new_entries": [],
+    "scanned": 1696,
+    "new_entries": [
+      {
+        "symbol": "1786.TW",
+        "entry_price": 49.099998474121094,
+        "shares": 140,
+        "position_pct": 0.0951,
+        "signal_score": 0.3006187916910921,
+        "reason": "底背離+右側確認 (RSI=28.0, score=0.30, pos=10%)"
+      }
+    ],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-11-04 03:54"
+    "run_at": "2026-11-05 04:53"
   }
 }
