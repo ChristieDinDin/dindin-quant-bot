@@ -10,7 +10,7 @@
       "position_pct": 0.0951,
       "divergence_low": 38.79999923706055,
       "signal_score": 0.3006187916910921,
-      "peak_price": 49.099998474121094,
+      "peak_price": 51.0,
       "note": "自動掃描 score=0.30"
     }
   ],
@@ -1594,25 +1594,22 @@
     {
       "date": "2026-11-05",
       "equity": 72316.599609375
+    },
+    {
+      "date": "2026-11-06",
+      "equity": 72582.59982299805
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-05",
+  "last_scan_date": "2026-11-06",
   "last_scan_summary": {
     "scanned": 1696,
-    "new_entries": [
-      {
-        "symbol": "1786.TW",
-        "entry_price": 49.099998474121094,
-        "shares": 140,
-        "position_pct": 0.0951,
-        "signal_score": 0.3006187916910921,
-        "reason": "底背離+右側確認 (RSI=28.0, score=0.30, pos=10%)"
-      }
-    ],
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "1786.TW"
+    ],
     "errors": [],
-    "run_at": "2026-11-05 04:53"
+    "run_at": "2026-11-06 04:50"
   }
 }
