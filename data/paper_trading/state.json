@@ -1680,47 +1680,20 @@
     {
       "date": "2026-11-17",
       "equity": 70985.84972953796
+    },
+    {
+      "date": "2026-11-18",
+      "equity": 70732.14951515198
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-17",
+  "last_scan_date": "2026-11-18",
   "last_scan_summary": {
-    "scanned": 1706,
+    "scanned": 1709,
     "new_entries": [],
-    "auto_exits": [
-      {
-        "symbol": "1786.TW",
-        "entry_date": "2026-11-05",
-        "exit_date": "2026-11-17",
-        "entry_price": 49.099998474121094,
-        "exit_price": 48.45000076293945,
-        "shares": 140,
-        "position_pct": 0.0951,
-        "signal_score": 0.3006187916910921,
-        "pnl_twd": -118.0,
-        "pnl_pct": -1.32,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-11-17 05:49"
-      },
-      {
-        "symbol": "3305.TW",
-        "entry_date": "2026-11-13",
-        "exit_date": "2026-11-17",
-        "entry_price": 118.5,
-        "exit_price": 98.9000015258789,
-        "shares": 53,
-        "position_pct": 0.087,
-        "signal_score": 0.2465407059339204,
-        "pnl_twd": -1062.0,
-        "pnl_pct": -16.54,
-        "exit_reason": "max_loss_stop",
-        "exit_time": "2026-11-17 05:49"
-      }
-    ],
-    "skipped": [
-      "6409.TW"
-    ],
+    "auto_exits": [],
+    "skipped": [],
     "errors": [],
-    "run_at": "2026-11-17 05:49"
+    "run_at": "2026-11-18 04:53"
   }
 }
