@@ -1,6 +1,6 @@
 {
   "initial_equity": 70000,
-  "cash": 51372.74962234497,
+  "cash": 56388.599729537964,
   "open_positions": [
     {
       "symbol": "1210.TW",
@@ -12,17 +12,6 @@
       "signal_score": 0.20795710855866045,
       "peak_price": 52.0,
       "note": "自動掃描 score=0.21"
-    },
-    {
-      "symbol": "2427.TW",
-      "entry_date": "2026-11-13",
-      "entry_price": 20.450000762939453,
-      "shares": 281,
-      "position_pct": 0.0795,
-      "divergence_low": 19.0,
-      "signal_score": 0.19688490687051063,
-      "peak_price": 21.0,
-      "note": "自動掃描 score=0.20"
     },
     {
       "symbol": "2912.TW",
@@ -974,6 +963,20 @@
       "pnl_pct": -16.54,
       "exit_reason": "max_loss_stop",
       "exit_time": "2026-11-17 05:49"
+    },
+    {
+      "symbol": "2427.TW",
+      "entry_date": "2026-11-13",
+      "exit_date": "2026-11-19",
+      "entry_price": 20.450000762939453,
+      "exit_price": 17.850000381469727,
+      "shares": 281,
+      "position_pct": 0.0795,
+      "signal_score": 0.19688490687051063,
+      "pnl_twd": -752.0,
+      "pnl_pct": -12.71,
+      "exit_reason": "max_loss_stop",
+      "exit_time": "2026-11-19 05:52"
     }
   ],
   "equity_curve": [
@@ -1684,16 +1687,35 @@
     {
       "date": "2026-11-18",
       "equity": 70732.14951515198
+    },
+    {
+      "date": "2026-11-19",
+      "equity": 70224.39981651306
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-18",
+  "last_scan_date": "2026-11-19",
   "last_scan_summary": {
     "scanned": 1709,
     "new_entries": [],
-    "auto_exits": [],
+    "auto_exits": [
+      {
+        "symbol": "2427.TW",
+        "entry_date": "2026-11-13",
+        "exit_date": "2026-11-19",
+        "entry_price": 20.450000762939453,
+        "exit_price": 17.850000381469727,
+        "shares": 281,
+        "position_pct": 0.0795,
+        "signal_score": 0.19688490687051063,
+        "pnl_twd": -752.0,
+        "pnl_pct": -12.71,
+        "exit_reason": "max_loss_stop",
+        "exit_time": "2026-11-19 05:52"
+      }
+    ],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-11-18 04:53"
+    "run_at": "2026-11-19 05:52"
   }
 }
