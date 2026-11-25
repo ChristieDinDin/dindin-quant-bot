@@ -1708,31 +1708,20 @@
     {
       "date": "2026-11-24",
       "equity": 70087.59972953796
+    },
+    {
+      "date": "2026-11-25",
+      "equity": 70087.59972953796
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-24",
+  "last_scan_date": "2026-11-25",
   "last_scan_summary": {
     "scanned": 1711,
     "new_entries": [],
-    "auto_exits": [
-      {
-        "symbol": "1210.TW",
-        "entry_date": "2026-11-13",
-        "exit_date": "2026-11-24",
-        "entry_price": 51.400001525878906,
-        "exit_price": 52.0,
-        "shares": 114,
-        "position_pct": 0.0812,
-        "signal_score": 0.20795710855866045,
-        "pnl_twd": 45.0,
-        "pnl_pct": 1.17,
-        "exit_reason": "time_stop_10d",
-        "exit_time": "2026-11-24 07:23"
-      }
-    ],
+    "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-11-24 07:23"
+    "run_at": "2026-11-25 05:48"
   }
 }
