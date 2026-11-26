@@ -1712,16 +1712,20 @@
     {
       "date": "2026-11-25",
       "equity": 70087.59972953796
+    },
+    {
+      "date": "2026-11-26",
+      "equity": 70087.59972953796
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-25",
+  "last_scan_date": "2026-11-26",
   "last_scan_summary": {
     "scanned": 1711,
     "new_entries": [],
     "auto_exits": [],
     "skipped": [],
     "errors": [],
-    "run_at": "2026-11-25 05:48"
+    "run_at": "2026-11-26 05:22"
   }
 }
