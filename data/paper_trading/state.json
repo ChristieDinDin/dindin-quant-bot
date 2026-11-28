@@ -1732,25 +1732,22 @@
     {
       "date": "2026-11-27",
       "equity": 70087.59972953796
+    },
+    {
+      "date": "2026-11-28",
+      "equity": 70032.59972953796
     }
   ],
   "start_date": "2026-03-12",
-  "last_scan_date": "2026-11-27",
+  "last_scan_date": "2026-11-28",
   "last_scan_summary": {
     "scanned": 1713,
-    "new_entries": [
-      {
-        "symbol": "3218.TWO",
-        "entry_price": 125.0,
-        "shares": 55,
-        "position_pct": 0.0986,
-        "signal_score": 0.32428652768834665,
-        "reason": "底背離+右側確認 (RSI=16.8, score=0.32, pos=10%)"
-      }
-    ],
+    "new_entries": [],
     "auto_exits": [],
-    "skipped": [],
+    "skipped": [
+      "3218.TWO"
+    ],
     "errors": [],
-    "run_at": "2026-11-27 05:33"
+    "run_at": "2026-11-28 05:11"
   }
 }
